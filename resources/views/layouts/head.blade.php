@@ -10,7 +10,7 @@
 <div id="preloader" class="preloader flex-column justify-content-center align-items-center">
     <div class="pre-center">
         <div class="pre-ring"></div>
-        <span><img src="{{ asset('assets/img/AdminLTELogo.png') }}" alt="Logo" height="100" width="100"></span>
+        <span><img src="{{ asset('assets/img/logo.png') }}" alt="Logo" height="100" width="100"></span>
     </div>
 </div>
 <script>

@@ -1,7 +1,8 @@
 <footer class="main-footer">
-    <strong>جميع الحقوق محفوظة &copy; 2023-2024 <a href="http://adminlte.io">وصلّى الله على سيدنا محمد وسلم تسليماً كثيراً</a>.</strong>
-    😎
+    <strong class="text-green">جميع الحقوق محفوظة &copy; 2023-2024 <a class="text-yellow"
+            href="https://www.facebook.com/ALKASABSCHOOL">
+            ثانوية القصاب للتعليم الشرعي</a>.</strong>
     <div class="float-right d-none d-sm-inline-block">
-      <b>الإصدار</b> 3.0.0
+        <b class="text-green">الإصدار</b> <b class="text-teal">1.0.0</b>
     </div>
-  </footer>
+</footer>

@@ -10,7 +10,7 @@
     @include('layouts.head')
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed ">
     <div class="wrapper">
 
         <!-- HeaderBar Container -->
@@ -20,7 +20,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper bg-indigo">
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
@@ -30,11 +30,13 @@
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">@yield('root')</a>
+                                <li class="breadcrumb-item active"><a class="text-green"
+                                        href="#">@yield('root')</a>
                                     <h>/</h>
                                 </li>
-                                <li class="breadcrumb-item active"><a href="#">@yield('son1')</a></li>
-                                <li class="breadcrumb-item active"><a href="#">@yield('son2')</a></li>
+                                <li class="breadcrumb-item active"><a class="text-green"
+                                        href="#">@yield('son1')</a></li>
+                                <li><a class="text-green" href="#">@yield('son2')</a></li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->

@@ -5,7 +5,7 @@
   $index: str-index($string, $search);
 
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    @return str-slice($string, 1, $index - 1)+$replace +str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
   }
 
   @return $string;
@@ -14,10 +14,10 @@
 // Theme Variables
 // Color
 $bootstrap-primary: #007bff !default;
-$bootstrap-success: #28a745 !default;
+$bootstrap-success: #00573d !default;
 $bootstrap-danger: #dc3545 !default;
-$bootstrap-warning: #ffc107 !default;
-$bootstrap-info: #17a2b8 !default;
+$bootstrap-warning: #478e3e !default;
+$bootstrap-info: #75b43f !default;
 $bootstrap-secondary: #6c757d !default;
 
 $bootstrap-gray-100: #f8f9fa !default;
@@ -124,15 +124,15 @@ $bootstrap-custom-range-thumb-active-bg: lighten($bootstrap-primary, 35%) !defau
 $bootstrap-custom-range-thumb-disabled-bg: $bootstrap-gray-500 !default;
 
 // Toast
-$bootstrap-toast-max-width:                   350px !default;
-$bootstrap-toast-padding-x:                   .75rem !default;
-$bootstrap-toast-padding-y:                   .25rem !default;
-$bootstrap-toast-font-size:                   .875rem !default;
-$bootstrap-toast-background-color:            rgba($swal2-white, .85) !default;
-$bootstrap-toast-border-width:                1px !default;
-$bootstrap-toast-border-color:                rgba(0, 0, 0, .1) !default;
-$bootstrap-toast-border-radius:               .25rem !default;
-$bootstrap-toast-box-shadow:                  0 .25rem .75rem rgba($swal2-black, .1) !default;
+$bootstrap-toast-max-width: 350px !default;
+$bootstrap-toast-padding-x: .75rem !default;
+$bootstrap-toast-padding-y: .25rem !default;
+$bootstrap-toast-font-size: .875rem !default;
+$bootstrap-toast-background-color: rgba($swal2-white, .85) !default;
+$bootstrap-toast-border-width: 1px !default;
+$bootstrap-toast-border-color: rgba(0, 0, 0, .1) !default;
+$bootstrap-toast-border-radius: .25rem !default;
+$bootstrap-toast-box-shadow: 0 .25rem .75rem rgba($swal2-black, .1) !default;
 
 // override SASS variables here
 
@@ -387,32 +387,32 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
       z-index: -1;
       opacity: 0;
 
-      &:checked ~ .swal2-label::before {
+      &:checked~.swal2-label::before {
         border-color: $bootstrap-custom-control-indicator-checked-border-color;
         background: $bootstrap-custom-control-indicator-checked-bg;
         color: $bootstrap-custom-control-indicator-checked-color;
       }
 
-      &:focus ~ .swal2-label::before {
+      &:focus~.swal2-label::before {
         box-shadow: $bootstrap-custom-control-indicator-focus-box-shadow;
       }
 
-      &:focus:not(:checked) ~ .swal2-label::before {
+      &:focus:not(:checked)~.swal2-label::before {
         border-color: $bootstrap-custom-control-indicator-focus-border-color;
       }
 
-      &:not(:disabled):active ~ .swal2-label::before {
+      &:not(:disabled):active~.swal2-label::before {
         border-color: $bootstrap-custom-control-indicator-active-border-color;
         background-color: $bootstrap-custom-control-indicator-active-bg;
         color: $bootstrap-custom-control-indicator-active-color;
       }
     }
 
-    input:checked ~ .swal2-label::after {
+    input:checked~.swal2-label::after {
       background-image: $bootstrap-custom-radio-indicator-icon-checked;
     }
 
-    input:disabled:checked ~ .swal2-label::before {
+    input:disabled:checked~.swal2-label::before {
       background-color: $bootstrap-custom-control-indicator-checked-disabled-bg;
     }
   }
@@ -456,32 +456,32 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
     z-index: -1;
     opacity: 0;
 
-    &:checked ~ .swal2-label::before {
+    &:checked~.swal2-label::before {
       border-color: $bootstrap-custom-control-indicator-checked-border-color;
       background: $bootstrap-custom-control-indicator-checked-bg;
       color: $bootstrap-custom-control-indicator-checked-color;
     }
 
-    &:focus ~ .swal2-label::before {
+    &:focus~.swal2-label::before {
       box-shadow: $bootstrap-custom-control-indicator-focus-box-shadow;
     }
 
-    &:focus:not(:checked) ~ .swal2-label::before {
+    &:focus:not(:checked)~.swal2-label::before {
       border-color: $bootstrap-custom-control-indicator-focus-border-color;
     }
 
-    &:not(:disabled):active ~ .swal2-label::before {
+    &:not(:disabled):active~.swal2-label::before {
       border-color: $bootstrap-custom-control-indicator-active-border-color;
       background-color: $bootstrap-custom-control-indicator-active-bg;
       color: $bootstrap-custom-control-indicator-active-color;
     }
   }
 
-  input:checked ~ .swal2-label::after {
+  input:checked~.swal2-label::after {
     background-image: $bootstrap-custom-checkbox-indicator-icon-checked;
   }
 
-  input:disabled:checked ~ .swal2-label::before {
+  input:disabled:checked~.swal2-label::before {
     background-color: $bootstrap-custom-control-indicator-checked-disabled-bg;
   }
 
