@@ -68,5 +68,64 @@
         document.body.classList.add('loaded');
     }, 500);
 </script>
+{{-- Fullscreen on headerbar script --}}
+<script>
+    let myDocument = document.documentElement;
+    let fullscreen1 = document.getElementById("fullscreen1");
 
+    fullscreen1.addEventListener("click", () => {
+        if (fullscreen1.textContent == "ملء الشاشة") {
+            if (myDocument.requestFullscreen) {
+                myDocument.requestFullscreen();
+            } else if (myDocument.msRequestFullscreen) {
+                myDocument.msRequestFullscreen();
+            } else if (myDocument.mozRequestFullScreen) {
+                myDocument.mozRequestFullScreen();
+            } else if (myDocument.webkitRequestFullscreen) {
+                myDocument.webkitRequestFullscreen();
+            }
+            fullscreen1.textContent = "إغلاق ملء الشاشة";
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.msexitFullscreen) {
+                document.msexitFullscreen();
+            } else if (document.mozexitFullscreen) {
+                document.mozexitFullscreen();
+            } else if (document.webkitexitFullscreen) {
+                document.webkitexitFullscreen();
+            }
+
+            fullscreen1.textContent = "ملء الشاشة";
+        }
+    });
+</script>
+{{-- full screen 2 --}}
+<script>
+    const elem = document.documentElement;
+
+    function openFullscreen() {
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+            // Safari
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            // IE11
+            elem.msRequestFullscreen();
+        }
+    }
+
+    function closeFullscreen() {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            // Safari
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            // IE11
+            document.msExitFullscreen();
+        }
+    }
+</script>
 @yield('scripts')
