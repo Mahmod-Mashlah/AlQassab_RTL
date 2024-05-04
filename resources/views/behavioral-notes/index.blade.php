@@ -152,8 +152,7 @@
 
                             <!-- /.card-body -->
 
-                            <a href="{{ route('behavioral-notes-types-add') }}" class="btn  btn-outline-success "
-                                type="button">
+                            <a href="{{ route('behavioral-notes-add') }}" class="btn  btn-outline-success " type="button">
                                 <b>إضافة ملاحظة جديدة</b>
                             </a>
                             <br>

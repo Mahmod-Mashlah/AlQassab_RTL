@@ -77,7 +77,6 @@
                     <div class="form-group text-dark">
                         <label for="name">إضافة ملفات مرفقة (اختياري)</label>
                         <input id="name" class="form-control bg- light" type="text" name="name" />
-
                     </div>
                 </div>
 
@@ -85,14 +84,11 @@
                 <br>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-outline-success col d-flex justify-content-center">إضافة</button>
-
-
                 </div>
             </form>
         </div>
         <!-- /.card -->
     </div>
-    <br>
 @endsection
 
 @section('scipts')
