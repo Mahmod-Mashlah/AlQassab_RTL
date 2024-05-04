@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body lang="ar">
+<body>
     <img class="wave" src="{{ asset('assets/img/bg-2.png') }}">
     <div class="container">
         <div class="img">
@@ -49,7 +49,7 @@
 
                 </div>
 
-                <input type="checkbox" id="show-password">
+                <input class="custom-control-input" type="checkbox"id="show-password">
                 <br>
                 <!-- <a href="#">Forgot Password?</a> -->
                 <input type="submit" class="btn" value="تسجيل الدخول">
