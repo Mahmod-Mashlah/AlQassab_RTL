@@ -1710,7 +1710,7 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 
 .swal2-input:focus,
 .swal2-textarea:focus {
-    border: 1px solid #80bdff;
+    border: 1px solid #75b43f;
     outline: 0;
     box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
     color: #495057
@@ -1795,7 +1795,7 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 }
 
 .swal2-select:focus {
-    border: 1px solid #80bdff;
+    border: 1px solid #75b43f;
     outline: 0;
     box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25)
 }
@@ -1844,7 +1844,7 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 }
 
 .swal2-radio label input:focus:not(:checked)~.swal2-label::before {
-    border-color: #80bdff
+    border-color: #75b43f
 }
 
 .swal2-radio label input:not(:disabled):active~.swal2-label::before {
@@ -1910,7 +1910,7 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 }
 
 .swal2-checkbox input:focus:not(:checked)~.swal2-label::before {
-    border-color: #80bdff
+    border-color: #75b43f
 }
 
 .swal2-checkbox input:not(:disabled):active~.swal2-label::before {
