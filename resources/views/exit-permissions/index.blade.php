@@ -41,6 +41,18 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+            <form action="{{ url('/groups/add', []) }}" method="POST">
+                @csrf
+
+                <!-- /.card-body -->
+
+                <a href="{{ route('exit-permissions-add') }}" class="btn  btn-outline-success " type="button">
+                    <b>إضافة طلب إذن جديد</b>
+                </a>
+                <br>
+                </span>
+
+            </form>
             <table id="example2" class="table table-bordered table-striped bg-white">
                 <thead>
                     <tr>
@@ -48,10 +60,10 @@
                         <th>اسم الطالب</th>
                         <th>الصف</th>
                         <th>الشعبة</th>
-                        <th>اسم الطالب</th>
                         <th>السبب</th>
                         <th>اليوم</th>
                         <th>التاريخ</th>
+                        <th>العمليات المتاحة</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,7 +76,41 @@
                         <td>إضافة</td>
                         <td>إضافة</td>
                         <td>إضافة</td>
-                        <td>إضافة</td>
+                        <td>
+
+                            {{-- edit form --}}
+                            <div class="d-flex justify-content-center">
+                                <form action="{{ url('/groups/add', []) }}" method="POST">
+                                    @csrf
+
+                                    <!-- /.card-body -->
+
+                                    <a href="{{ route('exit-permissions-edit') }}" class="btn btn-outline-info     "
+                                        type="button">
+                                        <b>تعديل</b>
+                                    </a>
+                                    <br>
+                                    </span>
+                                </form>
+
+                                {{-- delete form --}}
+                                <div class="d-flex justify-content-center">
+                                    <form action="{{ url('/groups/add', []) }}" method="POST">
+                                        @csrf
+
+                                        <!-- /.card-body -->
+
+                                        <a href="{{ route('exit-permissions-delete') }}" class="btn btn-outline-danger     "
+                                            type="button">
+                                            <b>حذف</b>
+                                        </a>
+                                        <br>
+                                        </span>
+
+                                    </form>
+
+                                </div>
+                        </td>
                     </tr>
                     <tr>
                         <td>2</td>
@@ -74,42 +120,40 @@
                         <td>إضافة</td>
                         <td>إضافة</td>
                         <td>إضافة</td>
-                        <td>إضافة</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>خالد إسماعيل</td>
-                        <td>تامر</td>
-                        <td>-</td>
-                        <td>إضافة</td>
-                        <td>إضافة</td>
-                        <td>إضافة</td>
-                        <td>إضافة</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>عبد الرحمن سعد</td>
-                        <td>محمد</td>
-                        <td>-</td>
-                        <td>إضافة</td>
-                        <td>إضافة</td>
-                        <td>إضافة</td>
-                        <td>إضافة</td>
-                    </tr>
-                    <tr>
-                        <form action="{{ url('/groups/add', []) }}" method="POST">
-                            @csrf
+                        <td>
+                            <div class="d-flex justify-content-center">
+                                <form action="{{ url('/groups/add', []) }}" method="POST">
+                                    @csrf
 
-                            <!-- /.card-body -->
+                                    <!-- /.card-body -->
 
-                            <a href="{{ route('exit-permissions-add') }}" class="btn  btn-outline-success " type="button">
-                                <b>إضافة طلب إذن</b>
-                            </a>
-                            <br>
-                            </span>
+                                    <a href="{{ route('exit-permissions-edit') }}" class="btn btn-outline-info     "
+                                        type="button">
+                                        <b>تعديل</b>
+                                    </a>
+                                    <br>
+                                    </span>
+                                </form>
 
-                        </form>
+                                <form action="{{ url('/groups/add', []) }}" method="POST">
+                                    @csrf
+
+                                    <!-- /.card-body -->
+
+                                    <a href="{{ route('exit-permissions-delete') }}" class="btn btn-outline-danger     "
+                                        type="button">
+                                        <b>حذف</b>
+                                    </a>
+                                    <br>
+                                    </span>
+
+                                </form>
+
+                            </div>
+                        </td>
                     </tr>
+
+
                     <br>
 
                 </tbody>
