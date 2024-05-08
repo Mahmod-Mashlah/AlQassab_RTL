@@ -405,7 +405,7 @@
             {{-- Rows --}}
             <div class="row">
 
-                <div class="col-md-4 col-3">
+                <div class="col-md-6 col-3">
                     <!-- small card -->
                     <div class="small-box bg-teal">
                         <div class="inner">
@@ -416,7 +416,7 @@
                         <br>
                         <br>
                         <div class="icon">
-                            <i class="fas fa fa-user-circle  "></i>
+                            <i class="fas fa fa-users"></i>
                         </div>
                         <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
                             <h6 class="text-white">عرض <i class="fas fa-arrow-circle-right"></i></h6>
@@ -424,28 +424,9 @@
                     </div>
                 </div>
                 <!-- ./col -->
-                <div class="col-md-4 col-3">
-                    <!-- small card -->
-                    <div class="small-box bg-teal">
-                        <div class="inner">
-                            <h5 class="text-white">اجتماعات أولياء الأمور</h5>
 
-                            {{-- <p class="text-white">2</p> --}}
-                        </div>
-                        <br>
-                        <br>
-                        <div class="icon">
-                            <i class="fas fa fa-users "></i>
-                        </div>
-                        <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
-                            <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
-                        </a>
-                    </div>
-                </div>
-                <!-- ./col -->
-
-                <!-- ./col -->
-                <div class="col-md-4 col-3">
+                <!-- .col -->
+                <div class="col-md-6 col-3">
                     <!-- small card -->
                     <div class="small-box bg-teal">
                         <div class="inner">
