@@ -53,7 +53,7 @@
 <script type="text/javascript" src="{{ URL::asset('assets/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 {{-- <script src="dist/js/demo.js"></script> --}}
-<script type="text/javascript" src="{{ URL::asset('assets/js/demo.js') }}"></script>
+{{-- <script type="text/javascript" src="{{ URL::asset('assets/js/demo.js') }}"></script> --}}
 
 {{-- JavaScript Bootstrap CDN --}}
 

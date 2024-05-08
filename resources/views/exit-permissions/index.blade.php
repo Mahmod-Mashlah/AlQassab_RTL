@@ -11,7 +11,7 @@
 
 @section('root')
     {{-- root --}}
-    الرئيسية
+    لوحة التحكم
 @endsection
 
 @section('son1')

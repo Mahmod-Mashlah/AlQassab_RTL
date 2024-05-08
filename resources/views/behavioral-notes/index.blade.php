@@ -10,7 +10,7 @@
 @endsection
 
 @section('root')
-    الرئيسية
+    لوحة التحكم
 @endsection
 
 @section('son1')
