@@ -23,9 +23,19 @@ Route::post('/login', [WebLoginController::class, 'processLogin'])->name('login'
 
 # Private  Routes :
 
+// Years السنوات الدراسية
+    // index
+    Route::get('/years', function () {
+        return view('years.index');
+    });
+    // add
+    Route::get('/years/add', function () {
+        return view('years.add');
+    });
+
 // Dashboard لوحة التحكم
 
-    Route::get('/', function () {
+    Route::get('/dashboard/{year}', function () {
         return view('dashboard');
     });
 
@@ -92,3 +102,24 @@ Route::post('/login', [WebLoginController::class, 'processLogin'])->name('login'
     Route::get('/behavioral-notes/types/delete', function () {
         return view('behavioral-notes.index');
     })->name('behavioral-notes-types-delete');
+
+// Adverts الإعلانات
+    // index
+    Route::get('/adverts', function () {
+        return view('adverts.index');
+    })->name('adverts');
+
+    // add
+    Route::get('/adverts/add', function () {
+        return view('adverts.add');
+    })->name('adverts-add');
+
+    // edit
+    Route::get('/adverts/edit', function () {
+        return view('adverts.edit');
+    })->name('adverts-edit');
+
+    // delete
+    Route::get('/adverts/delete', function () {
+        return view('adverts.index');
+    })->name('adverts-delete');
