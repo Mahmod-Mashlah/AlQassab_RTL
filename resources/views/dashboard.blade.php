@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    لوحة التحكم
+    لوحة التحكم || السنة
 @endsection {{-- or @stop --}}
 @section('css')
     {{-- Css here --}}

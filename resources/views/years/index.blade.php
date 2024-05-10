@@ -33,7 +33,7 @@
                 <div class="small-box bg-teal">
                     <div class="inner">
                         <h5 class="text-green">عدد الطلاب الكلي </h5>
-                        <h6 class="text-dark">250</h6>
+                        <h6 class="text-olive">656</h6>
 
                         {{-- <h6 class="text-green">2</h6> --}}
                     </div>
@@ -53,7 +53,7 @@
                 <div class="small-box bg-teal">
                     <div class="inner">
                         <h5 class="text-green">عدد الموظفين الكلي </h5>
-                        <h6 class="text-dark">250</h6>
+                        <h6 class="text-olive">250</h6>
                     </div>
                     <br>
                     <br>
@@ -99,7 +99,9 @@
                                         جديدة</b></button>
                             </div>
                             <!-- /btn-group -->
-                            <input type="text" placeholder="أدخل بداية السنة فقط, مثلاً : 2024" class="form-control">
+                            <input type="text"
+                                placeholder="أدخل بداية السنة فقط, مثلاً للعام الدراسي 2024-2025 أدخل ' 2024 '"
+                                class="form-control">
 
                         </div>
                     </div>
@@ -132,7 +134,7 @@
                                             {{-- {{ route('dashboard') }} --}}
                                             "
                                                 class="btn btn-outline-success " type="button">
-                                                <b>2024</b>
+                                                <b>2025-{2024} </b>
                                             </a>
                                             <br>
                                             </span>
@@ -153,7 +155,7 @@
                                             {{-- {{ route('dashboard') }} --}}
                                             "
                                                 class="btn btn-outline-success " type="button">
-                                                <b>2025</b>
+                                                <b>2026-{2025}</b>
                                             </a>
                                             <br>
                                             </span>
