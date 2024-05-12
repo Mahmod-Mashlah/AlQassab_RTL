@@ -93,7 +93,140 @@
             <!-- /.card -->
         </div>
         <!-- /.card -->
+        <br>
+        <div class="card card-teal">
+            <div class="card-header">
+                <h1 class="card-title col-md-7"><b>الشهادات</b></h1>
+                <div class="card-tools">
 
+                    <button type="button" class="btn btn-tool " data-card-widget="remove"><i
+                            class="fas fa-times"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
+                            class="fas fa-expand"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                            class="fas fa-minus"></i></button>
+                </div>
+                <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <form action="{{ url('/groups/add', []) }}" method="POST">
+                    @csrf
+
+                    <!-- /.card-body -->
+
+                    <a href="{{ route('certifications-add', [
+                        'name' => 'Ahmed',
+                        // $val->id
+                    ]) }}"
+                        target="_blank" class="btn  btn-outline-success " type="button">
+                        <b>إضافة شهادة جديدة</b>
+                    </a>
+                    <br>
+                    </span>
+
+                </form>
+                <table id="example2" class="table table-bordered table-striped bg-white">
+                    <thead>
+
+                        <tr>
+                            <th>#</th>
+                            <th>المرتبة</th>
+                            <th>الدرجة</th>
+                            <th>تاريخ الترفيع</th>
+                            <th>اسم الشهادة</th>
+                            <th>تاريخ الحصول عليها</th>
+                            <th>الكلية المنتسب إلبها</th>
+                            <th>العقوبات</th>
+                            <th>الملاحظات</th>
+                            <th>العمليات</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>1</td>
+                            <td>محمد كامل</td>
+                            <td>وليد</td>
+                            <td>-</td>
+                            <td>إضافة</td>
+                            <td>إضافة</td>
+                            <td>إضافة</td>
+                            <td>إضافة</td>
+                            <td>إضافة</td>
+                            <td>
+
+                                {{-- show form --}}
+                                <div class="d-flex justify-content-center">
+
+
+                                    <form action="{{ url('/groups/add', []) }}" method="POST">
+                                        @csrf
+
+                                        <!-- /.card-body -->
+
+                                        <a href="{{ route('certifications-delete', [
+                                            'name' => 'Ahmed',
+                                            'id' => 3,
+                                            // $val->id
+                                        ]) }}"
+                                            class="btn btn-outline-danger     " type="button">
+                                            <b>حذف</b>
+                                        </a>
+                                        <br>
+                                        </span>
+
+                                    </form>
+
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>كامل وليد</td>
+                            <td>خالد</td>
+                            <td>-</td>
+                            <td>إضافة</td>
+                            <td>إضافة</td>
+                            <td>إضافة</td>
+                            <td>إضافة</td>
+                            <td>إضافة</td>
+                            <td>
+
+                                {{-- edit form --}}
+                                <div class="d-flex justify-content-center">
+
+                                    <form action="{{ url('/groups/add', []) }}" method="POST">
+                                        @csrf
+
+                                        <!-- /.card-body -->
+
+                                        <a href="{{ route('certifications-delete', [
+                                            'name' => 'Ahmed',
+                                            'id' => 3,
+                                            // $val->id
+                                        ]) }}"
+                                            class="btn btn-outline-danger     " type="button">
+                                            <b>حذف</b>
+                                        </a>
+                                        <br>
+                                        </span>
+                                    </form>
+
+
+                            </td>
+                        </tr>
+
+                        <br>
+
+                    </tbody>
+
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
         <br>
         <div class="card card-teal ">
             <div class="card-header">
@@ -298,153 +431,23 @@
 
                 <!-- /.card-body -->
                 <br>
-                <div class="card-footer">
+                <div class="row justify-content-center">
 
                     <a href="{{ route('employees-show', [
                         'name' => 'Ahmed',
                         // $val->id
                     ]) }}"
-                        class="btn btn-outline-info col d-flex justify-content-center" type="button">
+                        class="btn btn-outline-info col-sm-6 col d-flex justify-content-center" type="button">
                         <b>تعديل</b>
                     </a>
                 </div>
+                <br>
+
             </form>
         </div>
         <!-- /.card -->
 
-        <div class="card card-teal">
-            <div class="card-header">
-                <h1 class="card-title col-md-7"><b>الشهادات</b></h1>
-                <div class="card-tools">
 
-                    <button type="button" class="btn btn-tool " data-card-widget="remove"><i
-                            class="fas fa-times"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
-                            class="fas fa-expand"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                            class="fas fa-minus"></i></button>
-                </div>
-                <!-- /.card-tools -->
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-                <form action="{{ url('/groups/add', []) }}" method="POST">
-                    @csrf
-
-                    <!-- /.card-body -->
-
-                    <a href="{{ route('certifications-add', [
-                        'name' => 'Ahmed',
-                        // $val->id
-                    ]) }}"
-                        target="_blank" class="btn  btn-outline-success " type="button">
-                        <b>إضافة شهادة جديدة</b>
-                    </a>
-                    <br>
-                    </span>
-
-                </form>
-                <table id="example2" class="table table-bordered table-striped bg-white">
-                    <thead>
-
-                        <tr>
-                            <th>#</th>
-                            <th>المرتبة</th>
-                            <th>الدرجة</th>
-                            <th>تاريخ الترفيع</th>
-                            <th>اسم الشهادة</th>
-                            <th>تاريخ الحصول عليها</th>
-                            <th>الكلية المنتسب إلبها</th>
-                            <th>العقوبات</th>
-                            <th>الملاحظات</th>
-                            <th>العمليات</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <tr>
-                            <td>1</td>
-                            <td>محمد كامل</td>
-                            <td>وليد</td>
-                            <td>-</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>
-
-                                {{-- show form --}}
-                                <div class="d-flex justify-content-center">
-
-
-                                    <form action="{{ url('/groups/add', []) }}" method="POST">
-                                        @csrf
-
-                                        <!-- /.card-body -->
-
-                                        <a href="{{ route('certifications-delete', [
-                                            'name' => 'Ahmed',
-                                            'id' => 3,
-                                            // $val->id
-                                        ]) }}"
-                                            class="btn btn-outline-danger     " type="button">
-                                            <b>حذف</b>
-                                        </a>
-                                        <br>
-                                        </span>
-
-                                    </form>
-
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>كامل وليد</td>
-                            <td>خالد</td>
-                            <td>-</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>
-
-                                {{-- edit form --}}
-                                <div class="d-flex justify-content-center">
-
-                                    <form action="{{ url('/groups/add', []) }}" method="POST">
-                                        @csrf
-
-                                        <!-- /.card-body -->
-
-                                        <a href="{{ route('certifications-delete', [
-                                            'name' => 'Ahmed',
-                                            'id' => 3,
-                                            // $val->id
-                                        ]) }}"
-                                            class="btn btn-outline-danger     " type="button">
-                                            <b>حذف</b>
-                                        </a>
-                                        <br>
-                                        </span>
-                                    </form>
-
-
-                            </td>
-                        </tr>
-
-                        <br>
-
-                    </tbody>
-
-                </table>
-            </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
     </div>
 
     <br>
