@@ -123,3 +123,63 @@ Route::post('/login', [WebLoginController::class, 'processLogin'])->name('login'
     Route::get('/adverts/delete', function () {
         return view('adverts.index');
     })->name('adverts-delete');
+
+
+// Employees_Records  الموظفين
+// يتضمن الشهادات والصلاحيات Permissions & Certifications
+
+    // index
+    Route::get('/employees', function () {
+        return view('employees.index');
+    })->name('employees');
+
+    // add
+    Route::get('/employees/add', function () {
+        return view('employees.add');
+    })->name('employees-add');
+    // add-post
+    Route::post('/employees/add', function () {
+        return view('employees');
+    })->name('employees-add-post');
+
+    // show
+    Route::get('/employees/{name}/show', function () {
+        return view('employees.show');
+    })->name('employees-show');
+
+    // edit
+    Route::get('/employees/{name}/edit', function () {
+        return view('employees.edit');
+    })->name('employees-edit');
+
+    // delete
+    Route::get('/employees/delete/{id}', function () {
+        return view('employees.index');
+    })->name('employees-delete');
+
+// Certifications الشهادات :
+
+    // index
+    Route::get('/employees/{name}/certifications', function () {
+        return view('certifications.index');
+    })->name('certifications');
+
+    // add
+    Route::get('/employees/{name}/certifications/add', function () {
+        return view('certifications.add');
+    })->name('certifications-add');
+
+    // // show
+    // Route::get('/employees/{name}/certifications/{name}/show', function () {
+    //     return view('certifications.show');
+    // })->name('certifications-show');
+
+    // // edit
+    // Route::get('/employees/{name}/certifications/{name}/edit', function () {
+    //     return view('certifications.edit');
+    // })->name('certifications-edit');
+
+    // delete
+    Route::get('/employees/{name}/certifications/delete/{id}', function () {
+        return view('employees.edit');
+    })->name('certifications-delete');
