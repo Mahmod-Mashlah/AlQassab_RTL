@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens ;
+    use HasFactory, Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +21,8 @@ class User extends Authenticatable
         'first_name',
         'middle_name',
         'last_name',
+        // also we define function below can use the
+        // 'full_name'
         'birth_date',
         'password',
     ];
@@ -46,5 +48,12 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function getFullNameAttribute()
+    {
+        // The getFullNameAttribute function will automatically be accessible
+        // as $user->full_name.
+        return trim("{$this->first_name}.' '.{$this->middle_name}.' '.{$this->last_name}");
     }
 }

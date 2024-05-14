@@ -15,37 +15,40 @@ Route::get('/new', function () {
 # Public Routes :
 
 // Display login form
-Route::get('/login', [WebLoginController::class, 'showLoginForm']);
+// Route::get('/login', [WebLoginController::class, 'showLoginForm'])->name('login');
+Route::get('/login', [WebLoginController::class, 'showLoginForm'])->name('login');
 
 // Handle login form submission
-Route::post('/login', [WebLoginController::class, 'processLogin'])->name('login');
-
+// Route::post('/login', [WebLoginController::class, 'processLogin'])->name('login.post');
+Route::post('/login', [WebLoginController::class, 'login'])->name('login.post');
 
 # Private  Routes :
 
-// Years السنوات الدراسية
+Route::middleware(['web-login'])->group(function () {
+
+    // Years السنوات الدراسية
     // index
     Route::get('/years', function () {
         return view('years.index');
-    });
+    })->name('years');
     // add
     Route::get('/years/add', function () {
         return view('years.add');
     });
 
-// Dashboard لوحة التحكم
+    // Dashboard لوحة التحكم
 
     Route::get('/dashboard/{year}', function () {
         return view('dashboard');
     });
 
-//Protests الشكاوى
+    //Protests الشكاوى
 
     Route::get('/protests', function () {
         return view('protests.index');
     });
 
-// Exit-Permissions طلبات الإذن
+    // Exit-Permissions طلبات الإذن
 
     // index
     Route::get('/exit-permissions', function () {
@@ -67,7 +70,7 @@ Route::post('/login', [WebLoginController::class, 'processLogin'])->name('login'
         return view('exit-permissions.index');
     })->name('exit-permissions-delete');
 
-// Behavioral-Notes الملاحظات السلوكية
+    // Behavioral-Notes الملاحظات السلوكية
 
     // index
     Route::get('/behavioral-notes', function () {
@@ -89,7 +92,7 @@ Route::post('/login', [WebLoginController::class, 'processLogin'])->name('login'
         return view('behavioral-notes.index');
     })->name('behavioral-notes-delete');
 
-// Behavioral-Notes Types أنواع الملاحظات السلوكية
+    // Behavioral-Notes Types أنواع الملاحظات السلوكية
 
     // add
 
@@ -103,7 +106,7 @@ Route::post('/login', [WebLoginController::class, 'processLogin'])->name('login'
         return view('behavioral-notes.index');
     })->name('behavioral-notes-types-delete');
 
-// Adverts الإعلانات
+    // Adverts الإعلانات
     // index
     Route::get('/adverts', function () {
         return view('adverts.index');
@@ -125,8 +128,8 @@ Route::post('/login', [WebLoginController::class, 'processLogin'])->name('login'
     })->name('adverts-delete');
 
 
-// Employees_Records  الموظفين
-// يتضمن الشهادات والصلاحيات Permissions & Certifications
+    // Employees_Records  الموظفين
+    // يتضمن الشهادات والصلاحيات Permissions & Certifications
 
     // index
     Route::get('/employees', function () {
@@ -157,7 +160,7 @@ Route::post('/login', [WebLoginController::class, 'processLogin'])->name('login'
         return view('employees.index');
     })->name('employees-delete');
 
-// Certifications الشهادات :
+    // Certifications الشهادات :
 
     // index
     Route::get('/employees/{name}/certifications', function () {
@@ -183,3 +186,5 @@ Route::post('/login', [WebLoginController::class, 'processLogin'])->name('login'
     Route::get('/employees/{name}/certifications/delete/{id}', function () {
         return view('employees.edit');
     })->name('certifications-delete');
+    // }); //end of weblogin middleware
+});

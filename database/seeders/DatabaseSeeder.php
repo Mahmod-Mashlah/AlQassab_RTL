@@ -22,5 +22,13 @@ class DatabaseSeeder extends Seeder
             'birth_date' => '2008-11-04',
             'password' => 'password',
         ]);
+
+        User::factory()->create([
+            'first_name' => 'a',
+            'middle_name' => 'a',
+            'last_name' => 'a',
+            'birth_date' => '2008-11-04',
+            'password' => 'password',
+        ]);
     }
 }
