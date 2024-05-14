@@ -22,20 +22,58 @@
 
         </div>
         <div class="login-content">
-            <form action="index.html">
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
                 <img src="{{ asset('assets/img/logo.png') }}">
 
                 <br><br>
 
                 <h1 class="title">ثانويّة القصّاب للعلوم الشّرعيّة</h1>
-                <br><br>
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="fas fa-user"></i>
+                <div>
+                    @error('first_name')
+                        <h4>
+                            😅 المعلومات المدخلة غير صحيحة , حاول مجدداً 😅
+                        </h4>
+                    @enderror
+
+                </div>
+
+                <br>
+                <div class="names-input">
+
+                    <div class="input-div one">
+                        <div class="i">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="div">
+                            <h5>الاسم </h5>
+                            <input type="text" name="first_name" id="first_name" class="input" required>
+                            <br>
+
+                        </div>
                     </div>
-                    <div class="div">
-                        <h5>الاسم الثلاثي</h5>
-                        <input type="text" class="input">
+                    <div class="input-div one">
+                        <div class="i">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="div">
+                            <h5>اسم الأب</h5>
+                            <input type="text" name="middle_name" id="middle_name" class="input" required>
+                            <br>
+
+                        </div>
+                    </div>
+
+                    <div class="input-div one">
+                        <div class="i">
+                            <i class="fas fa-address-book"></i>
+                        </div>
+                        <div class="div">
+                            <h5>الكنية</h5>
+                            <input type="text" name="last_name" id="last_name" class="input" required>
+                            <br>
+
+                        </div>
                     </div>
                 </div>
                 <div class="input-div pass">
@@ -44,15 +82,18 @@
                     </div>
                     <div class="div">
                         <h5>الرمز</h5>
-                        <input type="password" id="password" class="input form-control rounded-right" required>
+                        <input type="password" name='password' id="password" class="input form-control rounded-right">
                     </div>
 
                 </div>
+                <div>
 
-                <input class="custom-control-input" type="checkbox"id="show-password">
-                <br>
+                    <input class="custom-control-input" type="checkbox"id="show-password">
+                </div>
                 <!-- <a href="#">Forgot Password?</a> -->
-                <input type="submit" class="btn" value="تسجيل الدخول">
+                <button type="submit" class="btn">
+                    تسجيل الدخول
+                </button>
 
             </form>
         </div>
