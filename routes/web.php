@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebLoginController;
-
+use App\Http\Controllers\YearController;
+use App\Models\Year;
 
 Route::get('/data-table', function () {
     return view('datatable-example');
@@ -25,6 +26,10 @@ Route::post('/login', [WebLoginController::class, 'login'])->name('login.post');
 # Private  Routes :
 
 Route::middleware(['web-login'])->group(function () {
+    // Route::group(['prefix' => 'post'], function () {
+    Route::prefix('/years')->group(function () {
+    });
+
 
     // Years السنوات الدراسية
     // index
