@@ -19,26 +19,26 @@ class YearFactory extends Factory
      */
     public function definition(): array
     {
-        $datetime = "2000-09-09 00:00:00";
-        $date = new Carbon($datetime);
+        $datetime1 = "2000-09-09 00:00:00";
+        $date1 = new Carbon($datetime1);
+        $datetime2 = "2001-09-09 00:00:00";
+        $date2 = new Carbon($datetime2);
 
         // or
         // $date = Carbon::parse('2022-12-31');
 
-        $year = $date->year;
-        $month = $date->month;
-        $day = $date->day;
         // or $year = $date->format('Y');
 
         $faker = \Faker\Factory::create();
         for ($i = 0; $i < 50; $i++) {
-            $startYear = $year + $i;
-            $endYear = $year + $i + 1;
+
+            $startYear = $date1->addYears(1);
+            $endYear = $date2->addYears(1);
 
             DB::table('years')->insert([
-                'name' => "$startYear-$endYear",
-                'year_start' => "$startYear-$month-$day",
-                'year_end' => "$endYear-$month-$day",
+                'name' => $startYear->format('Y') . '-' . $endYear->format('Y'),
+                'year_start' => "$startYear",
+                'year_end' => "$endYear",
 
                 'created_at' => now(),
                 'updated_at' => now()

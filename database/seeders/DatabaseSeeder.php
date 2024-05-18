@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             YearSeeder::class,
+            SeasonSeeder::class,
             // PostSeeder::class,
         ]);
     }

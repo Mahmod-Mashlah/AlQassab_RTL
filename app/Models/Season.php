@@ -5,22 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Year extends Model
+class Season extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'year_start',
-        'year_end',
+        'number',
+        'season_start',
+        'season_end',
+        'days_number',
+
+        'year_id',
+
         'created_at',
         'updated_at'
     ];
 
     // public $timestamps = true;
 
-    public function seasons()
+    public function year()
     {
-        return $this->hasMany(Season::class);
+        return $this->belongsTo(Year::class);
     }
 }

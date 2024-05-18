@@ -25,10 +25,25 @@ class YearsResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
 
+            // 'seasons' =>
+            // SeasonsResource::collection($this->whenLoaded('seasons')),
+
+
+            // not worked [
+            //     'id' => (string)$this->seasons()->season_id,
+            //     'number' => $this->seasons()->name,
+            //     'season_start' => $this->seasons()->email,
+            //     'season_end' => $this->seasons()->email,
+            //     'days_number' => $this->seasons()->email,
+            //     'year_id' => $this->seasons()->email,
+            //     'created_at' => $this->seasons()->email,
+            //     'updated_at' => $this->seasons()->email,
+            // ]
+
             // 'relationships' => [
-            //     'id'=>(string)$this->user->id,
-            //     'user name'=>$this->user->name,
-            //     'user email'=>$this->user->email,
+            //     'id' => (string)$this->user->id,
+            //     'user name' => $this->user->name,
+            //     'user email' => $this->user->email,
             // ]
         ];
     }

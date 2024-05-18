@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\SeasonController as ApiSeasonController;
 use App\Http\Controllers\api\YearController as ApiYearController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::resource('/years', ApiYearController::class)->only(['index', 'show']);
+    Route::resource('/seasons', ApiSeasonController::class)->only(['index', 'show']);
 
     // Years السنوات الدراسية
     Route::post('/logout', [AuthController::class, 'logout']);

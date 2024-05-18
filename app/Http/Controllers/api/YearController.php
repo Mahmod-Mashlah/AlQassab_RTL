@@ -26,9 +26,11 @@ class YearController extends Controller
             YearsResource::collection(
                 $years
             )
-            // Year::where('year_id', Auth::user()->id)->get()
-        ); // get years thats years are authenticated
-
+            //for index relations return that :
+            // year::with('seasons')->get();
+        );
+        // get return years thats years are authenticated
+        // Year::where('year_id', Auth::user()->id)->get()
     }
     public function store(StoreYearRequest $request)
     {
@@ -47,7 +49,11 @@ class YearController extends Controller
     public function show(Year $year)
     {
 
-        return new YearsResource($year);
+        // without relations :
+        //return new YearsResource($year);
+        // with relations : $year->load('seasons');
+        // like this :
+        return response()->json($year->load('seasons'), 200);
     }
 
     public function update(UpdateYearRequest $request, Year $year)  // this work correctly
