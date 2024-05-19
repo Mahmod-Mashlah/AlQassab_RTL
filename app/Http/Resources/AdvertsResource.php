@@ -31,6 +31,8 @@ class AdvertsResource extends JsonResource
 
             'admin' =>
             UsersResource::collection($this->whenLoaded('user')),
+            /*there is error here in postman*/
+            
 
             // 'relationships' => [
             //     'id'=>(string)$this->user->id,
