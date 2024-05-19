@@ -23,12 +23,14 @@ class DatabaseSeeder extends Seeder
             'birth_date' => '2008-11-04',
             'password' => 'password',
         ]);
+        User::factory(10)->create();
 
         //  way 3 : using specific seeders
 
         $this->call([
             YearSeeder::class,
             SeasonSeeder::class,
+            ProtestSeeder::class,
             // PostSeeder::class,
         ]);
     }
