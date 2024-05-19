@@ -61,4 +61,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Protest::class);
     }
+    public function adverts()
+    {
+        return $this->hasMany(Advert::class);
+    }
 }
