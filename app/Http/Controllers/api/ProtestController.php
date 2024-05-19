@@ -15,20 +15,16 @@ class ProtestController extends Controller
 {
     use HttpResponses;
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $protests = Protest::all();
 
         return
             ProtestsResource::collection(
-                $protests
-            )->where('user_id', Auth::user()->id);
+                $protests->where('user_id', Auth::user()->id)
 
-        // get protests thats protests are authenticated
-        // Protest::where('protest_id', Auth::user()->id)->get()
+                // Season::where('season_id', Auth::user()->id)->get()
+            ); // get seasons thats seasons are authenticated
 
     }
 
