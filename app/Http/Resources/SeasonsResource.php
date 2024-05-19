@@ -21,7 +21,7 @@ class SeasonsResource extends JsonResource
             'season_start' => $this->season_start,
             'season_end' => $this->season_end,
             'days_number' => $this->days_number,
-            'year_id' => $this->year_id,
+            'year_id' => (string)$this->year_id,
 
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

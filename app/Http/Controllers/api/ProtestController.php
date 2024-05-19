@@ -97,13 +97,20 @@ class ProtestController extends Controller
         // way 1 :
         // $protest->delete();
         // return $this->success('Protest was Deleted Successfuly ',null,204);
-        return $this->success('', 'تم حذف الشكوى بنجاح ', 200);
+        // return $this->success(['id' => $protest->id], 'تم حذف الشكوى بنجاح ', 200);
         // way 2 : (it is best to do it in Show & Update functions [Implement Private function below] )
+
+        if ($this->isNotAuthorized($protest)) {
+            return  $this->isNotAuthorized($protest);
+        } else {
+            $protest->delete();
+            return $this->success(['id' => $protest->id], 'تم حذف الشكوى بنجاح ', 200);
+        }
     }
 
     private function isNotAuthorized($protest)
     {
-        if (Auth::user()->id !== $protest->protest_id) {
+        if (Auth::user()->id !== $protest->user_id) {
             return $this->error('', 'You are not Authorized to make this request', 403);
         }
     }
