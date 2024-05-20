@@ -16,14 +16,15 @@ class DatabaseSeeder extends Seeder
     {
         //  way 1 :  User::factory(10)->create();
         //  way 2 :
-        User::factory()->create([
-            'first_name' => 'aa',
-            'middle_name' => 'aa',
-            'last_name' => 'aa',
-            'birth_date' => '2008-11-04',
-            'password' => 'password',
-        ]);
-        User::factory(10)->create();
+        // User::factory()->create([
+        //     'first_name' => 'aa',
+        //     'middle_name' => 'aa',
+        //     'last_name' => 'aa',
+        //     'birth_date' => '2008-11-04',
+        //     'password' => 'password',
+        // ]);
+        //or :
+        // User::factory(10)->create();
 
         // Laratrust Roles & Permissions :
         $this->call(LaratrustSeeder::class);
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
         //  way 3 : using specific seeders
 
         $this->call([
+            UserSeeder::class,
             YearSeeder::class,
             SeasonSeeder::class,
             ProtestSeeder::class,

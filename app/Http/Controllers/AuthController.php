@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
-
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -47,11 +47,14 @@ class AuthController extends Controller
         $user = User::where('first_name', $request->first_name)
             ->where('middle_name', $request->middle_name)
             ->where('last_name', $request->last_name)->first();
-
-        return $this->success([
+        $roles = $user->roles;
+        // $permissions = $user->allPermissions();
+        return response()->json([
+            'token' => $user->createToken('API Token of' . $user->name)->plainTextToken,
             'user' => $user,
-            'token' => $user->createToken('API Token of' . $user->name)->plainTextToken
-        ]);
+            'roles' => $roles,
+            // 'permissions' => $permissions,
+        ], '200');
     }
 
     public function logout()

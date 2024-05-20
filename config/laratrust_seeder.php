@@ -12,6 +12,23 @@ return [
     'truncate_tables' => true,
 
     'roles_structure' => [
+        'manager' => [ //done
+            'years' => 'i,s,se',
+            'seasons' => 'i,s,se',
+            'employees' => 'i,s,se',
+            'users' => 'i,s,se',
+            'students' => 'i,s,se',
+            'behavioral_notes' => 'i,s,se',
+            'chat_rooms' => 'i,s,a,d,u,se',
+            'protests' => 'i,s,se',
+            'daily_schedules' => 'i,s,se',
+            'tests_schedules' => 'i,s,se',
+            'exams_schedules' => 'i,s,se',
+            'adverts' => 'i,s,a,d,u,se',
+            'students_rankings' => 'i,s,se',
+            'marks_records' => 'i,s,se',
+
+        ],
         'secretary' => [ //done
             'users' => 'i,s,a,d,u,se',
             'roles' => 'i,s,a,d,u,se',
@@ -60,23 +77,7 @@ return [
             'files' => 'i,s,a,d,u,se,up,do',
 
         ],
-        'manager' => [ //done
-            'years' => 'i,s,se',
-            'seasons' => 'i,s,se',
-            'employees' => 'i,s,se',
-            'users' => 'i,s,se',
-            'students' => 'i,s,se',
-            'behavioral_notes' => 'i,s,se',
-            'chat_rooms' => 'i,s,a,d,u,se',
-            'protests' => 'i,s,se',
-            'daily_schedules' => 'i,s,se',
-            'tests_schedules' => 'i,s,se',
-            'exams_schedules' => 'i,s,se',
-            'adverts' => 'i,s,a,d,u,se',
-            'students_rankings' => 'i,s,se',
-            'marks_records' => 'i,s,se',
 
-        ],
         'teacher' => [ //done
             'chat_rooms' => 'i,s,a,d,u,se',
             'homeworks' => 'i,s,a,d,u,se',
