@@ -25,6 +25,9 @@ class DatabaseSeeder extends Seeder
         ]);
         User::factory(10)->create();
 
+        // Laratrust Roles & Permissions :
+        $this->call(LaratrustSeeder::class);
+
         //  way 3 : using specific seeders
 
         $this->call([
