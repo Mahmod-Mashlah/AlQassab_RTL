@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             SeasonSeeder::class,
             ProtestSeeder::class,
             AdvertSeeder::class,
+            ChatSeeder::class,
             // PostSeeder::class,
         ]);
     }

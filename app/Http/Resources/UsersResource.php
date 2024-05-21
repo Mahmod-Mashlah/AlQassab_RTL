@@ -33,6 +33,9 @@ class UsersResource extends JsonResource
             'adverts' =>
             AdvertsResource::collection($this->whenLoaded('adverts')),
 
+            'chats' =>
+            ChatsResource::collection($this->whenLoaded('chats')),
+
             // 'relationships' => [
             //     'id'=>(string)$this->user->id,
             //     'user name'=>$this->user->name,
