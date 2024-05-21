@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -14,6 +15,8 @@ class AdvertsResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $admin = User::find($this->admin_id);
+
         return [
 
             'id' => (string)$this->id,
@@ -24,15 +27,15 @@ class AdvertsResource extends JsonResource
             'target' => $this->target,
 
             'admin_id' => (string)$this->admin_id,
+            // 'admin_name' => $admin->first_name . ' ' . $admin->middle_name . ' ' . $admin->last_name,
 
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
 
-
             'admin' =>
             UsersResource::collection($this->whenLoaded('user')),
             /*there is error here in postman*/
-            
+
 
             // 'relationships' => [
             //     'id'=>(string)$this->user->id,

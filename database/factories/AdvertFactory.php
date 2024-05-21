@@ -23,22 +23,27 @@ class AdvertFactory extends Factory
         $users = User::all();
 
         foreach ($users as $user) {
+            if ($user->hasRole(['manager', 'mentor'])) {
+                # code...
 
-            for ($i = 1; $i <= 10; $i++) {
+                for ($i = 1; $i <= 10; $i++) {
 
-                DB::table('adverts')->insert([
+                    $firstRole = $user->roles()->first();
+                    $firstRoleName = $firstRole->name;
+                    DB::table('adverts')->insert([
 
-                    'title' => "advert title #" . $i,
-                    'body' => "this is the body for the advert title" . $i,
-                    'target' => "any target",
+                        'title' => "advert title #" . $i,
+                        'body' => "this is the body for the advert title" . $i,
+                        'target' => "any target",
 
-                    'admin_id' => $user->id,
-                    'admin_role' => ' 🙂الصلاحيات والأدوار بعدين بعملها',
+                        'admin_id' => $user->id,
+                        'admin_role' => $firstRoleName,
 
-                    'created_at' => now(),
-                    'updated_at' => now()
+                        'created_at' => now(),
+                        'updated_at' => now()
 
-                ]);
+                    ]);
+                }
             }
         }
 

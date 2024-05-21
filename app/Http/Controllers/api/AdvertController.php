@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
+use App\Models\User;
 use App\Models\Advert;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
@@ -11,10 +12,13 @@ use App\Http\Resources\AdvertsResource;
 use App\Http\Resources\ProtestsResource;
 use App\Http\Requests\StoreAdvertRequest;
 use App\Http\Requests\UpdateAdvertRequest;
+use Laratrust\Traits\HasRolesAndPermissions;
 
 class AdvertController extends Controller
 {
     use HttpResponses;
+    use HasRolesAndPermissions;
+
     /**
      * Display a listing of the resource.
      */
@@ -22,22 +26,30 @@ class AdvertController extends Controller
     {
         $adverts = Advert::all();
 
-        return
-            AdvertsResource::collection(
-                $adverts
-                // Season::where('season_id', Auth::user()->id)->get()
-            ); // get seasons thats seasons are authenticated
+        return response()->json([
+            'adverts' => AdvertsResource::collection($adverts),
+
+        ], 200);
+
+        // Season::where('season_id', Auth::user()->id)->get()
+        // get seasons thats seasons are authenticated
 
     }
     public function adminIndex()
     {
         $adverts = Advert::all()->where('admin_id', '=', Auth::user()->id);
+        $admin = Auth::user();
 
-        return
-            AdvertsResource::collection(
+        return response()->json([
+            'admin_name' => $admin->first_name . ' ' . $admin->middle_name . ' ' . $admin->last_name,
+            'adverts' => AdvertsResource::collection(
                 $adverts
-                // Season::where('season_id', Auth::user()->id)->get()
-            ); // get seasons thats seasons are authenticated
+            ),
+
+
+        ], 200);
+        // Season::where('season_id', Auth::user()->id)->get()
+        // get seasons thats seasons are authenticated
     }
     /**
      * Show the form for creating a new resource.
@@ -53,7 +65,18 @@ class AdvertController extends Controller
     public function store(StoreAdvertRequest $request)
     {
         $request->validated($request->all());
+        $user = Auth::user();
 
+        if ($user->hasRole(['manager'])) {
+            $firstRoleName = 'manager';
+        } elseif ($user->hasRole(['mentor'])) {
+            $firstRoleName = 'mentor';
+        } else {
+            $firstRoleName = 'you dont hava permissions to do this !!';
+            return $this->error('', 'you dont hava permissions to do this !!', 401);
+        }
+        // $firstRole = $user->roles->first();
+        // $firstRoleName = $firstRole->name;
         $advert = Advert::create([
             // 'user_id' => Auth::user()->id,
 
@@ -61,13 +84,18 @@ class AdvertController extends Controller
             'body' => $request->body,
             'target' => $request->target,
 
-            'admin_role' => '🙂الصلاحيات والأدوار بعدين بعملها',
 
-            'admin_id' => Auth::user()->id,
+            'admin_id' => $user->id,
+
+            'admin_role' => $firstRoleName,
 
         ]);
 
-        return new AdvertsResource($advert);
+        return response()->json([
+            'advert' => new AdvertsResource($advert),
+            'admin_name' => $user->first_name . ' ' . $user->middle_name . ' ' . $user->last_name,
+
+        ]);
     }
 
     /**
@@ -75,8 +103,13 @@ class AdvertController extends Controller
      */
     public function show(Advert $advert)
     {
+        $admin = User::find($advert->admin_id);
         // return new ProtestsResource($advert);
-        return response()->json($advert->load('user'), 200);
+        return response()->json([
+            'advert' => $advert,
+            'admin_name' => $admin->first_name . ' ' . $admin->middle_name . ' ' . $admin->last_name,
+
+        ], 200);
     }
 
     /**
@@ -95,6 +128,16 @@ class AdvertController extends Controller
         // in postman make the method : Post (not patch not put)
         // and make in request body : _method = PUT
         {
+            $user = Auth::user();
+
+            if ($user->hasRole(['manager'])) {
+                $firstRoleName = 'manager';
+            } elseif ($user->hasRole(['mentor'])) {
+                $firstRoleName = 'mentor';
+            } else {
+                $firstRoleName = 'you dont hava permissions to do this !!';
+                return $this->error('', 'you dont hava permissions to do this !!', 401);
+            }
             $advert = Advert::find($advert->id);
             $advert->update($request->all());
             $advert->save();

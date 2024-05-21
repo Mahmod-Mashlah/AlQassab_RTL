@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
-use Illuminate\Support\Facades\DB;
+use Laratrust\Traits\HasRolesAndPermissions;
 
 class AuthController extends Controller
 {
     use HttpResponses; // this is my trait
+    use HasRolesAndPermissions;
 
     public function register(StoreUserRequest $request)
     {
@@ -47,12 +49,16 @@ class AuthController extends Controller
         $user = User::where('first_name', $request->first_name)
             ->where('middle_name', $request->middle_name)
             ->where('last_name', $request->last_name)->first();
-        $roles = $user->roles;
+        // $user->attachRole('parent');//👇 sync is better than this!!
+        // $user->roles()->sync([6, 5, 4, 3, 2, 1]);
+        $detailed_roles = $user->roles()->get();
+        $roles = $user->getRoles();
         // $permissions = $user->allPermissions();
         return response()->json([
             'token' => $user->createToken('API Token of' . $user->name)->plainTextToken,
             'user' => $user,
             'roles' => $roles,
+            'detailed roles' => $detailed_roles,
             // 'permissions' => $permissions,
         ], '200');
     }
