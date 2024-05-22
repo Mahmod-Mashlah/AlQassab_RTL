@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
             AdvertSeeder::class,
             ChatSeeder::class,
             ArabicDaySeeder::class,
-            // PostSeeder::class,
+            /* DailyScheduleSeeder::class, */
         ]);
     }
 }

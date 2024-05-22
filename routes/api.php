@@ -6,6 +6,7 @@ use App\Http\Controllers\api\SeasonController as ApiSeasonController;
 use App\Http\Controllers\api\ProtestController as ApiProtestController;
 use App\Http\Controllers\api\AdvertController as ApiAdvertController;
 use App\Http\Controllers\api\ChatController as ApiChatController;
+use App\Http\Controllers\api\DailyScheduleController as ApiDailyScheduleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -36,6 +37,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/admin-adverts', [ApiAdvertController::class, 'adminIndex']);
     Route::resource('/chats', ApiChatController::class);
     Route::get('/admin-chats', [ApiChatController::class, 'adminIndex']);
+    // Route::resource('/daily-schedules', ApiDailyScheduleController::class)->only(['show']);
 
     // Years السنوات الدراسية
     Route::post('/logout', [AuthController::class, 'logout']);
