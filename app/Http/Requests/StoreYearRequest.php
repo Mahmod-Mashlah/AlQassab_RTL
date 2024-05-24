@@ -23,7 +23,7 @@ class StoreYearRequest extends FormRequest
     {
         return [
             //integer|digits:4|between:1900,' . Carbon::now()->year
-            'name' => ['required', 'max:255',],
+            // 'name' => ['required', 'max:255',],
             'year_start' => ['required', 'date', 'unique:years,year_start'],
             'year_end' => ['required', 'date', 'unique:years,year_end'],
             // 'priority' => ['required', 'in:low,medium,high'],
@@ -34,7 +34,7 @@ class StoreYearRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'لم يتم إدخال السنة , يرجى المحاولة مجدداً 😅 ',
+            // 'name.required' => 'لم يتم إدخال السنة , يرجى المحاولة مجدداً 😅 ',
             'year_start.required' => ' لم يتم إدخال بداية السنة , يرجى المحاولة مجدداً 😅',
             'year_end.required' => ' لم يتم إدخال نهاية السنة , يرجى المحاولة مجدداً 😅',
 

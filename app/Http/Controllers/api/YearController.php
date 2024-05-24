@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\YearsResource;
 use App\Http\Requests\StoreYearRequest;
 use App\Http\Requests\UpdateYearRequest;
+use Carbon\Carbon;
 
 class YearController extends Controller
 {
@@ -25,7 +26,8 @@ class YearController extends Controller
         return $this->success(
             YearsResource::collection(
                 $years
-            )
+            ),
+            'قائمة السنوات',
             //for index relations return that :
             // year::with('seasons')->get();
         );
@@ -35,15 +37,19 @@ class YearController extends Controller
     public function store(StoreYearRequest $request)
     {
         $request->validated($request->all());
-
+        $year1 = Carbon::parse($request->year_start)->year;
+        $year2 = Carbon::parse($request->year_end)->year;
         $year = Year::create([
             // 'year_id' => Auth::year()->id,
-            'name' => $request->name,
             'year_start' => $request->year_start,
             'year_end' => $request->year_end,
-        ]);
 
-        return new YearsResource($year);
+            'name' => "$year1" . '-' . "$year2",
+        ]);
+        return $this->success(
+            new YearsResource($year),
+            "تمت إضافة سنة " . $year->name . " بنجاح",
+        );
     }
 
     public function show(Year $year)
@@ -53,7 +59,10 @@ class YearController extends Controller
         //return new YearsResource($year);
         // with relations : $year->load('seasons');
         // like this :
-        return response()->json($year->load('seasons'), 200);
+        return $this->success(
+            $year->load('seasons'),
+            " سنة " . $year->name,
+        );
     }
 
     public function update(UpdateYearRequest $request, Year $year)  // this work correctly
@@ -62,9 +71,17 @@ class YearController extends Controller
     {
         $year = Year::find($year->id);
         $year->update($request->all());
+
+        $year1 = Carbon::parse($request->year_start)->year;
+        $year2 = Carbon::parse($request->year_end)->year;
+        $year->name = "$year1" . '-' . "$year2";
+
         $year->save();
 
-        return new YearsResource($year);
+        return $this->success(
+            new YearsResource($year),
+            "تم تعديل سنة " . $year->name . " بنجاح ",
+        );
     }
 
     /**
@@ -78,13 +95,26 @@ class YearController extends Controller
 
         // way 2 : (it is best to do it in Show & Update functions [Implement Private function below] )
 
-        return $this->isNotAuthorized($year) ? $this->isNotAuthorized($year) : $year->delete();
+        // if ($this->isNotAuthorized($year)) {
+        //     $this->isNotAuthorized($year);
+        // } else {
+        $name = $year->name;
+        $year->delete();
+
+        return $this->success(
+            '',
+            'تم حذف سنة ' . $name . ' بنجاح',
+            /*status-code */
+        );
+
+
+
         // return true (1) if the delete successfuly occoured
     }
 
     private function isNotAuthorized($year)
     {
-        if (Auth::user()->id !== $year->year_id) {
+        if (Auth::user()->id /*!== $user->user_id */) {
             return $this->error('', 'You are not Authorized to make this request', 403);
         }
     }
