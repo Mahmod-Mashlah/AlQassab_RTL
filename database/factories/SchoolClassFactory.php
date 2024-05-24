@@ -22,7 +22,7 @@ class SchoolClassFactory extends Factory
 
         // $users = User::all();
         // $mentors = User::whereRoleIs('mentor')->get();
-        $mentors = User::whereRoleIs('mentor')->take(6)->get();
+        $mentors = User::whereHasRole('mentor')->take(6)->get();
         $mentor_ids = $mentors->pluck('id')->toArray();
 
         for ($i = 7; $i <= 12; $i++) {

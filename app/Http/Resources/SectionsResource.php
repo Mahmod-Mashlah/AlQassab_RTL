@@ -15,7 +15,7 @@ class SectionsResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $class_id = SchoolClass::find($this->class_id);
+        $school_class_id = SchoolClass::find($this->school_class_id);
 
         return [
 
@@ -24,7 +24,7 @@ class SectionsResource extends JsonResource
             'section_number' =>  (string)$this->section_number,
             'max_students_number' => (string)$this->max_students_number,
 
-            'class_id' => (string)$this->class_id,
+            'school_class_id' => (string)$this->school_class_id,
             // 'admin_name' => $admin->first_name . ' ' . $admin->middle_name . ' ' . $admin->last_name,
 
             'created_at' => $this->created_at,

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->integer('section_number')->nullable();
             $table->integer('max_students_number')->nullable();
 
-            $table->unsignedBigInteger('class_id')->nullable();
-            $table->foreign('class_id')->references('id')->on('school_classes')->onDelete('cascade');
+            $table->unsignedBigInteger('school_class_id')->nullable();
+            $table->foreign('school_class_id')->references('id')->on('school_classes')->onDelete('cascade');
 
             $table->timestamps();
         });

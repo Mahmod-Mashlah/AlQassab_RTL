@@ -26,7 +26,7 @@ class StoreSectionRequest extends FormRequest
             'section_number' => ['required', 'integer', 'in:1,2,3,4,5'],
             'max_students_number' => ['required', 'integer', 'min:10', 'max:50'],
 
-            'class_id' => ['required', 'exists:school_classes,id'],
+            'school_class_id' => ['required', 'exists:school_classes,id'],
 
             // 'admin_role' => ['required', 'string', 'exists:table,column'],
 

@@ -43,6 +43,7 @@ class SchoolClassController extends Controller
             'mentor_id' => $request->mentor_id,
 
         ]);
+
         return $this->success(
             new SchoolClassesResource($class),
             "تمت إضافة الصف " . $request->name . " بنجاح",

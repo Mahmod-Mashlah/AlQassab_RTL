@@ -13,7 +13,7 @@ class Section extends Model
         'section_number',
         'max_students_number',
 
-        'class_id',
+        'school_class_id',
 
         'created_at',
         'updated_at'
@@ -23,6 +23,6 @@ class Section extends Model
 
     public function class()
     {
-        return $this->belongsTo(SchoolClass::class);
+        return $this->belongsTo(SchoolClass::class, 'school_class_id');
     }
 }

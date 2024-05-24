@@ -31,12 +31,12 @@ class SchoolClassesResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
 
-            'sections' =>
-            SectionsResource::collection($this->whenLoaded('sections')),
 
             'mentor' =>
             UsersResource::collection($this->whenLoaded('mentor')),
 
+            'sections' =>
+            SectionsResource::collection($this->whenLoaded('sections')),
 
             /*there is error here in postman*/
 

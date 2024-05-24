@@ -39,7 +39,7 @@ class SectionController extends Controller
             // 'user_id' => Auth::class()->id,
             'section_number' => $request->section_number,
             'max_students_number' => $request->max_students_number,
-            'class_id' => $request->class_id,
+            'school_class_id' => $request->school_class_id,
 
         ]);
         return $this->success(
@@ -83,12 +83,13 @@ class SectionController extends Controller
         // if ($this->isNotAuthorized($year)) {
         //     $this->isNotAuthorized($year);
         // } else {
-        $name = $section->name;
+        $section_number = $section->section_number;
+        $class_name = $section->class->name;
         $section->delete();
 
         return $this->success(
             '',
-            'تم حذف الشعبة ' . $name . ' بنجاح',
+            'تم حذف الشعبة ' . $section_number . ' من الصف ' . $class_name . ' بنجاح ',
             /*status-code */
         );
 

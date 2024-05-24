@@ -31,7 +31,7 @@ class SectionFactory extends Factory
                     'section_number' => $i,
                     'max_students_number' => 30 + $i,
 
-                    'class_id' => $class->id,
+                    'school_class_id' => $class->id,
                     'created_at' => now(),
                     'updated_at' => now()
 
