@@ -9,6 +9,7 @@ trait HttpResponses
     {
         return response()->json([
 
+            'status-code' => $code,
             'status' => 'تمت العملية بنجاح',
             'message' => $message,
             'data' => $data,
@@ -20,6 +21,7 @@ trait HttpResponses
     {
         return response()->json([
 
+            'status-code' => $code,
             'status' => ' 😅 تم اكتشاف خطأ ',
             'message' => $message,
             'data' => $data,
