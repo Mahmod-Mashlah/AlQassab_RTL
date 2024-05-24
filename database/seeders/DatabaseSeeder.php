@@ -39,6 +39,8 @@ class DatabaseSeeder extends Seeder
             AdvertSeeder::class,
             ChatSeeder::class,
             ArabicDaySeeder::class,
+            SchoolClassSeeder::class,
+            SectionSeeder::class,
             /* DailyScheduleSeeder::class, */
         ]);
     }

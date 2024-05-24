@@ -72,4 +72,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Chat::class);
     }
+    public function mentor_classes()
+    {
+        return $this->hasMany(SchoolClass::class);
+    }
 }

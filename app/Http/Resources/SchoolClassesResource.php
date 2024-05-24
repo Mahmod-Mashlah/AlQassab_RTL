@@ -2,10 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UsersResource extends JsonResource
+class SchoolClassesResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,30 +15,31 @@ class UsersResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $mentor_id = User::find($this->mentor_id);
+
         return [
 
             'id' => (string)$this->id,
 
-            'first_name' => $this->first_name,
-            'middle_name' => $this->middle_name,
-            'last_name' => $this->last_name,
-            'birth_date' => $this->birth_date,
+            'name' => $this->name,
+            'number' => (string)$this->number,
+            'section_count' => (string)$this->section_count,
+
+            'mentor_id' => (string)$this->mentor_id,
+            // 'admin_name' => $admin->first_name . ' ' . $admin->middle_name . ' ' . $admin->last_name,
 
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
 
+            'sections' =>
+            SectionsResource::collection($this->whenLoaded('sections')),
 
-            'protests' =>
-            ProtestsResource::collection($this->whenLoaded('protests')),
+            'mentor' =>
+            UsersResource::collection($this->whenLoaded('mentor')),
 
-            'adverts' =>
-            AdvertsResource::collection($this->whenLoaded('adverts')),
 
-            'chats' =>
-            ChatsResource::collection($this->whenLoaded('chats')),
+            /*there is error here in postman*/
 
-            'classes' =>
-            SchoolClassesResource::collection($this->whenLoaded('mentor_classes')),
 
             // 'relationships' => [
             //     'id'=>(string)$this->user->id,
