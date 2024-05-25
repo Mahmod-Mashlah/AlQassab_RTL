@@ -19,13 +19,16 @@ class ProtestController extends Controller
     {
         $protests = Protest::all();
 
-        return
+
+        // Season::where('season_id', Auth::user()->id)->get()
+        // get seasons thats seasons are authenticated
+        return $this->success(
             ProtestsResource::collection(
                 $protests->where('user_id', Auth::user()->id)
-
-                // Season::where('season_id', Auth::user()->id)->get()
-            ); // get seasons thats seasons are authenticated
-
+            ),
+            'الشكاوى',
+            200
+        );
     }
 
     /**
@@ -53,7 +56,11 @@ class ProtestController extends Controller
 
         ]);
 
-        return new ProtestsResource($protest);
+        return $this->success(
+            new ProtestsResource($protest),
+            "تم إضافة الشكوى " . "بنجاح",
+            200
+        );
     }
 
     /**
@@ -62,7 +69,10 @@ class ProtestController extends Controller
     public function show(Protest $protest)
     {
         // return new ProtestsResource($protest);
-        return response()->json($protest->load('user'), 200);
+        return $this->success(
+            $protest->load('user'),
+            " معلومات الشكوى ",
+        );
     }
 
     /**
@@ -85,7 +95,10 @@ class ProtestController extends Controller
             $protest->update($request->all());
             $protest->save();
 
-            return new ProtestsResource($protest);
+            return $this->success(
+                new ProtestsResource($protest),
+                "تم تعديل الشكوى " . " بنجاح",
+            );
         }
     }
 

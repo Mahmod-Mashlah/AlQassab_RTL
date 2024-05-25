@@ -25,10 +25,8 @@ class ChatController extends Controller
     {
         $chats = Chat::all();
 
-        return response()->json([
-            'chats' => ChatsResource::collection($chats),
+        return $this->success(ChatsResource::collection($chats), 'غرف المناقشة', 200);
 
-        ], 200);
 
         // Season::where('season_id', Auth::user()->id)->get()
         // get seasons thats seasons are authenticated
@@ -38,13 +36,14 @@ class ChatController extends Controller
     {
         $chats = Chat::all()->where('admin_id', '=', Auth::user()->id);
         $admin = Auth::user();
-
-        return response()->json([
-            'admin_name' => $admin->first_name . ' ' . $admin->middle_name . ' ' . $admin->last_name,
+        $admin_fullname = $admin->first_name . ' ' . $admin->middle_name . ' ' . $admin->last_name;
+        return  $this->success([
+            'admin_name' => $admin_fullname,
             'chats' => ChatsResource::collection(
                 $chats
             ),
-        ], 200);
+        ], 'غرف المناقشة الخاصة بـ' . $admin_fullname, 200);
+
         // Season::where('season_id', Auth::user()->id)->get()
         // get seasons thats seasons are authenticated
     }
@@ -64,6 +63,7 @@ class ChatController extends Controller
     {
         $request->validated($request->all());
         $user = Auth::user();
+        $admin_fullname = $user->first_name . ' ' . $user->middle_name . ' ' . $user->last_name;
 
         if ($user->hasRole(['manager'])) {
             $firstRoleName = 'manager';
@@ -90,11 +90,14 @@ class ChatController extends Controller
 
         ]);
 
-        return response()->json([
-            'chat' => new ChatsResource($chat),
-            'admin_name' => $user->first_name . ' ' . $user->middle_name . ' ' . $user->last_name,
-
-        ]);
+        return $this->success(
+            [
+                'chat' => new ChatsResource($chat),
+                'admin_name' => $admin_fullname,
+            ],
+            "تمت إضافة غرفة المناقشة " . " بنجاح",
+            200
+        );
     }
 
 
@@ -105,11 +108,14 @@ class ChatController extends Controller
     {
         $admin = User::find($chat->admin_id);
         // return new ProtestsResource($chat);
-        return response()->json([
-            'chat' => $chat,
-            'admin_name' => $admin->first_name . ' ' . $admin->middle_name . ' ' . $admin->last_name,
 
-        ], 200);
+        return $this->success(
+            [
+                'chat' => $chat,
+                'admin_name' => $admin->first_name . ' ' . $admin->middle_name . ' ' . $admin->last_name,
+            ],
+            " معلومات غرفة المناقشة ",
+        );
     }
 
     /**
@@ -141,7 +147,10 @@ class ChatController extends Controller
         $chat->update($request->all());
         $chat->save();
 
-        return new ChatsResource($chat);
+        return $this->success(
+            new ChatsResource($chat),
+            "تم تعديل غرفة المناقشة " . " بنجاح",
+        );
     }
 
     /**

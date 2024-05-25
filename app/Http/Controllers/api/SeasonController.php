@@ -22,13 +22,15 @@ class SeasonController extends Controller
     {
         $seasons = Season::all();
 
-        return
+        // Season::where('season_id', Auth::user()->id)->get()
+        // get seasons thats seasons are authenticated
+        return $this->success(
             SeasonsResource::collection(
                 $seasons
-
-                // Season::where('season_id', Auth::user()->id)->get()
-            ); // get seasons thats seasons are authenticated
-
+            ),
+            'الفصول الدراسية',
+            200
+        );
     }
     public function store(StoreSeasonRequest $request)
     {
@@ -43,14 +45,20 @@ class SeasonController extends Controller
             'year_id' => $request->year_id,
         ]);
 
-        return new SeasonsResource($season);
+        return $this->success(
+            new SeasonsResource($season),
+            "تم إضافة فصل دراسي جديد " . " بنجاح",
+            200
+        );
     }
 
     public function show(Season $season)
     {
-
         // return new SeasonsResource($season);
-        return response()->json($season->load('year'), 200);
+        return $this->success(
+            $season->load('year'),
+            " معلومات الفصل الدراسي ",
+        );
     }
 
     public function update(UpdateSeasonRequest $request, Season $season)  // this work correctly
@@ -61,7 +69,10 @@ class SeasonController extends Controller
         $season->update($request->all());
         $season->save();
 
-        return new SeasonsResource($season);
+        return $this->success(
+            new SeasonsResource($season),
+            "تم تعديل الفصل الدراسي " . " بنجاح",
+        );
     }
 
     /**

@@ -26,10 +26,13 @@ class AdvertController extends Controller
     {
         $adverts = Advert::all();
 
-        return response()->json([
-            'adverts' => AdvertsResource::collection($adverts),
 
-        ], 200);
+        return $this->success(
+            AdvertsResource::collection($adverts),
+            'الإعلانات',
+            200
+        );
+
 
         // Season::where('season_id', Auth::user()->id)->get()
         // get seasons thats seasons are authenticated
@@ -39,15 +42,15 @@ class AdvertController extends Controller
     {
         $adverts = Advert::all()->where('admin_id', '=', Auth::user()->id);
         $admin = Auth::user();
+        $admin_fullname = $admin->first_name . ' ' . $admin->middle_name . ' ' . $admin->last_name;
 
-        return response()->json([
-            'admin_name' => $admin->first_name . ' ' . $admin->middle_name . ' ' . $admin->last_name,
+        return  $this->success([
+            'admin_name' => $admin_fullname,
             'adverts' => AdvertsResource::collection(
                 $adverts
             ),
+        ], 'إعلاناتي', 200);
 
-
-        ], 200);
         // Season::where('season_id', Auth::user()->id)->get()
         // get seasons thats seasons are authenticated
     }
@@ -91,11 +94,14 @@ class AdvertController extends Controller
 
         ]);
 
-        return response()->json([
-            'advert' => new AdvertsResource($advert),
-            'admin_name' => $user->first_name . ' ' . $user->middle_name . ' ' . $user->last_name,
-
-        ]);
+        return $this->success(
+            [
+                'advert' => new AdvertsResource($advert),
+                'admin_name' => $user->first_name . ' ' . $user->middle_name . ' ' . $user->last_name,
+            ],
+            "تمت إضافة إعلان جديد " . " بنجاح",
+            200
+        );
     }
 
     /**
@@ -105,11 +111,14 @@ class AdvertController extends Controller
     {
         $admin = User::find($advert->admin_id);
         // return new ProtestsResource($advert);
-        return response()->json([
-            'advert' => $advert,
-            'admin_name' => $admin->first_name . ' ' . $admin->middle_name . ' ' . $admin->last_name,
 
-        ], 200);
+        return $this->success(
+            [
+                'advert' => $advert,
+                'admin_name' => $admin->first_name . ' ' . $admin->middle_name . ' ' . $admin->last_name,
+            ],
+            " معلومات الإعلان : " . $advert->title,
+        );
     }
 
     /**
@@ -142,7 +151,10 @@ class AdvertController extends Controller
         $advert->update($request->all());
         $advert->save();
 
-        return new AdvertsResource($advert);
+        return $this->success(
+            new AdvertsResource($advert),
+            "تم تعديل الإعلان " . " بنجاح",
+        );
     }
 
     /**
