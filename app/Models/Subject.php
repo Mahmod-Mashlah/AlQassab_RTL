@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SchoolClass extends Model
+class Subject extends Model
 {
     use HasFactory;
     protected $fillable = [
 
         'name',
-        'number',
-        'section_count',
+        'min',
+        'max',
 
-        'mentor_id',
+        'school_class_id',
+        'teacher_id',
 
         'created_at',
         'updated_at'
@@ -22,16 +23,13 @@ class SchoolClass extends Model
 
     // public $timestamps = true;
 
-    public function sections()
-    {
-        return $this->hasMany(Section::class);
-    }
-    public function mentor()
+    public function teacher()
     {
         return $this->belongsTo(User::class);
     }
-    public function subjects()
+
+    public function class()
     {
-        return $this->hasMany(Subject::class);
+        return $this->belongsTo(SchoolClass::class, 'school_class_id');
     }
 }

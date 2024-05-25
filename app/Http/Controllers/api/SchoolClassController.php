@@ -56,7 +56,7 @@ class SchoolClassController extends Controller
         // with relations : $class->load('seasons');
         // like this :
         return $this->success(
-            $class->load(['mentor', 'sections']),
+            $class->load(['mentor', 'sections', 'subjects']),
             " الصف " . $class->name,
         );
     }

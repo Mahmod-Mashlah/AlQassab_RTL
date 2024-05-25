@@ -41,6 +41,7 @@ class DatabaseSeeder extends Seeder
             ArabicDaySeeder::class,
             SchoolClassSeeder::class,
             SectionSeeder::class,
+            SubjectSeeder::class,
             /* DailyScheduleSeeder::class, */
         ]);
     }

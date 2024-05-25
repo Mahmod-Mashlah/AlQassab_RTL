@@ -39,6 +39,9 @@ class UsersResource extends JsonResource
             'classes' =>
             SchoolClassesResource::collection($this->whenLoaded('mentor_classes')),
 
+            'teacher-subjects' =>
+            SubjectsResource::collection($this->whenLoaded('teacher_subjects')),
+
             // 'relationships' => [
             //     'id'=>(string)$this->user->id,
             //     'user name'=>$this->user->name,
