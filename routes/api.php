@@ -11,6 +11,7 @@ use App\Http\Controllers\api\SectionController as ApiSectionController;
 use App\Http\Controllers\api\SubjectController as ApiSubjectController;
 use App\Http\Controllers\api\HomeworkController as ApiHomeworkController;
 use App\Http\Controllers\api\TestController as ApiTestController;
+use App\Http\Controllers\api\ExamController as ApiExamController;
 use App\Http\Controllers\api\DailyScheduleController as ApiDailyScheduleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/subjects', ApiSubjectController::class);
     Route::resource('/homeworks', ApiHomeworkController::class);
     Route::resource('/tests', ApiTestController::class);
+    Route::resource('/exams', ApiExamController::class);
     // Route::resource('/daily-schedules', ApiDailyScheduleController::class)->only(['show']);
 
     // Years السنوات الدراسية
