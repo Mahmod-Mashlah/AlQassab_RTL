@@ -32,7 +32,7 @@ class ExamFactory extends Factory
 
             foreach ($subjects as $subject) {
 
-                DB::table('homework')->insert([
+                DB::table('exams')->insert([
 
                     'mark' => $faker->numberBetween(0, $subject->max),
                     'subject_id' => $subject->id,
