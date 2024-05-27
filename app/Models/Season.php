@@ -32,6 +32,10 @@ class Season extends Model
     {
         return $this->hasMany(Homework::class);
     }
+    public function tests()
+    {
+        return $this->hasMany(Test::class);
+    }
 
     // public function daily_schedule()
     // {

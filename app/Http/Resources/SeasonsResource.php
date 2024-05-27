@@ -33,6 +33,9 @@ class SeasonsResource extends JsonResource
             'homeworks' =>
             HomeworksResource::collection($this->whenLoaded('homeworks')),
 
+            'tests' =>
+            TestsResource::collection($this->whenLoaded('tests')),
+
 
             // 'relationships' => [
             //     'id'=>(string)$this->user->id,

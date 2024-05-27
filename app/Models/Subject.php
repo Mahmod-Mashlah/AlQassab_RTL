@@ -36,4 +36,8 @@ class Subject extends Model
     {
         return $this->hasMany(Homework::class);
     }
+    public function tests()
+    {
+        return $this->hasMany(Test::class);
+    }
 }

@@ -2,40 +2,40 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Models\Homework;
+use App\Models\Test;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\HomeworksResource;
-use App\Http\Requests\StoreHomeworkRequest;
-use App\Http\Requests\UpdateHomeworkRequest;
+use App\Http\Resources\TestsResource;
+use App\Http\Requests\StoreTestRequest;
+use App\Http\Requests\UpdateTestRequest;
 use Laratrust\Traits\HasRolesAndPermissions;
 
-class HomeworkController extends Controller
+class TestController extends Controller
 {
     use HttpResponses;
     use HasRolesAndPermissions;
     public function index()
     {
-        $homeworks = Homework::all();
+        $tests = Test::all();
 
         return $this->success(
-            HomeworksResource::collection(
-                $homeworks
+            TestsResource::collection(
+                $tests
             ),
-            'الوظائف',
+            'المذاكرات',
             //for index relations return that :
-            // homework::with('seasons')->get();
+            // test::with('seasons')->get();
         );
-        // get return homeworks thats homeworks are authenticated
-        // Homework::where('homework_id', Auth::user()->id)->get()
+        // get return tests thats tests are authenticated
+        // Test::where('test_id', Auth::user()->id)->get()
     }
 
-    public function store(StoreHomeworkRequest $request)
+    public function store(StoreTestRequest $request)
     {
         $request->validated($request->all());
-        $homework = Homework::create([
+        $test = Test::create([
             // 'user_id' => Auth::class()->id,
             'mark' => $request->mark,
 
@@ -45,36 +45,36 @@ class HomeworkController extends Controller
 
         ]);
         return $this->success(
-            new HomeworksResource($homework),
-            "تمت إضافة علامات الوظائف  " . /* $request->name .*/ " بنجاح",
+            new TestsResource($test),
+            "تمت إضافة علامات المذاكرات" . /* $request->name .*/ " بنجاح",
         );
     }
-    public function show(Homework $homework)
+    public function show(Test $test)
     {
         // without relations :
-        //return new HomeworksResource($homework);
-        // with relations : $homework->load('seasons');
+        //return new TestsResource($test);
+        // with relations : $test->load('seasons');
         // like this :
         return $this->success(
-            $homework->load(['season', 'student', 'subject']),
-            " وظيفة " /*. $homework->name*/,
+            $test->load(['season', 'student', 'subject']),
+            " مذاكرة " /*. $test->name*/,
         );
     }
-    public function update(UpdateHomeworkRequest $request, Homework $homework)  // this work correctly
+    public function update(UpdateTestRequest $request, Test $test)  // this work correctly
     // in postman make the method : Post (not patch not put)
     // and make in request body : _method = PUT
     {
-        $homework = Homework::find($homework->id);
-        $homework->update($request->all());
+        $test = Test::find($test->id);
+        $test->update($request->all());
 
-        $homework->save();
+        $test->save();
 
         return $this->success(
-            new HomeworksResource($homework),
-            "تم تعديل علامات الوظائف " ./* $homework->name .*/ " بنجاح ",
+            new TestsResource($test),
+            "تم تعديل علامات المذاكرات " ./* $test->name .*/ "بنجاح ",
         );
     }
-    public function destroy(Homework $homework)
+    public function destroy(Test $test)
     {
         // way 1 :
         // $year->delete();
@@ -85,12 +85,12 @@ class HomeworkController extends Controller
         // if ($this->isNotAuthorized($year)) {
         //     $this->isNotAuthorized($year);
         // } else {
-        $hmoework = Homework::find($homework->id);
-        $homework->delete();
+        $test = Test::find($test->id);
+        $test->delete();
 
         return $this->success(
             '',
-            'تم حذف علامات الوظائف ' /*. $homework_name . ' من الصف ' . $class_name */ . ' بنجاح ',
+            'تم حذف علامات المذاكرات ' /*. $test_name . ' من الصف ' . $class_name */ . ' بنجاح ',
             /*status-code */
         );
 
