@@ -5,7 +5,7 @@ namespace App\Rules;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class GreaterThanColumnRule implements ValidationRule
+class SmallerThanColumnRule implements ValidationRule
 {
     /**
      * Run the validation rule.

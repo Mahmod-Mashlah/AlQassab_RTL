@@ -27,6 +27,12 @@ class Season extends Model
     {
         return $this->belongsTo(Year::class);
     }
+
+    public function homeworks()
+    {
+        return $this->hasMany(Homework::class);
+    }
+
     // public function daily_schedule()
     // {
     //     return $this->hasOne(DailySchedule::class);

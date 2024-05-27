@@ -9,6 +9,7 @@ use App\Http\Controllers\api\ChatController as ApiChatController;
 use App\Http\Controllers\api\SchoolClassController as ApiSchoolClassController;
 use App\Http\Controllers\api\SectionController as ApiSectionController;
 use App\Http\Controllers\api\SubjectController as ApiSubjectController;
+use App\Http\Controllers\api\HomeworkController as ApiHomeworkController;
 use App\Http\Controllers\api\DailyScheduleController as ApiDailyScheduleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/classes', ApiSchoolClassController::class);
     Route::resource('/sections', ApiSectionController::class);
     Route::resource('/subjects', ApiSubjectController::class);
+    Route::resource('/homeworks', ApiHomeworkController::class);
     // Route::resource('/daily-schedules', ApiDailyScheduleController::class)->only(['show']);
 
     // Years السنوات الدراسية

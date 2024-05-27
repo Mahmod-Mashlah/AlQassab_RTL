@@ -32,4 +32,8 @@ class Subject extends Model
     {
         return $this->belongsTo(SchoolClass::class, 'school_class_id');
     }
+    public function homeworks()
+    {
+        return $this->hasMany(Homework::class);
+    }
 }

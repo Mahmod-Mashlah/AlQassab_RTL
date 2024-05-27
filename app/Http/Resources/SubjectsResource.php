@@ -44,6 +44,9 @@ class SubjectsResource extends JsonResource
             'class' =>
             SchoolClassesResource::collection($this->whenLoaded('class')),
 
+            'homeworks' =>
+            HomeworksResource::collection($this->whenLoaded('homeworks')),
+
             /*there is error here in postman*/
 
 

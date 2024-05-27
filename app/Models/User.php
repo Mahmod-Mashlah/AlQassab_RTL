@@ -80,4 +80,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Subject::class);
     }
+    public function homeworks()
+    {
+        return $this->hasMany(Homework::class);
+    }
 }

@@ -42,6 +42,9 @@ class UsersResource extends JsonResource
             'teacher-subjects' =>
             SubjectsResource::collection($this->whenLoaded('teacher_subjects')),
 
+            'homeworks' =>
+            HomeworksResource::collection($this->whenLoaded('homeworks')),
+
             // 'relationships' => [
             //     'id'=>(string)$this->user->id,
             //     'user name'=>$this->user->name,
