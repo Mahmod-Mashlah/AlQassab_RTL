@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
             SubjectSeeder::class,
             HomeworkSeeder::class,
             TestSeeder::class,
+            ExamSeeder::class,
             /* DailyScheduleSeeder::class, */
         ]);
     }
