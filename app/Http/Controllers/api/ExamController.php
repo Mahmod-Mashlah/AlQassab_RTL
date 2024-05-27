@@ -46,7 +46,7 @@ class ExamController extends Controller
         ]);
         return $this->success(
             new ExamsResource($exam),
-            "تمت إضافة علامات الامتحان  " . /* $request->name .*/ " بنجاح",
+            "تمت إضافة علامات الامتحان" . /* $request->name .*/ " بنجاح",
         );
     }
     public function show(Exam $exam)
@@ -71,7 +71,7 @@ class ExamController extends Controller
 
         return $this->success(
             new ExamsResource($exam),
-            "تم تعديل علامات الامتحان " ./* $exam->name .*/ " بنجاح ",
+            "تم تعديل علامات الامتحان" ./* $exam->name .*/ " بنجاح ",
         );
     }
     public function destroy(Exam $exam)
