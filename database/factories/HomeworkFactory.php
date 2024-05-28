@@ -28,21 +28,26 @@ class HomeworkFactory extends Factory
         $students = User::whereHasRole('student')/*->take(6)*/->get();
         $students_ids = $students->pluck('id')->toArray();
 
+
+
         foreach ($students_ids as $students_id) {
 
             foreach ($subjects as $subject) {
 
-                DB::table('homework')->insert([
+                foreach ($seasons_ids as $seasons_id) {
 
-                    'mark' => $faker->numberBetween(0, $subject->max),
-                    'subject_id' => $subject->id,
-                    'season_id' => $faker->randomElement($seasons_ids),
-                    'student_id' => $students_id,
+                    DB::table('homework')->insert([
 
-                    'created_at' => now(),
-                    'updated_at' => now()
+                        'mark' => $faker->numberBetween(0, $subject->max),
+                        'subject_id' => $subject->id,
+                        'season_id' => $seasons_id,
+                        'student_id' => $students_id,
 
-                ]);
+                        'created_at' => now(),
+                        'updated_at' => now()
+
+                    ]);
+                }
             }
         }
 
