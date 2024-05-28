@@ -44,4 +44,9 @@ class Subject extends Model
     {
         return $this->hasMany(Exam::class);
     }
+
+    public function marks()
+    {
+        return $this->hasMany(MarkRecord::class);
+    }
 }

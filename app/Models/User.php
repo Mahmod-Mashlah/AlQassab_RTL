@@ -92,4 +92,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Exam::class);
     }
+
+    public function marks()
+    {
+        return $this->hasMany(MarkRecord::class);
+    }
 }

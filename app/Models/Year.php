@@ -23,4 +23,9 @@ class Year extends Model
     {
         return $this->hasMany(Season::class);
     }
+
+    public function marks()
+    {
+        return $this->hasMany(MarkRecord::class);
+    }
 }
