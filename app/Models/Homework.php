@@ -36,6 +36,6 @@ class Homework extends Model
     }
     public function marks()
     {
-        return $this->belongsTo(MarkRecord::class);
+        return $this->belongsTo(MarkRecord::class, 'id');
     }
 }

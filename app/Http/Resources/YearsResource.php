@@ -25,8 +25,11 @@ class YearsResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
 
-            // 'seasons' =>
-            // SeasonsResource::collection($this->whenLoaded('seasons')),
+            'seasons' =>
+            SeasonsResource::collection($this->whenLoaded('seasons')),
+
+            'marks' =>
+            MarkRecordsResource::collection($this->whenLoaded('marks')),
 
 
             // not worked [

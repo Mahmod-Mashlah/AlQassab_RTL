@@ -50,26 +50,26 @@ class MarkRecord extends Model
 
     public function homework1()
     {
-        return $this->hasOne(Homework::class, 'homework1_id');
+        return $this->hasOne(Homework::class, "id");
     }
     public function homework2()
     {
-        return $this->hasOne(Homework::class, 'homework2_id');
+        return $this->hasOne(Homework::class, "id");
     }
     public function test1()
     {
-        return $this->hasOne(Homework::class, 'test1_id');
+        return $this->hasOne(Homework::class, "id");
     }
     public function test2()
     {
-        return $this->hasOne(Homework::class, 'test2_id');
+        return $this->hasOne(Homework::class, "id");
     }
     public function exam1()
     {
-        return $this->hasOne(Homework::class, 'exam1_id');
+        return $this->hasOne(Homework::class, "id");
     }
     public function exam2()
     {
-        return $this->hasOne(Homework::class, 'exam2_id');
+        return $this->hasOne(Homework::class, "id");
     }
 }
