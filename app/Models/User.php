@@ -97,4 +97,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(MarkRecord::class);
     }
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
 }

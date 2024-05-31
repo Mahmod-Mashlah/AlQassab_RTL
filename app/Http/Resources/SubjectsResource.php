@@ -56,6 +56,9 @@ class SubjectsResource extends JsonResource
             'marks' =>
             MarkRecordsResource::collection($this->whenLoaded('marks')),
 
+            'lessons' =>
+            LessonsResource::collection($this->whenLoaded('lessons')),
+
 
             /*there is error here in postman*/
 

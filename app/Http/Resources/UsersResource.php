@@ -54,6 +54,10 @@ class UsersResource extends JsonResource
             'marks' =>
             MarkRecordsResource::collection($this->whenLoaded('marks')),
 
+
+            'lessons' =>
+            LessonsResource::collection($this->whenLoaded('lessons')),
+
             // 'relationships' => [
             //     'id'=>(string)$this->user->id,
             //     'user name'=>$this->user->name,

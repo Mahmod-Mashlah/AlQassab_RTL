@@ -15,6 +15,7 @@ use App\Http\Controllers\api\SubjectController as ApiSubjectController;
 use App\Http\Controllers\api\HomeworkController as ApiHomeworkController;
 use App\Http\Controllers\api\MarkRecordController as ApiMarkRecordController;
 use App\Http\Controllers\api\SchoolClassController as ApiSchoolClassController;
+use App\Http\Controllers\api\LessonController as ApiLessonController;
 use App\Http\Controllers\api\DailyScheduleController as ApiDailyScheduleController;
 
 
@@ -53,6 +54,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/marks', ApiMarkRecordController::class);
     Route::get('/marks/year-student/{year_id}/{student_id}', [ApiMarkRecordController::class, 'showByYear_Student']);
     Route::get('/marks/year-student-subject/{year_id}/{student_id}/{subject_id}', [ApiMarkRecordController::class, 'showByYear_Student_subject']);
+    Route::resource('/lessons', ApiLessonController::class);
+    Route::get('/lessons/subject/{subject_id}', [ApiLessonController::class, 'showBySubject']);
+
+
+
     // Route::resource('/daily-schedules', ApiDailyScheduleController::class)->only(['show']);
 
     // Years السنوات الدراسية
