@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/classes', ApiSchoolClassController::class);
     Route::resource('/sections', ApiSectionController::class);
     Route::resource('/subjects', ApiSubjectController::class);
+    Route::get('/subjects/teacher/{teacher_id}', [ApiSubjectController::class, 'showByTeacher']);
     Route::resource('/homeworks', ApiHomeworkController::class);
     Route::resource('/tests', ApiTestController::class);
     Route::resource('/exams', ApiExamController::class);

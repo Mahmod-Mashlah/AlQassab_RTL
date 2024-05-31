@@ -11,6 +11,7 @@ use App\Http\Resources\SubjectsResource;
 use App\Http\Requests\StoreSubjectRequest;
 use App\Http\Requests\UpdateSubjectRequest;
 use App\Models\SchoolClass;
+use App\Models\User;
 use Laratrust\Traits\HasRolesAndPermissions;
 
 class SubjectController extends Controller
@@ -49,6 +50,20 @@ class SubjectController extends Controller
         return $this->success(
             new SubjectsResource($subject),
             "تمت إضافة مادة " . $request->name . " بنجاح",
+        );
+    }
+    public function showByTeacher($teacher_id)
+    {
+        $teacher = User::find($teacher_id);
+        $subjects = Subject::where('teacher_id', $teacher_id)->get();
+
+        return $this->success(
+            [
+                'teacher' => $teacher,
+                'subjects' => $subjects->load('class')
+            ],
+            "مواد الأستاذ "
+                . $teacher->first_name . ' ' . $teacher->last_name,
         );
     }
     public function show(Subject $subject)
