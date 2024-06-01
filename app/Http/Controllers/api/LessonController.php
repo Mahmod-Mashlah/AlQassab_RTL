@@ -7,6 +7,7 @@ use App\Models\Subject;
 use App\Models\SchoolClass;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\LessonsResource;
@@ -74,16 +75,43 @@ class LessonController extends Controller
     }
     public function show(Lesson $lesson)
     {
+        $subject = Subject::findOrFail($lesson->subject_id);
+        $class = SchoolClass::findOrFail($subject->school_class_id);
+
+        // Rating :
+        $ratings = DB::table('ratings')
+            // ->where('rating', '>=', 1)
+            // ->where('rating', '<=', 5)
+            ->where('lesson_id', $lesson->id)
+            ->whereNotNull('rating');
+
+        // $sum = DB::table('ratings')
+        // // ->where('rating', '>=', 1)
+        // //->where('rating', '<=', 5)
+        // ->where('lesson_id',  $lesson->id)
+        // ->whereNotNull('rating')
+        // ->sum('rating');
+        $sum = $ratings->sum('rating');
+
+        // $count = DB::table('ratings')
+        // ->where('lesson_id',  $lesson->id)
+        // ->whereNotNull('rating')
+        // ->count('rating');
+        $count = $ratings->count('rating');
+
+        $result = $sum / $count;
+
+        $ratingPercent = round($result / 5 * 100, 1);
+
         // without relations :
         //return new LessonsResource($lesson);
         // with relations : $lesson->load('seasons');
         // like this :
-        $subject = Subject::findOrFail($lesson->subject_id);
-        $class = SchoolClass::findOrFail($subject->school_class_id);
         return $this->success(
             [
 
                 'lesson' => $lesson->load(['teacher', 'subject']),
+                'ratingPercent' => $ratingPercent . "%",
                 'class' => $class,
             ],
             " الحصة " . $lesson->lecture_number,
