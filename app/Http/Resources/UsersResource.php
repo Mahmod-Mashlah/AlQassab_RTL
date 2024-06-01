@@ -58,6 +58,10 @@ class UsersResource extends JsonResource
             'lessons' =>
             LessonsResource::collection($this->whenLoaded('lessons')),
 
+            'ratings' =>
+            RatingsResource::collection($this->whenLoaded('ratings')),
+
+
             // 'relationships' => [
             //     'id'=>(string)$this->user->id,
             //     'user name'=>$this->user->name,
