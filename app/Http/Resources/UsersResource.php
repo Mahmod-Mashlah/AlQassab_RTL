@@ -61,6 +61,9 @@ class UsersResource extends JsonResource
             'ratings' =>
             RatingsResource::collection($this->whenLoaded('ratings')),
 
+            'comments' =>
+            CommentsResource::collection($this->whenLoaded('comments')),
+
 
             // 'relationships' => [
             //     'id'=>(string)$this->user->id,

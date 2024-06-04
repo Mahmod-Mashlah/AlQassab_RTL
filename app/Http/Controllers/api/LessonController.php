@@ -78,6 +78,8 @@ class LessonController extends Controller
         $subject = Subject::findOrFail($lesson->subject_id);
         $class = SchoolClass::findOrFail($subject->school_class_id);
 
+        $lesson_Comments = $lesson->comments;
+
         // Rating :
         $ratings = DB::table('ratings')
             // ->where('rating', '>=', 1)
@@ -113,6 +115,7 @@ class LessonController extends Controller
                 'lesson' => $lesson->load(['teacher', 'subject']),
                 'ratingPercent' => $ratingPercent . "%",
                 'class' => $class,
+                'comments' => $lesson_Comments,
             ],
             " الحصة " . $lesson->lecture_number,
         );

@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class LessonsResource extends JsonResource
+class CommentsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,30 +18,23 @@ class LessonsResource extends JsonResource
         return [
 
             'id' => (string)$this->id,
-            'lecture_number' => (string)$this->lecture_number,
-            'date' => $this->date,
-            'summery' => $this->summery,
-            'ideas' => $this->ideas,
 
-            'subject_id' => (string)$this->subject_id,
-            'teacher_id' => (string)$this->teacher_id,
+            'comment' => (string)$this->comment,
 
+            'lesson_id' => (string)$this->lesson_id,
+            'student_id' => (string)$this->student_id,
             // 'admin_name' => $admin->first_name . ' ' . $admin->middle_name . ' ' . $admin->last_name,
 
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
 
-            'subject' =>
-            SubjectsResource::collection($this->whenLoaded('subject')),
+            'student' =>
+            UsersResource::collection($this->whenLoaded('student')),
 
-            'teacher' =>
-            UsersResource::collection($this->whenLoaded('teacher')),
+            'lesson' =>
+            LessonsResource::collection($this->whenLoaded('lesson')),
 
-            'ratings' =>
-            RatingsResource::collection($this->whenLoaded('ratings')),
-
-            'comments' =>
-            CommentsResource::collection($this->whenLoaded('comments')),
+            /*there is error here in postman*/
 
 
             // 'relationships' => [

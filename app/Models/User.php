@@ -110,4 +110,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(File::class);
     }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
