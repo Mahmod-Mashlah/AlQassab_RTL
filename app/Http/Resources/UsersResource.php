@@ -64,6 +64,9 @@ class UsersResource extends JsonResource
             'comments' =>
             CommentsResource::collection($this->whenLoaded('comments')),
 
+            'reply' =>
+            RepliesResource::collection($this->whenLoaded('reply')),
+
 
             // 'relationships' => [
             //     'id'=>(string)$this->user->id,

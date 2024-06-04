@@ -114,4 +114,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+    public function reply()
+    {
+        return $this->hasOne(Reply::class);
+    }
 }

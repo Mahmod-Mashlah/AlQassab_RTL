@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\CommentsResource;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
+use App\Models\Reply;
 use App\Models\User;
 use Laratrust\Traits\HasRolesAndPermissions;
 
@@ -55,7 +56,7 @@ class CommentController extends Controller
 
         $student = User::findOrFail($comment->student_id);
         $lesson = Lesson::findOrFail($comment->lesson_id);
-
+        $reply = $comment->reply;
         // without relations :
         //return new CommentsResource($comment);
         // with relations : $comment->load('seasons');
@@ -64,6 +65,7 @@ class CommentController extends Controller
             [
 
                 'comment' => $comment, //->load(['lesson', 'student']),
+                'reply'  => $reply,
                 'lesson'  => $lesson,
                 'student_name'  => $student->first_name . " " . $student->middle_name . " " . $student->last_name,
                 'student'  => $student,
