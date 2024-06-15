@@ -43,6 +43,9 @@ class LessonsResource extends JsonResource
             'comments' =>
             CommentsResource::collection($this->whenLoaded('comments')),
 
+            'files' =>
+            FileLessonsResource::collection($this->whenLoaded('lesson_files')),
+
 
             // 'relationships' => [
             //     'id'=>(string)$this->user->id,

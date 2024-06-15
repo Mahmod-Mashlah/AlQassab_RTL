@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\File;
+use App\Models\FileLesson;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class FileSeeder extends Seeder
+class FileLessonSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        File::factory(1)->create();
+        FileLesson::factory(1)->create();
     }
 }

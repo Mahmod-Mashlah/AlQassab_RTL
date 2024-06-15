@@ -5,27 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class File extends Model
+class FileLesson extends Model
 {
     use HasFactory;
-
     protected $fillable = [
 
-        'name',
 
-        'user_id',
+        'file_id',
+        'lesson_id',
 
         'created_at',
         'updated_at'
     ];
 
     // public $timestamps = true;
-    public function user()
+
+    public function file()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(File::class);
     }
     public function lesson()
     {
-        return $this->belongsTo(FileLesson::class);
+        return $this->belongsTo(Lesson::class);
     }
 }

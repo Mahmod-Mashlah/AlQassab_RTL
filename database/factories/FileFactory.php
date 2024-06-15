@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,6 +17,20 @@ class FileFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = \Faker\Factory::create();
+
+        for ($i = 20; $i < 40; $i++) {
+
+            DB::table('files')->insert([
+
+                'name' => "logo.png",
+                'user_id' => $i,
+
+                'created_at' => now(),
+                'updated_at' => now()
+
+            ]);
+        }
         return [
             //
         ];

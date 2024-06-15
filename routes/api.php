@@ -19,6 +19,7 @@ use App\Http\Controllers\api\LessonController as ApiLessonController;
 use App\Http\Controllers\api\RatingController as ApiRatingController;
 use App\Http\Controllers\api\CommentController as ApiCommentController;
 use App\Http\Controllers\api\ReplyController as ApiReplyController;
+use App\Http\Controllers\api\FileLessonController as ApiFileLessonController;
 use App\Http\Controllers\api\DailyScheduleController as ApiDailyScheduleController;
 
 
@@ -63,6 +64,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/ratings', ApiRatingController::class);
     Route::resource('/comments', ApiCommentController::class);
     Route::resource('/replies', ApiReplyController::class);
+    Route::resource('/lesson-files', ApiFileLessonController::class); //😁😁
+    Route::get('/get-lesson-files/{lesson_id}', [ApiFileLessonController::class, 'showFiles']);
+    Route::get('/download-lesson-file/{file_name}', [ApiFileLessonController::class, 'downloadFile']);
 
     // Route::resource('/daily-schedules', ApiDailyScheduleController::class)->only(['show']);
 

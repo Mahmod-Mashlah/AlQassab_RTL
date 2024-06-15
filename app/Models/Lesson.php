@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\File;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Lesson extends Model
 {
@@ -38,5 +39,9 @@ class Lesson extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+    public function lesson_files()
+    {
+        return $this->hasMany(FileLesson::class);
     }
 }
