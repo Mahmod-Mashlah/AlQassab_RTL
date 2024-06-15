@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/lesson-files', ApiFileLessonController::class); //😁😁
     Route::get('/get-lesson-files/{lesson_id}', [ApiFileLessonController::class, 'showFiles']);
     Route::get('/download-lesson-file/{file_name}', [ApiFileLessonController::class, 'downloadFile']);
+    Route::delete('/delete-lesson-file/{file_name}', [ApiFileLessonController::class, 'deleteFile']);
 
     // Route::resource('/daily-schedules', ApiDailyScheduleController::class)->only(['show']);
 
