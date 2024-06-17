@@ -67,6 +67,9 @@ class UsersResource extends JsonResource
             'reply' =>
             RepliesResource::collection($this->whenLoaded('reply')),
 
+            'notes' =>
+            NotesResource::collection($this->whenLoaded('notes')),
+
 
             // 'relationships' => [
             //     'id'=>(string)$this->user->id,
