@@ -41,6 +41,11 @@ class Season extends Model
         return $this->hasMany(Exam::class);
     }
 
+    public function day_schedule()
+    {
+        return $this->hasOne(DaySchedule::class);
+    }
+
     // public function daily_schedule()
     // {
     //     return $this->hasOne(DailySchedule::class);

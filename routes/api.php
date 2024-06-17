@@ -22,6 +22,8 @@ use App\Http\Controllers\api\ReplyController as ApiReplyController;
 use App\Http\Controllers\api\FileLessonController as ApiFileLessonController;
 use App\Http\Controllers\api\NoteController as ApiNoteController;
 use App\Http\Controllers\api\FileNoteController as ApiFileNoteController;
+use App\Http\Controllers\api\DayScheduleController as ApiDayScheduleController;
+
 
 use App\Http\Controllers\api\DailyScheduleController as ApiDailyScheduleController;
 
@@ -75,6 +77,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/note-files', ApiFileNoteController::class); //😁😁
     Route::get('/get-note-files/{note_id}', [ApiFileNoteController::class, 'showFiles']);
     Route::get('/download-note-file/{file_name}', [ApiFileNoteController::class, 'downloadFile']);
+    // Route::resource('/day-schedules', ApiDayScheduleController::class); //😁😁null
+    Route::get('/download-day-schedule-file/{file_name}', [ApiDayScheduleController::class, 'downloadFile']);
+    Route::get('/get-day-schedule-file/{season_id}', [ApiDayScheduleController::class, 'showFiles']);
 
     // Route::resource('/daily-schedules', ApiDailyScheduleController::class)->only(['show']);
 

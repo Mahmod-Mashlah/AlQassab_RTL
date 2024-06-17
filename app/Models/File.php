@@ -32,4 +32,8 @@ class File extends Model
     {
         return $this->belongsTo(FileNote::class);
     }
+    public function day_schedule()
+    {
+        return $this->belongsTo(DaySchedule::class);
+    }
 }

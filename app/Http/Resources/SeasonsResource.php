@@ -39,6 +39,9 @@ class SeasonsResource extends JsonResource
             'exams' =>
             ExamsResource::collection($this->whenLoaded('exams')),
 
+            'day_schedule' =>
+            FileNotesResource::collection($this->whenLoaded('day_schedule')),
+
             // 'relationships' => [
             //     'id'=>(string)$this->user->id,
             //     'user name'=>$this->user->name,

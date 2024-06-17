@@ -31,6 +31,9 @@ class FilesResource extends JsonResource
 
             'note' =>
             FileNotesResource::collection($this->whenLoaded('note')),
+
+            'day_schedule' =>
+            FileNotesResource::collection($this->whenLoaded('day_schedule')),
         ];
     }
 }
