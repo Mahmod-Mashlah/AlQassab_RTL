@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class NotesResource extends JsonResource
+class FileNotesResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,25 +19,21 @@ class NotesResource extends JsonResource
 
             'id' => (string)$this->id,
 
-            'type' => $this->type,
-            'details' => $this->details,
 
-            'admin_id' => (string)$this->admin_id,
-            'student_id' => (string)$this->student_id,
+            'file_id' => (string)$this->file_id,
+            'note_id' => (string)$this->note_id,
 
-            // 'admin_name' => $admin->first_name . ' ' . $admin->middle_name . ' ' . $admin->last_name,
 
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
 
-            'student' =>
-            UsersResource::collection($this->whenLoaded('student')),
-
-            'admin' =>
-            UsersResource::collection($this->whenLoaded('admin')),
-
             'files' =>
-            FileNotesResource::collection($this->whenLoaded('note_files')),
+            FilesResource::collection($this->whenLoaded('file')),
+
+            'note' =>
+            LessonsResource::collection($this->whenLoaded('note')),
+
+
 
             /*there is error here in postman*/
 

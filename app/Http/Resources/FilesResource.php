@@ -28,6 +28,9 @@ class FilesResource extends JsonResource
 
             'lesson' =>
             FileLessonsResource::collection($this->whenLoaded('lesson')),
+
+            'note' =>
+            FileNotesResource::collection($this->whenLoaded('note')),
         ];
     }
 }

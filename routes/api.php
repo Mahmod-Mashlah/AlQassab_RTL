@@ -21,6 +21,8 @@ use App\Http\Controllers\api\CommentController as ApiCommentController;
 use App\Http\Controllers\api\ReplyController as ApiReplyController;
 use App\Http\Controllers\api\FileLessonController as ApiFileLessonController;
 use App\Http\Controllers\api\NoteController as ApiNoteController;
+use App\Http\Controllers\api\FileNoteController as ApiFileNoteController;
+
 use App\Http\Controllers\api\DailyScheduleController as ApiDailyScheduleController;
 
 
@@ -70,6 +72,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/download-lesson-file/{file_name}', [ApiFileLessonController::class, 'downloadFile']);
     Route::delete('/delete-lesson-file/{file_name}', [ApiFileLessonController::class, 'deleteFile']);
     Route::resource('/notes', ApiNoteController::class);
+    Route::resource('/note-files', ApiFileNoteController::class); //😁😁
+    Route::get('/get-note-files/{note_id}', [ApiFileNoteController::class, 'showFiles']);
+    Route::get('/download-note-file/{file_name}', [ApiFileNoteController::class, 'downloadFile']);
 
     // Route::resource('/daily-schedules', ApiDailyScheduleController::class)->only(['show']);
 

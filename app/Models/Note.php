@@ -30,4 +30,8 @@ class Note extends Model
     {
         return $this->belongsTo(User::class, 'admin_id');
     }
+    public function note_files()
+    {
+        return $this->hasMany(FileNote::class);
+    }
 }
