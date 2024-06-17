@@ -46,6 +46,11 @@ class Season extends Model
         return $this->hasOne(DaySchedule::class);
     }
 
+    public function test_schedule()
+    {
+        return $this->hasOne(TestSchedule::class);
+    }
+
     // public function daily_schedule()
     // {
     //     return $this->hasOne(DailySchedule::class);

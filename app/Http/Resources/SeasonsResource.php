@@ -40,7 +40,10 @@ class SeasonsResource extends JsonResource
             ExamsResource::collection($this->whenLoaded('exams')),
 
             'day_schedule' =>
-            FileNotesResource::collection($this->whenLoaded('day_schedule')),
+            DaySchedulesResource::collection($this->whenLoaded('day_schedule')),
+
+            'test_schedule' =>
+            TestSchedulesResource::collection($this->whenLoaded('test_schedule')),
 
             // 'relationships' => [
             //     'id'=>(string)$this->user->id,

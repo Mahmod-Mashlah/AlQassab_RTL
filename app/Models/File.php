@@ -36,4 +36,8 @@ class File extends Model
     {
         return $this->belongsTo(DaySchedule::class);
     }
+    public function test_schedule()
+    {
+        return $this->belongsTo(TestSchedule::class);
+    }
 }

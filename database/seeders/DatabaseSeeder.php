@@ -55,6 +55,7 @@ class DatabaseSeeder extends Seeder
             NoteSeeder::class,
             FileNoteSeeder::class,
             DayScheduleSeeder::class,
+            TestScheduleSeeder::class,
             /* DailyScheduleSeeder::class, */
         ]);
     }
