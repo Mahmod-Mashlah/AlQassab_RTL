@@ -37,6 +37,9 @@ class FilesResource extends JsonResource
 
             'test_schedule' =>
             TestSchedulesResource::collection($this->whenLoaded('test_schedule')),
+
+            'exam_schedule' =>
+            ExamSchedulesResource::collection($this->whenLoaded('exam_schedule')),
         ];
     }
 }

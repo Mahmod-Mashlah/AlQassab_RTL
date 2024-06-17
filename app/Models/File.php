@@ -40,4 +40,8 @@ class File extends Model
     {
         return $this->belongsTo(TestSchedule::class);
     }
+    public function exam_schedule()
+    {
+        return $this->belongsTo(ExamSchedule::class);
+    }
 }

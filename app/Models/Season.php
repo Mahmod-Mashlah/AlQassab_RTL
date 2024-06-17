@@ -50,6 +50,10 @@ class Season extends Model
     {
         return $this->hasOne(TestSchedule::class);
     }
+    public function exam_schedule()
+    {
+        return $this->hasOne(ExamSchedule::class);
+    }
 
     // public function daily_schedule()
     // {
