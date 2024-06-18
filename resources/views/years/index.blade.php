@@ -87,31 +87,35 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <form action="{{ route('years.add') }}" method="Post">
-                    @csrf
-                    @method('Post')
-                    <!-- /.card-body -->
 
-                    {{-- Button with insert --}}
-                    <div class="d-flex justify-content-center">
-                        <div class="input-group mb-6 col-md-12">
-                            <div class="input-group-prepend">
-                                <button type="submit" class="btn btn-outline-success"><b>إضافة سنة دراسية
-                                        جديدة</b></button>
+                {{-- add year by secretary --}}
+                @if (Auth::user()->roles()->first()->name == 'secretary')
+                    <form action="{{ route('years.add') }}" method="Post">
+                        @csrf
+                        @method('Post')
+                        <!-- /.card-body -->
+
+                        {{-- Button with insert --}}
+                        <div class="d-flex justify-content-center">
+                            <div class="input-group mb-6 col-md-12">
+                                <div class="input-group-prepend">
+                                    <button type="submit" class="btn btn-outline-success"><b>إضافة سنة دراسية
+                                            جديدة</b></button>
+                                </div>
+                                <!-- /btn-group -->
+                                <input type="text" name="year_start"
+                                    placeholder=" تاريخ بداية السنة(السنة ثم الشهر ثم اليوم) مثلاً 30-09-2024"
+                                    class="form-control ">
+                                <input type="text" name="year_end" placeholder="أدخل تاريخ نهاية السنة "
+                                    class="form-control">
+
                             </div>
-                            <!-- /btn-group -->
-                            <input type="text" name="year_start"
-                                placeholder=" تاريخ بداية السنة(السنة ثم الشهر ثم اليوم) مثلاً 30-09-2024"
-                                class="form-control ">
-                            <input type="text" name="year_end" placeholder="أدخل تاريخ نهاية السنة "
-                                class="form-control">
-
                         </div>
-                    </div>
-                    </span>
+                        </span>
 
-                </form>
-                <br>
+                    </form>
+                    <br>
+                @endif
                 <div class="d-flex justify-content-center">
                     <table id="example2" class="table table-bordered  bg-white col-md-6">
                         <thead>
