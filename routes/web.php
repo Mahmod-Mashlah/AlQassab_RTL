@@ -27,25 +27,19 @@ Route::post('/login', [WebLoginController::class, 'login'])->name('login.post');
 
 Route::middleware(['web-login'])->group(function () {
     // Route::group(['prefix' => 'post'], function () {
-    Route::prefix('/years')->group(function () {
-    });
+    // Route::prefix('/years')->group(function () {
+    // });
 
 
     // Years السنوات الدراسية
     // index
-    Route::get('/years', function () {
-        return view('years.index');
-    })->name('years');
+    Route::get('/years', [YearController::class, 'index'])->name('years');
     // add
-    Route::get('/years/add', function () {
-        return view('years.add');
-    });
+    Route::post('/years', [YearController::class, 'store'])->name('years.add');
 
     // Dashboard لوحة التحكم
 
-    Route::get('/dashboard/{year}', function () {
-        return view('dashboard');
-    });
+    Route::get('/dashboard/{yearname}', [YearController::class, 'dashboard'])->name("dashboard");
 
     //Protests الشكاوى
 

@@ -20,7 +20,18 @@
                       alt="User Image">
               </div>
               <div class="info">
-                  <a href="#" class="d-block">أمين السر</a>
+                  <a href="#" class="d-block">
+
+                      @if (Auth::user()->roles()->first()->name == 'mentor' || Auth::user()->roles()->first()->name == 'manager')
+                          </b>ال{{ Auth::user()->roles()->first()->display_name }}</b>
+                          <br>
+                          {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                      @else
+                          <b>{{ Auth::user()->roles()->first()->display_name }}</b>
+                          <br>
+                          {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                      @endif
+                  </a>
               </div>
           </div>
 
