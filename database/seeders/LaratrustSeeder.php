@@ -35,7 +35,7 @@ class LaratrustSeeder extends Seeder
                     $display_name = 'مدير';
                     break;
                 case 'secretary':
-                    $display_name = 'أمين سر';
+                    $display_name = 'أمين السر';
 
                     break;
                 case 'mentor':
@@ -47,7 +47,7 @@ class LaratrustSeeder extends Seeder
 
                     break;
                 case 'parent':
-                    $display_name = 'ولي أمر';
+                    $display_name = 'ولي الأمر';
 
                     break;
                 case 'student':

@@ -60,6 +60,11 @@ class User extends Authenticatable
         // as $user->full_name.
         return trim("{$this->first_name}.' '.{$this->middle_name}.' '.{$this->last_name}");
     }
+    public function getRole()
+    {
+
+        return $this->roles()->first()->display_name;
+    }
 
     public function protests()
     {
