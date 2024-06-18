@@ -6,9 +6,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginUserRequest;
+use Laratrust\Traits\HasRolesAndPermissions;
 
 class WebLoginController extends Controller
 {
+    use HasRolesAndPermissions;
+
     public function showLoginForm()
     {
         return view('login');
@@ -66,7 +69,19 @@ class WebLoginController extends Controller
         $credentials = $this->credentials($request);
         // $credentials = $request->only(['full_name', 'password']);
         if (Auth::attempt($credentials)) {
-            return redirect()->intended(route('years'));
+
+            $user = User::where('first_name', $request->first_name)
+                ->where('middle_name', $request->middle_name)
+                ->where('last_name', $request->last_name)->first();
+            // dd($user);
+            if ($user->hasRole(['manager', 'mentor', 'secretary'])) {
+
+                return redirect()->intended(route('years'));
+            }
+            return back()->withErrors([
+                'notAllowed' => 'يوجد خطأ. يرجى إدخال بيانات حساب إداري صحيح',
+
+            ]);
         }
         return back()->withErrors([
             'first_name' => 'الاسم غير صحيح , حاول مجدداً 😅',
