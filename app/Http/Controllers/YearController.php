@@ -7,7 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\YearsResource;
 use App\Http\Requests\StoreYearRequest;
 use App\Http\Requests\UpdateYearRequest;
+use App\Models\User;
 use App\Traits\HttpResponses;
+use Carbon\Carbon;
+
 
 
 class YearController extends Controller
@@ -20,8 +23,17 @@ class YearController extends Controller
     public function index($format = 'view')
     {
         $years = Year::all();
-        return view('years.index', compact('years'));
+        $studentCount = User::whereHasRole('student')->count();
+        $employeesCount = User::whereHasRole(['manager', 'secretary', 'mentor', 'teacher'])->count();
+        return view('years.index', compact('years', 'studentCount', 'employeesCount'));
     }
+    public function dashboard($yearname)
+    {
+        $year = Year::where('name', $yearname)->first();
+        $user = Auth::user();
+        return view('dashboard', compact('year', 'user'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,14 +50,16 @@ class YearController extends Controller
     {
         $request->validated($request->all());
 
+        $year_start = new Carbon($request->year_start);
+        $year_end = new Carbon($request->year_end);
+
         $year = Year::create([
             // 'user_id' => Auth::user()->id,
-            'name' => $request->name,
             'year_start' => $request->year_start,
             'year_end' => $request->year_end,
+            'name' => $year_start->format('Y') . '-' . $year_end->format('Y'),
         ]);
-
-        return new YearsResource($year);
+        return redirect()->intended(route('years'));
     }
 
     /**

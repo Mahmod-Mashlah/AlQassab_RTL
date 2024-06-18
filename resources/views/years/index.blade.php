@@ -33,7 +33,7 @@
                 <div class="small-box bg-teal">
                     <div class="inner">
                         <h5 class="text-green">عدد الطلاب الكلي </h5>
-                        <h6 class="text-olive">656</h6>
+                        <h6 class="text-olive">{{ $studentCount }}0</h6>
 
                         {{-- <h6 class="text-green">2</h6> --}}
                     </div>
@@ -53,7 +53,7 @@
                 <div class="small-box bg-teal">
                     <div class="inner">
                         <h5 class="text-green">عدد الموظفين الكلي </h5>
-                        <h6 class="text-olive">250</h6>
+                        <h6 class="text-olive">{{ $employeesCount }}</h6>
                     </div>
                     <br>
                     <br>
@@ -67,6 +67,7 @@
         </div>
     </div>
     {{-- ./row --}}
+
 
     <br>
     <div class=" justify-content-center align-items-center col-md-12">
@@ -86,21 +87,23 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <form action="{{ url('/years/add', []) }}" method="Get">
+                <form action="{{ route('years.add') }}" method="Post">
                     @csrf
-                    @method('Get')
+                    @method('Post')
                     <!-- /.card-body -->
 
                     {{-- Button with insert --}}
                     <div class="d-flex justify-content-center">
-                        <div class="input-group mb-6 col-md-10">
+                        <div class="input-group mb-6 col-md-12">
                             <div class="input-group-prepend">
-                                <button type="button" class="btn btn-outline-success"><b>إضافة سنة دراسية
+                                <button type="submit" class="btn btn-outline-success"><b>إضافة سنة دراسية
                                         جديدة</b></button>
                             </div>
                             <!-- /btn-group -->
-                            <input type="text"
-                                placeholder="أدخل بداية السنة فقط, مثلاً للعام الدراسي 2024-2025 أدخل ' 2024 '"
+                            <input type="text" name="year_start"
+                                placeholder=" تاريخ بداية السنة(السنة ثم الشهر ثم اليوم) مثلاً 30-09-2024"
+                                class="form-control ">
+                            <input type="text" name="year_end" placeholder="أدخل تاريخ نهاية السنة "
                                 class="form-control">
 
                         </div>
@@ -122,49 +125,28 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($years as $year)
+                                <tr>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                            <form action="{{ url('/dashboard/{yearname}', []) }}" method="POST">
+                                                @csrf
+                                                <!-- /.card-body -->
 
-                            <tr>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <form action="{{ url('/dashboard/{year}', []) }}" method="POST">
-                                            @csrf
-                                            <!-- /.card-body -->
-
-                                            <a href="
-                                            {{-- {{ route('dashboard') }} --}}
+                                                <a href="{{ url('dashboard', $year->name) }}
                                             "
-                                                class="btn btn-outline-success " type="button">
-                                                <b>2025-{2024} </b>
-                                            </a>
-                                            <br>
-                                            </span>
+                                                    class="btn btn-outline-success " type="submit">
+                                                    <b>{{ $year->name }}</b>
+                                                </a>
+                                                <br>
+                                                </span>
 
-                                        </form>
+                                            </form>
 
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <form action="{{ url('/dashboard/{year}', []) }}" method="POST">
-                                            @csrf
-                                            <!-- /.card-body -->
-
-                                            <a href="
-                                            {{-- {{ route('dashboard') }} --}}
-                                            "
-                                                class="btn btn-outline-success " type="button">
-                                                <b>2026-{2025}</b>
-                                            </a>
-                                            <br>
-                                            </span>
-
-                                        </form>
-
-                                    </div>
-                                </td>
-                            </tr>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                             <br>
 
                         </tbody>
