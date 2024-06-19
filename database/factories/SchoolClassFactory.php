@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Year;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,24 +23,29 @@ class SchoolClassFactory extends Factory
 
         // $users = User::all();
         // $mentors = User::whereRoleIs('mentor')->get();
+        $years = Year::all();
         $mentors = User::whereHasRole('mentor')->take(6)->get();
         $mentor_ids = $mentors->pluck('id')->toArray();
 
         for ($i = 7; $i <= 12; $i++) {
 
-            DB::table('school_classes')->insert([
+            foreach ($years as $year) {
+                DB::table('school_classes')->insert([
 
-                'name' => "class #" . $i,
-                'number' =>  $i,
-                'section_count' => 3,
+                    'name' => "class #" . $i,
+                    'number' =>  $i,
+                    'section_count' => 3,
 
-                'mentor_id' => $faker->unique()->randomElement($mentor_ids),
+                    'mentor_id' => $faker->randomElement($mentor_ids),
+                    'year_id' => $year->id,
 
-                'created_at' => now(),
-                'updated_at' => now()
+                    'created_at' => now(),
+                    'updated_at' => now()
 
-            ]);
+                ]);
+            }
         }
+
 
 
         return [

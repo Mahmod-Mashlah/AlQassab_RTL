@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebLoginController;
 use App\Http\Controllers\YearController;
@@ -39,8 +40,14 @@ Route::middleware(['web-login'])->group(function () {
 
     // Dashboard لوحة التحكم
 
-    Route::get('/dashboard/{yearname}', [YearController::class, 'dashboard'])->name("dashboard");
+    Route::group(['prefix' => '/dashboard/{yearname}'], function () {
+        Route::get('/', [YearController::class, 'dashboard'])->name("dashboard");
 
+        // Students الطلاب
+        Route::get('/students', [UserController::class, 'students_index'])->name("students");
+        Route::get('/students/add', [UserController::class, 'students_create'])->name("students.create");
+        Route::post('/students/add', [UserController::class, 'students_add'])->name("students.add");
+    });
     //Protests الشكاوى
 
     Route::get('/protests', function () {

@@ -127,4 +127,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Note::class);
     }
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
 }

@@ -28,4 +28,8 @@ class Year extends Model
     {
         return $this->hasMany(MarkRecord::class);
     }
+    public function classes()
+    {
+        return $this->hasMany(SchoolClass::class);
+    }
 }

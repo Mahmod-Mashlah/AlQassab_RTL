@@ -20,6 +20,9 @@ return new class extends Migration
             $table->unsignedBigInteger('mentor_id')->nullable();
             $table->foreign('mentor_id')->references('id')->on('users')->onDelete('cascade');
 
+            $table->unsignedBigInteger('year_id')->nullable();
+            $table->foreign('year_id')->references('id')->on('years')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

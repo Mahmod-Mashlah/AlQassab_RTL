@@ -15,6 +15,7 @@ class SchoolClass extends Model
         'section_count',
 
         'mentor_id',
+        'year_id',
 
         'created_at',
         'updated_at'
@@ -30,8 +31,16 @@ class SchoolClass extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function year()
+    {
+        return $this->belongsTo(year::class);
+    }
     public function subjects()
     {
         return $this->hasMany(Subject::class);
+    }
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'class_student_section', 'class_id');
     }
 }

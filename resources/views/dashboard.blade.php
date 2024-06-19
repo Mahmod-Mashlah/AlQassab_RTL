@@ -43,7 +43,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-th"></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -64,7 +65,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-address-card"></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -83,7 +85,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-users"></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -107,7 +110,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-check-square "></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -128,7 +132,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-arrow-circle-up "></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -147,7 +152,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-arrow-circle-down"></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -172,7 +178,8 @@
                             <div class="icon">
                                 <i class="fa fa-audio-description" aria-hidden="true"></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -191,7 +198,8 @@
                             <div class="icon">
                                 <i class="fa fa-calculator"></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -210,7 +218,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-sticky-note "></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -242,7 +251,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-thumbs-up "></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -263,7 +273,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-address-card"></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -282,7 +293,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-exclamation-circle "></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -306,7 +318,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-check-square "></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -327,7 +340,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-users "></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -346,7 +360,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-podcast "></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -371,7 +386,8 @@
                             <div class="icon">
                                 <i class="fa fa-audio-description" aria-hidden="true"></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -390,7 +406,8 @@
                             <div class="icon">
                                 <i class="fa fa-calculator"></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -420,7 +437,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-users"></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">عرض <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -441,7 +459,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-address-card "></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">عرض <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -465,7 +484,8 @@
                             <div class="icon">
                                 <i class="fas fa  fa-thumbs-up  "></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">عرض <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -484,7 +504,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-comments "></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -505,7 +526,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-exclamation-circle "></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">عرض <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -530,7 +552,8 @@
                             <div class="icon">
                                 <i class="fas fa fa-check-square "></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">عرض <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -551,7 +574,8 @@
                             <div class="icon">
                                 <i class="fa fa-audio-description" aria-hidden="true"></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
@@ -570,7 +594,8 @@
                             <div class="icon">
                                 <i class="fa fa-calculator"></i>
                             </div>
-                            <a href="{{ url('./web/employees', []) }}" target="_blank" class="small-box-footer">
+                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                class="small-box-footer">
                                 <h6 class="text-white">عرض <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
