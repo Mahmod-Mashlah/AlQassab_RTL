@@ -11,6 +11,7 @@ use App\Http\Resources\SubjectsResource;
 use App\Http\Requests\StoreSubjectRequest;
 use App\Http\Requests\UpdateSubjectRequest;
 use App\Models\SchoolClass;
+use App\Models\Student;
 use App\Models\User;
 use Laratrust\Traits\HasRolesAndPermissions;
 
@@ -66,6 +67,24 @@ class SubjectController extends Controller
                 . $teacher->first_name . ' ' . $teacher->last_name,
         );
     }
+    public function showStudents($subject_id)
+    {
+
+        $subject = Subject::where('id', $subject_id)->first();
+        $class = $subject->class;
+        $students = Student::where('class_id', $class->id)
+            ->join('users', 'user_id', '=', 'users.id')->get();
+
+        return $this->success(
+            [
+                'subject' => $subject,
+                'students' => $students
+            ],
+            "طلاب مادة "
+                . $subject->name,
+        );
+    }
+
     public function show(Subject $subject)
     {
         // without relations :

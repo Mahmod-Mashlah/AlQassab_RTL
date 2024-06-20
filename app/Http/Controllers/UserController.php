@@ -30,6 +30,7 @@ class UserController extends Controller
         //     ->get();
         $students = Student::whereDate('created_at', '>=', $year->year_start)
             ->whereDate('created_at', '<=', $year->year_end)
+            ->whereNotNull('user_id')
             ->get();
         // dd($students);
         return view("students.index", compact('year', 'students'));
