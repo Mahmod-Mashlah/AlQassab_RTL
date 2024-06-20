@@ -118,15 +118,16 @@
                                         </span>
                                     </form>
 
-                                    <form action="{{ url('/groups/add', []) }}" method="POST">
+                                    <form
+                                        action="{{ route('students.delete', ['yearname' => $year->name, 'user_id' => $student->user->id]) }}"
+                                        method="post">
                                         @csrf
-
+                                        @method('DELETE')
                                         <!-- /.card-body -->
 
-                                        <a href="{{ route('students', ['yearname' => $year->name]) }}"
-                                            class="btn btn-outline-danger     " type="button">
+                                        <button class="btn btn-outline-danger" type="submit">
                                             <b>حذف</b>
-                                        </a>
+                                        </button>
                                         <br>
                                         </span>
                                     </form>

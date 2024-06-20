@@ -73,8 +73,24 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student $student)
+    public function destroy(Student $student, $yearname, $user_id)
     {
-        //
+        $year = Year::where('name', $yearname)->first();
+        $user = User::where('id', $user_id)->first();
+        $student = Student::where('user_id', $user_id)->first();
+        $parent = User::where('first_name', $user->middle_name)
+            ->where('last_name', $user->last_name)->first();
+        // dd($student);
+        $parent->delete();
+        $student->delete();
+        $user->delete();
+
+
+        $students = Student::whereDate('created_at', '>=', $year->year_start)
+            ->whereDate('created_at', '<=', $year->year_end)
+            ->whereNotNull('user_id')
+            ->get();
+
+        return view("students.index", compact('year', 'students'));
     }
 }
