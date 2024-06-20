@@ -24,8 +24,9 @@ class SchoolClassFactory extends Factory
         // $users = User::all();
         // $mentors = User::whereRoleIs('mentor')->get();
         $years = Year::all();
-        $mentors = User::whereHasRole('mentor')->take(6)->get();
-        $mentor_ids = $mentors->pluck('id')->toArray();
+        // $mentors = User::whereHasRole('mentor')->take(6)->get();
+        // $mentor_ids = $mentors->pluck('id')->toArray();
+        $mentor_ids = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29];
 
         for ($i = 7; $i <= 12; $i++) {
 

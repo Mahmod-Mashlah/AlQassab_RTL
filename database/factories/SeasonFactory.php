@@ -21,7 +21,7 @@ class SeasonFactory extends Factory
     {
         $faker = \Faker\Factory::create();
 
-        $years = Year::all();
+        $years = Year::all()->take(2);
 
         foreach ($years as $year) {
 

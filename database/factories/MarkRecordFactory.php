@@ -27,7 +27,8 @@ class MarkRecordFactory extends Factory
         $faker = \Faker\Factory::create();
 
         $subjects_ids = Subject::all()->pluck('id');
-        $years_ids = Year::all()->pluck('id');
+        // $years_ids = Year::all()->take(2)->pluck('id');
+        $years_ids = [1, 2];
 
         $students = User::whereHasRole('student')/*->take(6)*/->get();
         $students_ids = $students->pluck('id')->toArray();

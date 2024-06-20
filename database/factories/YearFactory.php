@@ -19,9 +19,9 @@ class YearFactory extends Factory
      */
     public function definition(): array
     {
-        $datetime1 = "2020-09-09 00:00:00";
+        $datetime1 = "2022-09-09 00:00:00";
         $date1 = new Carbon($datetime1);
-        $datetime2 = "2021-09-09 00:00:00";
+        $datetime2 = "2023-09-09 00:00:00";
         $date2 = new Carbon($datetime2);
 
         // or
@@ -30,7 +30,7 @@ class YearFactory extends Factory
         // or $year = $date->format('Y');
 
         $faker = \Faker\Factory::create();
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 2; $i++) {
 
             $startYear = $date1->addYears(1);
             $endYear = $date2->addYears(1);

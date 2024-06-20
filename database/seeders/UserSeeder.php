@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UserSeeder extends Seeder
@@ -104,6 +105,7 @@ class UserSeeder extends Seeder
                 // 'password' => Hash::make('password'),
             ]);
 
+
             $student = User::get()
                 ->where('id', $i)
                 ->first();
@@ -118,6 +120,43 @@ class UserSeeder extends Seeder
                 'middle_name' => 'a' . $i,
                 'last_name' => 'a' . $i,
                 'birth_date' => "2000-01-" . $i - 40,
+                'password' => 'password',
+                // 'password' => Hash::make('password'),
+            ]);
+
+            $parent = User::get()
+                ->where('id', $i)
+                ->first();
+            $parent->addRole('parent');
+        }
+
+        // Student2 :
+
+        for ($i = 60; $i < 70; $i++) {
+            User::factory()->create([
+                'first_name' => 'a' . $i,
+                'middle_name' => 'a' . $i,
+                'last_name' => 'a' . $i,
+                'birth_date' => "2000-01-03",
+                'password' => 'password',
+                // 'password' => Hash::make('password'),
+            ]);
+
+
+            $student = User::get()
+                ->where('id', $i)
+                ->first();
+            $student->addRole('student');
+        }
+
+        // Parent :
+
+        for ($i = 70; $i < 80; $i++) {
+            User::factory()->create([
+                'first_name' => 'a' . $i,
+                'middle_name' => 'a' . $i,
+                'last_name' => 'a' . $i,
+                'birth_date' => "2000-01-10",
                 'password' => 'password',
                 // 'password' => Hash::make('password'),
             ]);
