@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebLoginController;
@@ -47,6 +48,7 @@ Route::middleware(['web-login'])->group(function () {
         Route::get('/students', [UserController::class, 'students_index'])->name("students");
         Route::get('/students/add', [UserController::class, 'students_create'])->name("students.create");
         Route::post('/students/add', [UserController::class, 'students_add'])->name("students.add");
+        Route::get('/students/{user_id}', [StudentController::class, 'show'])->name("students.show");
     });
     //Protests الشكاوى
 

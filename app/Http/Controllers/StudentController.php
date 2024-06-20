@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Year;
 use App\Models\Student;
+use App\Models\ClassStudentSection;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Models\SchoolClass;
 
 class StudentController extends Controller
 {
@@ -35,9 +39,19 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Student $student)
+    public function show(Student $student, $yearname, $user_id)
     {
-        //
+        $year = Year::where('name', $yearname)->first();
+
+        $user = User::where('id', $user_id)->first();
+        $student = Student::where('user_id', $user_id)->first();
+
+        $student_class = ClassStudentSection::where('student_id', $student->id)
+            ->latest()
+            ->first();
+        $class = SchoolClass::find($student_class->class_id);
+        // dd($student);
+        return view("students.show", compact('year', 'student', 'user', 'class'));
     }
 
     /**

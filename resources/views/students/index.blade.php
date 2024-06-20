@@ -83,9 +83,9 @@
                     @foreach ($students as $student)
                         <tr>
                             <td>{{ $student->id }}</td>
-                            <td>{{ $student->first_name }} </td>
-                            <td>{{ $student->middle_name }}</td>
-                            <td>{{ $student->last_name }}</td>
+                            <td>{{ $student->user->first_name }} </td>
+                            <td>{{ $student->user->middle_name }}</td>
+                            <td>{{ $student->user->last_name }}</td>
                             <td>إضافة</td>
                             <td>إضافة</td>
                             <td>
@@ -97,7 +97,7 @@
 
                                         <!-- /.card-body -->
 
-                                        <a href="{{ route('students', ['yearname' => $year->name]) }}"
+                                        <a href="{{ route('students.show', ['yearname' => $year->name, 'user_id' => $student->user->id]) }}"
                                             class="btn btn-outline-success     " type="button">
                                             <b>عرض التفاصيل</b>
                                         </a>

@@ -24,8 +24,11 @@ class UserController extends Controller
     {
         $year = Year::where('name', $yearname)->first();
 
-        $students = User::whereHasRole("student")
-            ->whereDate('created_at', '>=', $year->year_start)
+        // $students = User::whereHasRole("student")
+        //     ->whereDate('created_at', '>=', $year->year_start)
+        //     ->whereDate('created_at', '<=', $year->year_end)
+        //     ->get();
+        $students = Student::whereDate('created_at', '>=', $year->year_start)
             ->whereDate('created_at', '<=', $year->year_end)
             ->get();
         // dd($students);
