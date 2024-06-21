@@ -26,10 +26,9 @@ class Student extends Model
         'password',
         'parent_password',
 
-
-
         'user_id',
         'class_id',
+        'parent_id',
 
         'created_at',
         'updated_at'

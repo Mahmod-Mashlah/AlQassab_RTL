@@ -39,6 +39,9 @@ return new class extends Migration
             $table->unsignedBigInteger('class_id')->nullable();
             $table->foreign('class_id')->references('id')->on('school_classes')->onDelete('cascade');
 
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->foreign('parent_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

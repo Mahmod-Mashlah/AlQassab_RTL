@@ -105,15 +105,16 @@
                                         </span>
                                     </form>
 
-                                    <form action="{{ url('/groups/add', []) }}" method="POST">
+                                    <form
+                                        action="{{ route('students.edit', ['yearname' => $year->name, 'user_id' => $student->user->id]) }}"
+                                        method="get">
                                         @csrf
-
+                                        @method('Get')
                                         <!-- /.card-body -->
 
-                                        <a href="{{ route('students', ['yearname' => $year->name]) }}"
-                                            class="btn btn-outline-info     " type="button">
+                                        <button type="submit" class="btn btn-outline-info">
                                             <b>تعديل</b>
-                                        </a>
+                                        </button>
                                         <br>
                                         </span>
                                     </form>

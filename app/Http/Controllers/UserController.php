@@ -75,7 +75,7 @@ class UserController extends Controller
             'phone_number' => $request->phone_number,
             'password' => $student_password,
             'parent_password' => $parent_password,
-
+            'parent_id' => null, //updated below 'after create parent'
             'user_id' => $studentAsUser->id,
             'class_id' => $request->class_id,
 
@@ -92,6 +92,11 @@ class UserController extends Controller
             'password' => $parent_password,
 
         ]);
+
+        $student->update([
+            'parent_id' => $studentAsUser->id + 1,
+        ]);
+        $student->save();
 
         $parent->addRole('parent');
 

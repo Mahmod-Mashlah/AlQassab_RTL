@@ -93,78 +93,37 @@ class UserSeeder extends Seeder
             $teacher->addRole('teacher');
         }
 
-        // Student :
+        // Student & Parent :
 
-        for ($i = 40; $i < 50; $i++) {
-            User::factory()->create([
-                'first_name' => 'a' . $i,
-                'middle_name' => 'a' . $i,
-                'last_name' => 'a' . $i,
-                'birth_date' => "2000-01-" . $i - 30,
-                'password' => 'password',
-                // 'password' => Hash::make('password'),
-            ]);
+        for ($i = 40; $i < 80; $i++) {
 
+            if ($i % 2 == 0) {
+                // Student :
+                $student =  User::factory()->create([
+                    'first_name' => 'a' . $i,
+                    'middle_name' => 'a' . $i,
+                    'last_name' => 'a' . $i,
+                    'birth_date' => "2010-10-10",
+                    'password' => 'password',
+                    // 'password' => Hash::make('password'),
+                ]);
 
-            $student = User::get()
-                ->where('id', $i)
-                ->first();
-            $student->addRole('student');
-        }
+                $student->addRole('student');
+            } else {
 
-        // Parent :
+                //Parent :
 
-        for ($i = 50; $i < 60; $i++) {
-            User::factory()->create([
-                'first_name' => 'a' . $i,
-                'middle_name' => 'a' . $i,
-                'last_name' => 'a' . $i,
-                'birth_date' => "2000-01-" . $i - 40,
-                'password' => 'password',
-                // 'password' => Hash::make('password'),
-            ]);
+                $parent = User::factory()->create([
+                    'first_name' => 'a' . $i,
+                    'middle_name' => 'a' . $i,
+                    'last_name' => 'a' . $i,
+                    'birth_date' => "1971-11-11",
+                    'password' => 'password',
+                    // 'password' => Hash::make('password'),
+                ]);
 
-            $parent = User::get()
-                ->where('id', $i)
-                ->first();
-            $parent->addRole('parent');
-        }
-
-        // Student2 :
-
-        for ($i = 60; $i < 70; $i++) {
-            User::factory()->create([
-                'first_name' => 'a' . $i,
-                'middle_name' => 'a' . $i,
-                'last_name' => 'a' . $i,
-                'birth_date' => "2000-01-03",
-                'password' => 'password',
-                // 'password' => Hash::make('password'),
-            ]);
-
-
-            $student = User::get()
-                ->where('id', $i)
-                ->first();
-            $student->addRole('student');
-        }
-
-        // Parent :
-
-        for ($i = 70; $i < 80; $i++) {
-            User::factory()->create([
-                'first_name' => 'a' . $i,
-                'middle_name' => 'a' . $i,
-                'last_name' => 'a' . $i,
-                'birth_date' => "2000-01-10",
-                'password' => 'password',
-                // 'password' => Hash::make('password'),
-            ]);
-
-            $parent = User::get()
-                ->where('id', $i)
-                ->first();
-            $parent->addRole('parent');
+                $parent->addRole('parent');
+            }
         }
     }
 }

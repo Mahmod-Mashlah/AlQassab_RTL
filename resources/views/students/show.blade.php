@@ -158,9 +158,10 @@
                     </div>
 
 
-                    <hr class="bg-green">
 
                 </div>
+
+                <hr class="bg-green">
 
                 <div class="row">
 
@@ -181,6 +182,25 @@
                         <br>
                         {{ $student->last_serial_number }}
                     </div>
+
+                </div>
+
+                <hr class="bg-green">
+
+                <div class="row">
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="password">رمز دخول الطالب</label>
+                        <br>
+                        {{ $student->password }}
+                    </div>
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="parent_password">رمز دخول ولي الأمر </label>
+                        <br>
+                        {{ $student->parent_password }}
+                    </div>
+
 
                 </div>
 

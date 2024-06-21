@@ -50,6 +50,8 @@ Route::middleware(['web-login'])->group(function () {
         Route::post('/students/add', [UserController::class, 'students_add'])->name("students.add");
         Route::get('/students/{user_id}', [StudentController::class, 'show'])->name("students.show");
         Route::delete('/students/delete/{user_id}', [StudentController::class, 'destroy'])->name("students.delete");
+        Route::get('/students/edit/{user_id}', [StudentController::class, 'edit'])->name("students.edit");
+        Route::put('/students/update/{user_id}', [StudentController::class, 'update'])->name("students.update");
     });
     //Protests الشكاوى
 
