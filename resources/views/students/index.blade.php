@@ -29,23 +29,25 @@
 
     <br>
     <div class="row justify-content-center align-items-center">
-        <div class="col col-md-7">
-            <form method="Post" action="{{ route('students.add', ['yearname' => $year->name]) }}">
-                @csrf
-                @method('Post')
 
-                <!-- /.card-body -->
+        @if (Auth::user()->hasRole('secretary'))
+            <div class="col col-md-7">
+                <form method="Post" action="{{ route('students.add', ['yearname' => $year->name]) }}">
+                    @csrf
+                    @method('Post')
 
-                <div class="col-md-10  justify-content-center align-items-center">
-                    <a href="{{ route('students.add', ['yearname' => $year->name]) }}" target="_blank" type="submit"
-                        class="btn btn-outline-success col  justify-content-center align-items-center">
-                        إضافة طالب جديد
-                    </a>
-                </div>
-            </form>
+                    <!-- /.card-body -->
 
-        </div>
+                    <div class="col-md-10  justify-content-center align-items-center">
+                        <a href="{{ route('students.add', ['yearname' => $year->name]) }}" target="_blank" type="submit"
+                            class="btn btn-outline-success col  justify-content-center align-items-center">
+                            إضافة طالب جديد
+                        </a>
+                    </div>
+                </form>
 
+            </div>
+        @endif
     </div>
 
     <br>
@@ -102,34 +104,35 @@
                                         <br>
                                         </span>
                                     </form>
+                                    @if (Auth::user()->hasRole('secretary'))
+                                        <form
+                                            action="{{ route('students.edit', ['yearname' => $year->name, 'user_id' => $student->user->id]) }}"
+                                            method="Post">
+                                            @csrf
+                                            @method('Get')
+                                            <!-- /.card-body -->
 
-                                    <form
-                                        action="{{ route('students.edit', ['yearname' => $year->name, 'user_id' => $student->user->id]) }}"
-                                        method="Post">
-                                        @csrf
-                                        @method('Get')
-                                        <!-- /.card-body -->
+                                            <button type="submit" class="btn btn-outline-info">
+                                                <b>تعديل</b>
+                                            </button>
+                                            <br>
+                                            </span>
+                                        </form>
 
-                                        <button type="submit" class="btn btn-outline-info">
-                                            <b>تعديل</b>
-                                        </button>
-                                        <br>
-                                        </span>
-                                    </form>
+                                        <form
+                                            action="{{ route('students.delete', ['yearname' => $year->name, 'user_id' => $student->user->id]) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <!-- /.card-body -->
 
-                                    <form
-                                        action="{{ route('students.delete', ['yearname' => $year->name, 'user_id' => $student->user->id]) }}"
-                                        method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <!-- /.card-body -->
-
-                                        <button class="btn btn-outline-danger" type="submit">
-                                            <b>حذف</b>
-                                        </button>
-                                        <br>
-                                        </span>
-                                    </form>
+                                            <button class="btn btn-outline-danger" type="submit">
+                                                <b>حذف</b>
+                                            </button>
+                                            <br>
+                                            </span>
+                                        </form>
+                                    @endif
 
                             </td>
 
