@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    تعديل الإعلان
+    تعديل الإعلان {{ $advert->id }}
 @endsection
 
 @section('css')
@@ -9,7 +9,7 @@
 @endsection
 
 @section('root')
-    لوحة التحكم
+    لوحة التحكم {{ $year->name }}
 @endsection
 
 @section('son1')
@@ -17,7 +17,7 @@
 @endsection
 
 @section('son2')
-    تعديل الإعلان
+    تعديل الإعلان {{ $advert->id }}
 @endsection
 
 @section('content')
@@ -32,36 +32,49 @@
             <!-- /.card-header -->
             <!-- form start -->
 
-            <form method="Get" action="{{ route('adverts') }}">
+            <form method="POST"
+                action="{{ route('adverts.update', ['yearname' => $year->name, 'advert_id' => $advert->id]) }}">
                 @csrf
-                @method('Get')
+                @method('PUT')
 
                 <div class="card-body">
+                    <div class="row">
 
-                    <div class="form-group text-dark">
-                        <label for="name">عنوان الإعلان</label>
-                        <input id="name" class="form-control bg- light" type="text" name="name" required />
+                        <div class="form-group text-gray col-md-8">
+                            <label for="title">عنوان الإعلان</label>
+                            <input id="title" class="form-control bg- light" type="text" name="title"
+                                value="{{ old('title', $advert->title) }}"required />
+                        </div>
+
+                        <div class="form-group text-gray col-md-4">
+                            <label for="target">الجهة المستهدفة</label>
+                            <input id="target" class="form-control bg- light" type="text" name="target"
+                                value="{{ old('target', $advert->target) }}" required />
+                        </div>
+
                     </div>
 
-                    <div class="form-group text-dark">
-                        <label for="name">تفاصيل الإعلان</label>
-                        <input id="name" class="form-control bg- light" type="text" name="name" required />
-                    </div>
+                    <div class="row">
 
-                    <div class="form-group text-dark">
-                        <label for="name"> الجهة المستهدفة</label>
-                        <input id="name" class="form-control bg- light" type="text" name="name" required />
+                        <div class="form-group text-gray col-md-12">
+                            <label for="body">تفاصيل الإعلان </label>
+                            <input id="body" class="form-control bg- light" type="text" name="body"
+                                value="{{ old('body', $advert->body) }}" />
+                        </div>
+
                     </div>
 
                 </div>
-
                 <!-- /.card-body -->
                 <br>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-outline-info col d-flex justify-content-center">تعديل</button>
+                <br>
+                <div class="row justify-content-center">
 
-
+                    <button class="btn btn-outline-info col-sm-5 col d-flex justify-content-center" type="submit">
+                        <b>تعديل</b>
+                    </button>
                 </div>
+                <br>
             </form>
         </div>
         <!-- /.card -->

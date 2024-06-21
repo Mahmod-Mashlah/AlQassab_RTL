@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdvertController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +53,15 @@ Route::middleware(['web-login'])->group(function () {
         Route::delete('/students/delete/{user_id}', [StudentController::class, 'destroy'])->name("students.delete");
         Route::get('/students/edit/{user_id}', [StudentController::class, 'edit'])->name("students.edit");
         Route::put('/students/update/{user_id}', [StudentController::class, 'update'])->name("students.update");
+
+        // Adverts الإعلانات
+        Route::get('/adverts/add', [AdvertController::class, 'create'])->name("adverts.create");
+        Route::post('/adverts/add', [AdvertController::class, 'store'])->name("adverts.add");
+        Route::get('/adverts', [AdvertController::class, 'index'])->name("adverts");
+        Route::get('/adverts/{advert_id}', [AdvertController::class, 'show'])->name("adverts.show");
+        Route::delete('/adverts/delete/{advert_id}', [AdvertController::class, 'destroy'])->name("adverts.delete");
+        Route::get('/adverts/edit/{advert_id}', [AdvertController::class, 'edit'])->name("adverts.edit");
+        Route::put('/adverts/update/{advert_id}', [AdvertController::class, 'update'])->name("adverts.update");
     });
     //Protests الشكاوى
 
@@ -116,27 +126,6 @@ Route::middleware(['web-login'])->group(function () {
     Route::get('/behavioral-notes/types/delete', function () {
         return view('behavioral-notes.index');
     })->name('behavioral-notes-types-delete');
-
-    // Adverts الإعلانات
-    // index
-    Route::get('/adverts', function () {
-        return view('adverts.index');
-    })->name('adverts');
-
-    // add
-    Route::get('/adverts/add', function () {
-        return view('adverts.add');
-    })->name('adverts-add');
-
-    // edit
-    Route::get('/adverts/edit', function () {
-        return view('adverts.edit');
-    })->name('adverts-edit');
-
-    // delete
-    Route::get('/adverts/delete', function () {
-        return view('adverts.index');
-    })->name('adverts-delete');
 
 
     // Employees_Records  الموظفين

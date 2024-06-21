@@ -11,7 +11,7 @@
 
 @section('root')
     {{-- root --}}
-    لوحة التحكم
+    لوحة التحكم {{ $year->name }}
 @endsection
 
 @section('son1')
@@ -41,112 +41,97 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <form action="{{ url('/groups/add', []) }}" method="POST">
-                @csrf
 
-                <!-- /.card-body -->
+            @if (Auth::user()->roles()->first()->name == 'mentor' || Auth::user()->roles()->first()->name == 'manager')
+                <form action="{{ route('adverts.create', ['yearname' => $year->name]) }}" method="GET">
+                    @csrf
+                    @method('Get')
+                    <!-- /.card-body -->
 
-                <a href="{{ route('adverts-add') }}" class="btn  btn-outline-success " type="button">
-                    <b>إضافة إعلان جديد</b>
-                </a>
-                <br>
-                </span>
+                    <a href="{{ route('adverts.create', ['yearname' => $year->name]) }}" class="btn  btn-outline-success "
+                        type="button">
+                        <b>إضافة إعلان جديد</b>
+                    </a>
+                    <br>
+                    </span>
 
-            </form>
+                </form>
+            @endif
+
             <table id="example2" class="table table-bordered table-striped bg-white">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>عنوان الإعلان</th>
-                        <th>تفاصيل الإعلان</th>
-                        <th>الجهة المستهدفة</th>
-                        <th>الناشر</th>
-                        <th>تاريخ النشر</th>
-                        <th>العمليات المتاحة</th>
+                        <th style="width: 5%">#</th>
+                        <th style="width: 35%">عنوان الإعلان</th>
+                        <th style="width: 10%">الجهة المستهدفة</th>
+                        <th style="width: 10%">تاريخ الإعلان</th>
+                        <th style="width: 5%">دور المعلِن</th>
+                        <th style="width: 25%">العمليات المتاحة</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($adverts as $advert)
+                        <tr>
+                            <td>{{ $advert->id }}</td>
+                            <td>{{ $advert->title }}</td>
+                            <td>{{ $advert->target }}</td>
+                            <td>{{ Carbon\Carbon::parse($advert->created_at)->format('j/n/Y') }}</td>
+                            {{-- <td>{{ $advert->user->first_name }} {{ $advert->user->last_name }}</td> --}}
+                            <td>{{ $advert->user->roles()->first()->display_name }}</td>
 
-                    <tr>
-                        <td>1</td>
-                        <td>محمد كامل</td>
-                        <td>وليد</td>
-                        <td>إضافة</td>
-                        <td>إضافة</td>
-                        <td>إضافة</td>
-                        <td>
+                            <td>
 
-                            {{-- edit form --}}
-                            <div class="d-flex justify-content-center">
-                                <form action="{{ url('/groups/add', []) }}" method="POST">
-                                    @csrf
-
-                                    <!-- /.card-body -->
-
-                                    <a href="{{ route('adverts-edit') }}" class="btn btn-outline-info     " type="button">
-                                        <b>تعديل</b>
-                                    </a>
-                                    <br>
-                                    </span>
-                                </form>
-
-                                {{-- delete form --}}
+                                {{-- edit form --}}
                                 <div class="d-flex justify-content-center">
-                                    <form action="{{ url('/groups/add', []) }}" method="POST">
+                                    <form
+                                        action="{{ route('adverts.show', ['yearname' => $year->name, 'advert_id' => $advert->id, 'advert' => $advert]) }}"
+                                        method="GET">
                                         @csrf
 
                                         <!-- /.card-body -->
 
-                                        <a href="{{ route('adverts-delete') }}" class="btn btn-outline-danger     "
-                                            type="button">
-                                            <b>حذف</b>
+                                        <a href="{{ route('adverts.show', ['yearname' => $year->name, 'advert_id' => $advert->id]) }}"
+                                            class="btn btn-outline-success     " type="button">
+                                            <b>عرض التفاصيل</b>
                                         </a>
                                         <br>
                                         </span>
-
                                     </form>
+                                    @if (Auth::user()->roles()->first()->name == 'mentor' || Auth::user()->roles()->first()->name == 'manager')
+                                        <form action="{{ url('/groups/add', []) }}" method="POST">
+                                            @csrf
 
-                                </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>كامل وليد</td>
-                        <td>خالد</td>
-                        <td>إضافة</td>
-                        <td>إضافة</td>
-                        <td>إضافة</td>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <form action="{{ url('/groups/add', []) }}" method="POST">
-                                    @csrf
+                                            <!-- /.card-body -->
 
-                                    <!-- /.card-body -->
+                                            <a href="{{ route('adverts.edit', ['yearname' => $year->name, 'advert_id' => $advert->id]) }}"
+                                                class="btn btn-outline-info     " type="button">
+                                                <b>تعديل</b>
+                                            </a>
+                                            <br>
+                                            </span>
+                                        </form>
 
-                                    <a href="{{ route('adverts-edit') }}" class="btn btn-outline-info     " type="button">
-                                        <b>تعديل</b>
-                                    </a>
-                                    <br>
-                                    </span>
-                                </form>
+                                        {{-- delete form --}}
+                                        <div class="d-flex justify-content-center">
+                                            <form
+                                                action="{{ route('adverts.delete', ['yearname' => $year->name, 'advert_id' => $advert->id]) }}"
+                                                method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <!-- /.card-body -->
 
-                                <form action="{{ url('/groups/add', []) }}" method="POST">
-                                    @csrf
+                                                <button class="btn btn-outline-danger" type="submit">
+                                                    <b>حذف</b>
+                                                </button>
+                                                <br>
+                                                </span>
+                                            </form>
 
-                                    <!-- /.card-body -->
-
-                                    <a href="{{ route('adverts-delete') }}" class="btn btn-outline-danger     "
-                                        type="button">
-                                        <b>حذف</b>
-                                    </a>
-                                    <br>
-                                    </span>
-
-                                </form>
-
-                            </div>
-                        </td>
-                    </tr>
+                                        </div>
+                                    @endif
+                            </td>
+                        </tr>
+                    @endforeach
 
 
                     <br>

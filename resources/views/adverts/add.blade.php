@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    إضافة إعلان
+    إضافة إعلان جديد
 @endsection
 
 @section('css')
@@ -9,7 +9,7 @@
 @endsection
 
 @section('root')
-    لوحة التحكم
+    لوحة التحكم {{ $year->name }}
 @endsection
 
 @section('son1')
@@ -17,7 +17,7 @@
 @endsection
 
 @section('son2')
-    إضافة إعلان
+    إضافة إعلان جديد
 @endsection
 
 @section('content')
@@ -25,44 +25,60 @@
     <br>
     <div class="justify-content-center">
         <!-- general form elements -->
-        <div class="card card-teal ">
+
+        <div class="card card-teal">
             <div class="card-header">
-                <h3 class="card-title col-lg-7">إضافة إعلان جديد</h3>
+
+                <h1 class="card-title col-md-7"><b>بيانات الإعلان</b></h1>
+                <div class="card-tools">
+
+                    <button type="button" class="btn btn-tool " data-card-widget="remove"><i class="fas fa-times"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
+                            class="fas fa-expand"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                            class="fas fa-minus"></i></button>
+                </div>
+                <!-- /.card-tools -->
             </div>
             <!-- /.card-header -->
-            <!-- form start -->
-
-            <form method="Get" action="{{ route('adverts') }}">
+            <form method="Post" action="{{ route('adverts.add', ['yearname' => $year->name]) }}">
                 @csrf
-                @method('Get')
+                @method('Post')
 
                 <div class="card-body">
 
-                    <div class="form-group text-dark">
-                        <label for="name">عنوان الإعلان</label>
-                        <input id="name" class="form-control bg- light" type="text" name="name" required />
+                    <div class="row">
+
+                        <div class="form-group text-gray col-md-8">
+                            <label for="title">عنوان الإعلان</label>
+                            <input id="title" class="form-control bg- light" type="text" name="title" required />
+                        </div>
+
+                        <div class="form-group text-gray col-md-4">
+                            <label for="target">الجهة المستهدفة</label>
+                            <input id="target" class="form-control bg- light" type="text" name="target" required />
+                        </div>
+
                     </div>
 
-                    <div class="form-group text-dark">
-                        <label for="name">تفاصيل الإعلان</label>
-                        <input id="name" class="form-control bg- light" type="text" name="name" required />
-                    </div>
+                    <div class="row">
 
-                    <div class="form-group text-dark">
-                        <label for="name"> الجهة المستهدفة</label>
-                        <input id="name" class="form-control bg- light" type="text" name="name" required />
+                        <div class="form-group text-gray col-md-12">
+                            <label for="body">تفاصيل الإعلان </label>
+                            <input id="body" class="form-control bg- light" type="text" name="body" />
+                        </div>
+
                     </div>
 
                 </div>
-
-                <!-- /.card-body -->
+                <div class="col-md-12  justify-content-center align-items-center">
+                    <button class="btn btn-outline-success col  justify-content-center align-items-center" type="submit">
+                        <b>إضافة</b>
+                    </button>
+                </div>
                 <br>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-outline-success col d-flex justify-content-center">إضافة</button>
-
-
-                </div>
             </form>
+            <!-- /.card -->
         </div>
         <!-- /.card -->
     </div>

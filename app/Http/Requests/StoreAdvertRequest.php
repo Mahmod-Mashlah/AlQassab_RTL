@@ -23,8 +23,8 @@ class StoreAdvertRequest extends FormRequest
     {
         return [
 
-            'title' => ['required', 'string', 'max:150'],
-            'body' => ['required', 'string'],
+            'title' => ['required', 'string', 'max:250'],
+            'body' => ['string'],
             // 'admin_role' => ['required', 'string', 'exists:table,column'],
             'target' => ['required', 'string'],
 
@@ -39,7 +39,7 @@ class StoreAdvertRequest extends FormRequest
             // 'year_start.required' => ' لم يتم إدخال بداية السنة , يرجى المحاولة مجدداً 😅',
             // 'year_end.required' => ' لم يتم إدخال نهاية السنة , يرجى المحاولة مجدداً 😅',
 
-            'title.max' => 'العنوان يجب أن يحوي على الأكثر 150 حرف 😅',
+            'title.max' => 'العنوان يجب أن يحوي على الأكثر 250 حرف 😅',
             // 'year_start.min' => 'كلمة السر يجب أن تحوي على الأقل 6 رموز 😅',
             // 'year_start.unique' => 'بداية السنة موجود مسبقاً بالفعل , يرجى التغيير ثم المحاولة مجدداً 😅',
             // 'year_end.unique' =>  'نهاية السنة موجود مسبقاً بالفعل , يرجى التغيير ثم المحاولة مجدداً 😅',
