@@ -30,7 +30,7 @@ class YearFactory extends Factory
         // or $year = $date->format('Y');
 
         $faker = \Faker\Factory::create();
-        for ($i = 0; $i < 2; $i++) {
+        for ($i = 0; $i <= 1; $i++) {
 
             $startYear = $date1->addYears(1);
             $endYear = $date2->addYears(1);
@@ -44,6 +44,7 @@ class YearFactory extends Factory
                 'updated_at' => now()
             ]);
         }
+
 
         return [
 

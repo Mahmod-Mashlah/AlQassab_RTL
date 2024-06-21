@@ -178,7 +178,7 @@
                             <div class="icon">
                                 <i class="fa fa-audio-description" aria-hidden="true"></i>
                             </div>
-                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                            <a href="{{ route('adverts', ['yearname' => $year->name]) }}" target="_blank"
                                 class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
@@ -386,7 +386,7 @@
                             <div class="icon">
                                 <i class="fa fa-audio-description" aria-hidden="true"></i>
                             </div>
-                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                            <a href="{{ route('adverts', ['yearname' => $year->name]) }}" target="_blank"
                                 class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
@@ -574,7 +574,7 @@
                             <div class="icon">
                                 <i class="fa fa-audio-description" aria-hidden="true"></i>
                             </div>
-                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                            <a href="{{ route('adverts', ['yearname' => $year->name]) }}" target="_blank"
                                 class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>

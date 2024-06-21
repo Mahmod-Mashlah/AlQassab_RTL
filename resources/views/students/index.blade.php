@@ -68,13 +68,12 @@
                 <thead>
 
                     <tr>
-                        <th>#</th>
-                        <th>اسم الطالب</th>
-                        <th>اسم الوالد</th>
-                        <th>اللقب</th>
-                        <th>اسم الجد</th>
-                        <th>الصف الحالي </th>
-                        <th>خيارات إضافية</th>
+                        <th style="width: 10%">#</th>
+                        <th style="width: 20%">اسم الطالب</th>
+                        <th style="width: 20%">اسم الأب</th>
+                        <th style="width: 20%">اللقب</th>
+                        {{-- <th>الصف الحالي </th> --}}
+                        <th style="width: 30%" class="align-items-center justify-content-center">خيارات إضافية</th>
 
                     </tr>
                 </thead>
@@ -86,8 +85,7 @@
                             <td>{{ $student->user->first_name }} </td>
                             <td>{{ $student->user->middle_name }}</td>
                             <td>{{ $student->user->last_name }}</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
+                            {{-- <td>{{ $student->class->name }}</td> --}}
                             <td>
 
                                 {{-- show form --}}
@@ -107,7 +105,7 @@
 
                                     <form
                                         action="{{ route('students.edit', ['yearname' => $year->name, 'user_id' => $student->user->id]) }}"
-                                        method="get">
+                                        method="Post">
                                         @csrf
                                         @method('Get')
                                         <!-- /.card-body -->
