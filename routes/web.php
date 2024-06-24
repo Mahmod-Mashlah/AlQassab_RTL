@@ -9,6 +9,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\WebLoginController;
 use App\Http\Controllers\SchedulesController;
 use App\Http\Controllers\DayScheduleController;
+use App\Http\Controllers\TestScheduleController;
 
 Route::get('/data-table', function () {
     return view('datatable-example');
@@ -68,7 +69,7 @@ Route::middleware(['web-login'])->group(function () {
         // Schedules
         Route::group(['prefix' => '/schedules'], function () {
             Route::get('', [SchedulesController::class, 'index'])->name("schedules");
-            // Adverts الإعلانات
+            // Daily Schedules :
             Route::get('/daily/add', [DayScheduleController::class, 'create'])->name("daily.create");
             Route::post('/daily/add', [DayScheduleController::class, 'store'])->name("daily.add");
             Route::get('/daily', [DayScheduleController::class, 'index'])->name("daily");
@@ -77,6 +78,16 @@ Route::middleware(['web-login'])->group(function () {
             Route::delete('/daily/delete/{day_schedule_id}', [DayScheduleController::class, 'destroy'])->name("daily.delete");
             // Route::get('/daily/edit/{advert_id}', [DayScheduleController::class, 'edit'])->name("daily.edit");
             // Route::put('/daily/update/{advert_id}', [DayScheduleController::class, 'update'])->name("daily.update");
+
+            // Daily Schedules :
+            Route::get('/tests/add', [TestScheduleController::class, 'create'])->name("tests.create");
+            Route::post('/tests/add', [TestScheduleController::class, 'store'])->name("tests.add");
+            Route::get('/tests', [TestScheduleController::class, 'index'])->name("tests");
+            // Route::get('/tests/{advert_id}', [TestScheduleController::class, 'show'])->name("tests.show");
+            Route::get('/tests/download/{file_name}', [TestScheduleController::class, 'downloadFile'])->name("tests.download");
+            Route::delete('/tests/delete/{test_schedule_id}', [TestScheduleController::class, 'destroy'])->name("tests.delete");
+            // Route::get('/tests/edit/{advert_id}', [TestScheduleController::class, 'edit'])->name("tests.edit");
+            // Route::put('/tests/update/{advert_id}', [TestScheduleController::class, 'update'])->name("tests.update");
         });
     });
     //Protests الشكاوى
