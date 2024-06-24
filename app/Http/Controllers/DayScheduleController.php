@@ -21,21 +21,21 @@ class DayScheduleController extends Controller
      * Display a listing of the resource.
      */
 
-
     public function index($yearname)
     {
         $year = Year::where('name', $yearname)->first();
-        // $daySchedules = DaySchedule::whereDate('created_at', '>=', $year->year_start)
-        //     ->whereDate('created_at', '<=', $year->year_end)
-        //     ->get();
-        $daySchedules = DB::table('day_schedules')
-            ->leftJoin('files', 'day_schedules.file_id', '=', 'files.id')
-            ->where('day_schedules.created_at', '>=', $year->year_start)
-            ->where('day_schedules.created_at', '<=', $year->year_end)
-            ->leftJoin('seasons', 'day_schedules.season_id', '=', 'seasons.id')
-            ->leftJoin('users', 'files.user_id', '=', 'users.id')
-            ->whereNotNull('season_id')
+        $daySchedules = DaySchedule::whereDate('created_at', '>=', $year->year_start)
+            ->whereDate('created_at', '<=', $year->year_end)
             ->get();
+        // dd($daySchedules->season);
+        // $daySchedules = DB::table('daySchedules')
+        //     ->leftJoin('files', 'daySchedules.file_id', '=', 'files.id')
+        //     ->where('daySchedules.created_at', '>=', $year->year_start)
+        //     ->where('daySchedules.created_at', '<=', $year->year_end)
+        //     ->leftJoin('seasons', 'daySchedules.season_id', '=', 'seasons.id')
+        //     ->leftJoin('users', 'files.user_id', '=', 'users.id')
+        //     ->whereNotNull('season_id')
+        //     ->get();
         // dd($daySchedules);
         return view('schedules.daily.index', compact('yearname', 'year', 'daySchedules'));
         // return redirect()->route('daily', ['yearname' => $yearname, 'daySchedules' => $daySchedules]);
@@ -54,33 +54,36 @@ class DayScheduleController extends Controller
      */
     public function store(StoreDayScheduleRequest $request, $yearname)
     {
-        $user = Auth::user();
-        $request->validated($request->all());
+        // public function upload_file(Request $request)
+        {
+            $user = Auth::user();
+            $request->validated($request->all());
+            $file_request = $request->file;
+            if ($user->hasRole('mentor') || $user->hasRole('secretary')) {
 
-        if ($user->hasRole('mentor') || $user->hasRole('secretary')) {
+                $file_name = $request->file->getClientOriginalName();
 
-            $file_name = $request->file->getClientOriginalName();
+                $request->file->move(public_path('project-files/'), $file_name);
 
-            $request->file->move(public_path('project-files/' . $file_name));
+                $file = File::create([
+                    'name' => $file_name,
+                    'user_id' => auth()->user()->id,
+                ]);
+                $daySchedule = DaySchedule::create([
+                    // 'user_id' => Auth::user()->id,
 
-            $file = File::create([
-                'name' => $file_name,
-                'user_id' => auth()->user()->id,
-            ]);
-            $daySchedule = DaySchedule::create([
-                // 'user_id' => Auth::user()->id,
-
-                'file_id' => $file->id,
-                'season_id' => $request->season_id,
-            ]);
+                    'file_id' => $file->id,
+                    'season_id' => $request->season_id,
+                ]);
+            }
+            $year = Year::where('name', $yearname)->first();
+            $daySchedules = DaySchedule::whereDate('created_at', '>=', $year->year_start)
+                ->whereDate('created_at', '<=', $year->year_end)
+                // ->whereNotNull('file_id')
+                ->get();
+            // return view('DaySchedules.index', compact('yearname', 'year'));
+            return redirect()->route('daily', ['yearname' => $yearname, 'daySchedules' => $daySchedules]);
         }
-        $year = Year::where('name', $yearname)->first();
-        $daySchedules = DaySchedule::whereDate('created_at', '>=', $year->year_start)
-            ->whereDate('created_at', '<=', $year->year_end)
-            // ->whereNotNull('file_id')
-            ->get();
-        // return view('DaySchedules.index', compact('yearname', 'year'));
-        return redirect()->route('daily', ['yearname' => $yearname, 'daySchedules' => $daySchedules]);
     }
     public function downloadFile($yearname, $file_name)
     {
@@ -161,17 +164,15 @@ class DayScheduleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DaySchedule $daySchedule, $yearname, $day_schedule_id)
+    public function destroy(DaySchedule $daySchedule, $yearname, $test_schedule_id)
     {
         $year = Year::where('name', $yearname)->first();
-        $daySchedule = DaySchedule::where('id', $day_schedule_id)->first();
-        dd($day_schedule_id);
-        $file = File::where('id', $daySchedule->file_id)->first();
+        $daySchedule = DaySchedule::where('id', $test_schedule_id)->first();
 
+        $file = File::where('id', $daySchedule->file_id)->first();
 
         if ($file->user_id == Auth::user()->id /*|| Auth::user()->roles()->first()->name == 'manager'*/) {
 
-            $daySchedule->delete();
 
             $file_path = public_path('project-files/' . $file->name);
 
@@ -179,37 +180,24 @@ class DayScheduleController extends Controller
                 FacadeFile::delete($file_path);
                 $file->delete();
             }
-
-            // $daySchedules = DaySchedule::whereDate('created_at', '>=', $year->year_start)
-            //     ->whereDate('created_at', '<=', $year->year_end)
-            //     // ->whereNotNull('admin_id')
-            //     ->get();
-            $daySchedules = DB::table('day_schedules')
-                ->leftJoin('files', 'day_schedules.file_id', '=', 'files.id')
-                ->where('day_schedules.created_at', '>=', $year->year_start)
-                ->where('day_schedules.created_at', '<=', $year->year_end)
-                ->leftJoin('seasons', 'day_schedules.season_id', '=', 'seasons.id')
-                ->leftJoin('users', 'files.user_id', '=', 'users.id')
-                ->whereNotNull('season_id')
+            $daySchedule->delete();
+            $daySchedules = DaySchedule::whereDate('created_at', '>=', $year->year_start)
+                ->whereDate('created_at', '<=', $year->year_end)
                 ->get();
             // return view("students.index", compact('year', 'students'));
             return redirect()->route('daily', ['yearname' => $yearname, 'daySchedules' => $daySchedules]);
+        } else {
+            $daySchedules = DaySchedule::whereDate('created_at', '>=', $year->year_start)
+                ->whereDate('created_at', '<=', $year->year_end)
+                ->get();
+
+            echo "<br>
+            <h1 style='font-size: 40px;color: red ;text-align: center;vertical-align: middle;'
+            > 😅 مع الأسف 😅</h1>
+            <br>
+            <h1 style='font-size: 35px;text-align: center;'>
+             أنت غير قادر على حذف ملف برنامج المذاكرات هذا لأنك لست من قام بنشره</h1>";
+            echo "<br>";
         }
-        // else {
-
-        //     $daySchedules = DaySchedule::whereDate('created_at', '>=', $year->year_start)
-        //         ->whereDate('created_at', '<=', $year->year_end)
-        //         ->whereNotNull('admin_id')
-        //         ->get();
-
-        //     echo "<br>
-        //     <h1 style='font-size: 40px;color: red ;text-align: center;vertical-align: middle;'
-        //     > 😅 مع الأسف 😅</h1>
-        //     <br>
-        //     <h1 style='font-size: 35px;text-align: center;'>
-        //      أنت غير قادر على حذف هذا الإعلان لأنك لست  مدير المدرسة ولست ناشر هذا الإعلان أيضاً</h1>";
-        //     echo "<br>";
-        // }
-
     }
 }

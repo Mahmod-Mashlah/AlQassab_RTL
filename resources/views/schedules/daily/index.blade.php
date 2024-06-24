@@ -72,9 +72,9 @@
                     @foreach ($daySchedules as $daySchedule)
                         <tr>
                             <td>{{ $daySchedule->id }}</td>
-                            <td>{{ $daySchedule->number }}</td>
-                            <td>{{ $daySchedule->name }}</td>
-                            <td>{{ $daySchedule->first_name }} {{ $daySchedule->last_name }}</td>
+                            <td>{{ $daySchedule->season->number }}</td>
+                            <td>{{ $daySchedule->file->name }}</td>
+                            <td>{{ $daySchedule->file->user->first_name }} {{ $daySchedule->file->user->last_name }}</td>
 
                             <td>
                                 {{-- show/download form --}}
@@ -84,7 +84,7 @@
 
                                         <!-- /.card-body -->
 
-                                        <a href="{{ route('daily.download', ['yearname' => $year->name, 'file_name' => $daySchedule->name]) }}"
+                                        <a href="{{ route('daily.download', ['yearname' => $year->name, 'file_name' => $daySchedule->file->name]) }}"
                                             class="btn btn-outline-info     " type="button">
                                             <b>تنزيل الملف</b>
                                         </a>
@@ -92,23 +92,25 @@
                                         </span>
                                     </form>
                                     @if (Auth::user()->hasRole('mentor') || Auth::user()->hasRole('secretary'))
-                                        {{-- delete form --}}
-                                        <div class="d-flex justify-content-center">
-                                            <form
-                                                action="{{ route('daily.delete', ['yearname' => $year->name, 'day_schedule_id' => $daySchedule->id]) }}"
-                                                method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <!-- /.card-body -->
+                                        @if ($daySchedule->file->user_id == Auth::user()->id)
+                                            {{-- delete form --}}
+                                            <div class="d-flex justify-content-center">
+                                                <form
+                                                    action="{{ route('daily.delete', ['yearname' => $year->name, 'day_schedule_id' => $daySchedule->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <!-- /.card-body -->
 
-                                                <button class="btn btn-outline-danger" type="submit">
-                                                    <b>حذف الملف</b>
-                                                </button>
-                                                <br>
-                                                </span>
-                                            </form>
+                                                    <button class="btn btn-outline-danger" type="submit">
+                                                        <b>حذف الملف</b>
+                                                    </button>
+                                                    <br>
+                                                    </span>
+                                                </form>
 
-                                        </div>
+                                            </div>
+                                        @endif
                                     @endif
                             </td>
                         </tr>

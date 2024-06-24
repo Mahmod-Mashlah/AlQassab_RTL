@@ -21,7 +21,7 @@ class DaySchedule extends Model
 
     public function file()
     {
-        return $this->hasOne(File::class, 'file_id');
+        return $this->belongsTo(File::class);
     }
     public function season()
     {
