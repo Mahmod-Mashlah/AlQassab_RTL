@@ -2,7 +2,7 @@
 
 @section('title')
     {{-- Title here --}}
-    برامج المذاكرات
+    برامج الامتحانات
 @endsection {{-- or @stop --}}
 
 @section('css')
@@ -20,7 +20,7 @@
 @endsection
 
 @section('son2')
-    برامج المذاكرات
+    برامج الامتحانات
 @endsection
 
 @section('content')
@@ -29,7 +29,7 @@
 
     <div class="card card-teal">
         <div class="card-header">
-            <h1 class="card-title col-md-6"><b> برامج المذاكرات</b></h1>
+            <h1 class="card-title col-md-6"><b> برامج الامتحانات</b></h1>
             <div class="card-tools">
 
                 <button type="button" class="btn btn-tool " data-card-widget="remove"><i class="fas fa-times"></i></button>
@@ -43,14 +43,14 @@
         <div class="card-body">
 
             @if (Auth::user()->roles()->first()->name == 'mentor' || Auth::user()->roles()->first()->name == 'secretary')
-                <form action="{{ route('schedules.tests.create', ['yearname' => $year->name]) }}" method="GET">
+                <form action="{{ route('schedules.exams.create', ['yearname' => $year->name]) }}" method="GET">
                     @csrf
                     @method('Get')
                     <!-- /.card-body -->
 
-                    <a href="{{ route('schedules.tests.create', ['yearname' => $year->name]) }}"
+                    <a href="{{ route('schedules.exams.create', ['yearname' => $year->name]) }}"
                         class="btn  btn-outline-success " type="button">
-                        <b>إضافة برنامج مذاكرات جديد</b>
+                        <b>إضافة برنامج امتحانات جديد</b>
                     </a>
                     <br>
                     </span>
@@ -69,12 +69,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($test_schedules as $test_schedule)
+                    @foreach ($exam_schedules as $exam_schedule)
                         <tr>
-                            <td>{{ $test_schedule->id }}</td>
-                            <td>{{ $test_schedule->season->number }}</td>
-                            <td>{{ $test_schedule->file->name }}</td>
-                            <td>{{ $test_schedule->file->user->first_name }} {{ $test_schedule->file->user->last_name }}
+                            <td>{{ $exam_schedule->id }}</td>
+                            <td>{{ $exam_schedule->season->number }}</td>
+                            <td>{{ $exam_schedule->file->name }}</td>
+                            <td>{{ $exam_schedule->file->user->first_name }} {{ $exam_schedule->file->user->last_name }}
                             </td>
 
                             <td>
@@ -85,7 +85,7 @@
 
                                         <!-- /.card-body -->
 
-                                        <a href="{{ route('schedules.tests.download', ['yearname' => $year->name, 'file_name' => $test_schedule->file->name]) }}"
+                                        <a href="{{ route('schedules.exams.download', ['yearname' => $year->name, 'file_name' => $exam_schedule->file->name]) }}"
                                             class="btn btn-outline-info     " type="button">
                                             <b>تنزيل الملف</b>
                                         </a>
@@ -93,11 +93,11 @@
                                         </span>
                                     </form>
                                     @if (Auth::user()->hasRole('mentor') || Auth::user()->hasRole('secretary'))
-                                        @if ($test_schedule->file->user_id == Auth::user()->id)
+                                        @if ($exam_schedule->file->user_id == Auth::user()->id)
                                             {{-- delete form --}}
                                             <div class="d-flex justify-content-center">
                                                 <form
-                                                    action="{{ route('schedules.tests.delete', ['yearname' => $year->name, 'test_schedule_id' => $test_schedule->id]) }}"
+                                                    action="{{ route('schedules.exams.delete', ['yearname' => $year->name, 'exam_schedule_id' => $exam_schedule->id]) }}"
                                                     method="post">
                                                     @csrf
                                                     @method('DELETE')

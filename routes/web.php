@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\YearController;
 use App\Http\Controllers\AdvertController;
+use App\Http\Controllers\ExamScheduleController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\WebLoginController;
 use App\Http\Controllers\SchedulesController;
@@ -66,10 +67,11 @@ Route::middleware(['web-login'])->group(function () {
         Route::get('/adverts/edit/{advert_id}', [AdvertController::class, 'edit'])->name("adverts.edit");
         Route::put('/adverts/update/{advert_id}', [AdvertController::class, 'update'])->name("adverts.update");
 
-        // Schedules
+        // Schedules البرامج
         Route::group(['prefix' => '/schedules'], function () {
             Route::get('', [SchedulesController::class, 'index'])->name("schedules");
-            // Daily Schedules :
+            // Daily Schedules برنامج الحصص اليومي:
+
             Route::get('/daily/add', [DayScheduleController::class, 'create'])->name("daily.create");
             Route::post('/daily/add', [DayScheduleController::class, 'store'])->name("daily.add");
             Route::get('/daily', [DayScheduleController::class, 'index'])->name("daily");
@@ -79,15 +81,27 @@ Route::middleware(['web-login'])->group(function () {
             // Route::get('/daily/edit/{advert_id}', [DayScheduleController::class, 'edit'])->name("daily.edit");
             // Route::put('/daily/update/{advert_id}', [DayScheduleController::class, 'update'])->name("daily.update");
 
-            // Daily Schedules :
-            Route::get('/tests/add', [TestScheduleController::class, 'create'])->name("tests.create");
-            Route::post('/tests/add', [TestScheduleController::class, 'store'])->name("tests.add");
-            Route::get('/tests', [TestScheduleController::class, 'index'])->name("tests");
+            // Test Schedules برنامج المذاكرات:
+
+            Route::get('/tests/add', [TestScheduleController::class, 'create'])->name("schedules.tests.create");
+            Route::post('/tests/add', [TestScheduleController::class, 'store'])->name("schedules.tests.add");
+            Route::get('/tests', [TestScheduleController::class, 'index'])->name("schedules.tests");
             // Route::get('/tests/{advert_id}', [TestScheduleController::class, 'show'])->name("tests.show");
-            Route::get('/tests/download/{file_name}', [TestScheduleController::class, 'downloadFile'])->name("tests.download");
-            Route::delete('/tests/delete/{test_schedule_id}', [TestScheduleController::class, 'destroy'])->name("tests.delete");
+            Route::get('/tests/download/{file_name}', [TestScheduleController::class, 'downloadFile'])->name("schedules.tests.download");
+            Route::delete('/tests/delete/{test_schedule_id}', [TestScheduleController::class, 'destroy'])->name("schedules.tests.delete");
             // Route::get('/tests/edit/{advert_id}', [TestScheduleController::class, 'edit'])->name("tests.edit");
             // Route::put('/tests/update/{advert_id}', [TestScheduleController::class, 'update'])->name("tests.update");
+
+            // Exam Schedules برنامج الامتحانات:
+
+            Route::get('/exams/add', [ExamScheduleController::class, 'create'])->name("schedules.exams.create");
+            Route::post('/exams/add', [ExamScheduleController::class, 'store'])->name("schedules.exams.add");
+            Route::get('/exams', [ExamScheduleController::class, 'index'])->name("schedules.exams");
+            // Route::get('/exams/{advert_id}', [ExamScheduleController::class, 'show'])->name("schedules.exams.show");
+            Route::get('/exams/download/{file_name}', [ExamScheduleController::class, 'downloadFile'])->name("schedules.exams.download");
+            Route::delete('/exams/delete/{exam_schedule_id}', [ExamScheduleController::class, 'destroy'])->name("schedules.exams.delete");
+            // Route::get('/exams/edit/{advert_id}', [ExamScheduleController::class, 'edit'])->name("schedules.exams.edit");
+            // Route::put('/exams/update/{advert_id}', [ExamScheduleController::class, 'update'])->name("schedules.exams.update");
         });
     });
     //Protests الشكاوى

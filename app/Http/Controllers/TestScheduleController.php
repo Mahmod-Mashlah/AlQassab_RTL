@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\File as FacadeFile;
 
 class TestScheduleController extends Controller
 {
+    use HasRolesAndPermissions;
+
     /**
      * Display a listing of the resource.
      */
@@ -81,7 +83,7 @@ class TestScheduleController extends Controller
                 // ->whereNotNull('file_id')
                 ->get();
             // return view('TestSchedules.index', compact('yearname', 'year'));
-            return redirect()->route('tests', ['yearname' => $yearname, 'testSchedules' => $testSchedules]);
+            return redirect()->route('schedules.tests', ['yearname' => $yearname, 'testSchedules' => $testSchedules]);
         }
     }
 
@@ -147,7 +149,7 @@ class TestScheduleController extends Controller
                 ->whereDate('created_at', '<=', $year->year_end)
                 ->get();
             // return view("students.index", compact('year', 'students'));
-            return redirect()->route('tests', ['yearname' => $yearname, 'testSchedules' => $test_schedules]);
+            return redirect()->route('schedules.tests', ['yearname' => $yearname, 'testSchedules' => $test_schedules]);
         } else {
             $test_schedules = TestSchedule::whereDate('created_at', '>=', $year->year_start)
                 ->whereDate('created_at', '<=', $year->year_end)

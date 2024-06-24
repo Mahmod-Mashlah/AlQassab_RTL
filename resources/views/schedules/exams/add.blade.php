@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    إضافة إعلان جديد
+    إضافة برنامج امتحانات جديد
 @endsection
 
 @section('css')
@@ -13,11 +13,11 @@
 @endsection
 
 @section('son1')
-    الإعلانات
+    البرامج
 @endsection
 
 @section('son2')
-    إضافة إعلان جديد
+    إضافة برنامج امتحانات جديد
 @endsection
 
 @section('content')
@@ -29,7 +29,7 @@
         <div class="card card-teal">
             <div class="card-header">
 
-                <h1 class="card-title col-md-7"><b>بيانات الإعلان</b></h1>
+                <h1 class="card-title col-md-7"><b>بيانات برنامج الامتحانات</b></h1>
                 <div class="card-tools">
 
                     <button type="button" class="btn btn-tool " data-card-widget="remove"><i class="fas fa-times"></i></button>
@@ -41,48 +41,53 @@
                 <!-- /.card-tools -->
             </div>
             <!-- /.card-header -->
-            <form method="Post" action="{{ route('adverts.add', ['yearname' => $year->name]) }}">
+            <form method="Post" action="{{ route('schedules.exams.add', ['yearname' => $year->name]) }}"
+                enctype="multipart/form-data">
                 @csrf
                 @method('Post')
 
                 <div class="card-body">
-
+                    <br>
                     <div class="row">
 
-                        <div class="form-group text-gray col-md-8">
-                            <label for="title">عنوان الإعلان</label>
-                            <input id="title" class="form-control bg- light" type="text" name="title" required />
+                        <div class="form-group text-gray col-lg-6">
+
+                            <label for="season_id">الفصل الدراسي</label>
+                            {{-- <input id="season_id" season="form-control bg- light" type="text" name="season_id"
+                                required /> --}}
+                            <br>
+                            <select class="form-control bg-light" id="season_id" name="season_id" required>
+                                @foreach ($seasons as $season)
+                                    <option season="form-control bg-light" value="{{ $season->id }}">
+                                        {{ $season->number }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
-                        <div class="form-group text-gray col-md-4">
-                            <label for="target">الجهة المستهدفة</label>
-                            <input id="target" class="form-control bg- light" type="text" name="target" required />
+                        <div class="form-group text-gray col-lg-6">
+                            <label for="target">الملف</label>
+                            <input id="file" class="form-control bg-light" type="file" name="file" required />
                         </div>
 
                     </div>
 
-                    <div class="row">
-
-                        <div class="form-group text-gray col-md-12">
-                            <label for="body">تفاصيل الإعلان </label>
-                            <input id="body" class="form-control bg- light" type="text" name="body" />
-                        </div>
-
-                    </div>
+                    <br>
 
                 </div>
                 <div class="col-md-12  justify-content-center align-items-center">
                     <button class="btn btn-outline-success col  justify-content-center align-items-center" type="submit">
                         <b>إضافة</b>
                     </button>
+                    <br>
                 </div>
-                <br>
             </form>
+            <br>
             <!-- /.card -->
         </div>
+
         <!-- /.card -->
     </div>
-    <br>
 @endsection
 
 @section('scipts')

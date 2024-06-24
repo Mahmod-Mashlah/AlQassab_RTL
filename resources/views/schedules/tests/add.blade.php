@@ -41,7 +41,7 @@
                 <!-- /.card-tools -->
             </div>
             <!-- /.card-header -->
-            <form method="Post" action="{{ route('tests.add', ['yearname' => $year->name]) }}"
+            <form method="Post" action="{{ route('schedules.tests.add', ['yearname' => $year->name]) }}"
                 enctype="multipart/form-data">
                 @csrf
                 @method('Post')
