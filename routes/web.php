@@ -1,12 +1,14 @@
 <?php
 
+use App\Models\Year;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\YearController;
 use App\Http\Controllers\AdvertController;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebLoginController;
-use App\Http\Controllers\YearController;
-use App\Models\Year;
+use App\Http\Controllers\SchedulesController;
+use App\Http\Controllers\DayScheduleController;
 
 Route::get('/data-table', function () {
     return view('datatable-example');
@@ -62,6 +64,20 @@ Route::middleware(['web-login'])->group(function () {
         Route::delete('/adverts/delete/{advert_id}', [AdvertController::class, 'destroy'])->name("adverts.delete");
         Route::get('/adverts/edit/{advert_id}', [AdvertController::class, 'edit'])->name("adverts.edit");
         Route::put('/adverts/update/{advert_id}', [AdvertController::class, 'update'])->name("adverts.update");
+
+        // Schedules
+        Route::group(['prefix' => '/schedules'], function () {
+            Route::get('', [SchedulesController::class, 'index'])->name("schedules");
+            // Adverts الإعلانات
+            Route::get('/daily/add', [DayScheduleController::class, 'create'])->name("daily.create");
+            Route::post('/daily/add', [DayScheduleController::class, 'store'])->name("daily.add");
+            Route::get('/daily', [DayScheduleController::class, 'index'])->name("daily");
+            // Route::get('/daily/{advert_id}', [DayScheduleController::class, 'show'])->name("daily.show");
+            Route::get('/daily/download/{file_name}', [DayScheduleController::class, 'downloadFile'])->name("daily.download");
+            Route::delete('/daily/delete/{day_schedule_id}', [DayScheduleController::class, 'destroy'])->name("daily.delete");
+            // Route::get('/daily/edit/{advert_id}', [DayScheduleController::class, 'edit'])->name("daily.edit");
+            // Route::put('/daily/update/{advert_id}', [DayScheduleController::class, 'update'])->name("daily.update");
+        });
     });
     //Protests الشكاوى
 

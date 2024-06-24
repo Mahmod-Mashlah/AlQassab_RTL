@@ -21,10 +21,10 @@ class DaySchedule extends Model
 
     public function file()
     {
-        return $this->hasOne(File::class);
+        return $this->hasOne(File::class, 'file_id');
     }
     public function season()
     {
-        return $this->belongsTo(Season::class);
+        return $this->belongsTo(Season::class, 'season_id');
     }
 }
