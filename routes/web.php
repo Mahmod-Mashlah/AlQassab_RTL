@@ -11,6 +11,7 @@ use App\Http\Controllers\WebLoginController;
 use App\Http\Controllers\SchedulesController;
 use App\Http\Controllers\DayScheduleController;
 use App\Http\Controllers\ExitPermissionController;
+use App\Http\Controllers\ProtestController;
 use App\Http\Controllers\TestScheduleController;
 
 Route::get('/data-table', function () {
@@ -113,35 +114,21 @@ Route::middleware(['web-login'])->group(function () {
         Route::delete('/exit-permissions/delete/{exit_permission_id}', [ExitPermissionController::class, 'destroy'])->name("exit-permissions.delete");
         Route::get('/exit-permissions/edit/{exit_permission_id}', [ExitPermissionController::class, 'edit'])->name("exit-permissions.edit");
         Route::put('/exit-permissions/update/{exit_permission_id}', [ExitPermissionController::class, 'update'])->name("exit-permissions.update");
+
+        // Protests الشكاوى :
+        // Route::get('/protests/add', [ProtestController::class, 'create'])->name("protests.create");
+        // Route::post('/protests/add', [ProtestController::class, 'store'])->name("protests.add");
+        Route::get('/protests', [ProtestController::class, 'index'])->name("protests");
+        // Route::get('/protests/{protest_id}', [ProtestController::class, 'show'])->name("protests.show");
+        Route::delete('/protests/delete/{protest_id}', [ProtestController::class, 'destroy'])->name("protests.delete");
+        // Route::get('/protests/edit/{protest_id}', [ProtestController::class, 'edit'])->name("protests.edit");
+        // Route::put('/protests/update/{protest_id}', [ProtestController::class, 'update'])->name("protests.update");
     });
     //Protests الشكاوى
 
-    Route::get('/protests', function () {
-        return view('protests.index');
+    Route::get('/protests0', function () {
+        return view('exit.add');
     });
-
-    // // Exit-Permissions طلبات الإذن
-
-    // // index
-    // Route::get('/exit-permissions', function () {
-    //     return view('exit-permissions.index');
-    // })->name('exit-permissions');
-
-    // // add
-    // Route::get('/exit-permissions/add', function () {
-    //     return view('exit-permissions.add');
-    // })->name('exit-permissions-add');
-
-    // // edit
-    // Route::get('/exit-permissions/edit', function () {
-    //     return view('exit-permissions.edit');
-    // })->name('exit-permissions-edit');
-
-    // // delete
-    // Route::get('/exit-permissions/delete', function () {
-    //     return view('exit-permissions.index');
-    // })->name('exit-permissions-delete');
-
 
     // Behavioral-Notes الملاحظات السلوكية
 
