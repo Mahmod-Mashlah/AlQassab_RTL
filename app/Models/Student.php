@@ -44,4 +44,8 @@ class Student extends Model
     {
         return $this->belongsToMany(SchoolClass::class, 'class_student_section', 'student_id');
     }
+    public function student_exit_permissions()
+    {
+        return $this->hasMany(ExitPermission::class);
+    }
 }

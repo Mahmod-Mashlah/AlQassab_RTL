@@ -131,4 +131,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Student::class);
     }
+    public function mentor_exit_permissions()
+    {
+        return $this->hasMany(ExitPermission::class);
+    }
 }

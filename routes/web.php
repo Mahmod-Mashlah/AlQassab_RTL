@@ -10,6 +10,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\WebLoginController;
 use App\Http\Controllers\SchedulesController;
 use App\Http\Controllers\DayScheduleController;
+use App\Http\Controllers\ExitPermissionController;
 use App\Http\Controllers\TestScheduleController;
 
 Route::get('/data-table', function () {
@@ -103,6 +104,15 @@ Route::middleware(['web-login'])->group(function () {
             // Route::get('/exams/edit/{advert_id}', [ExamScheduleController::class, 'edit'])->name("schedules.exams.edit");
             // Route::put('/exams/update/{advert_id}', [ExamScheduleController::class, 'update'])->name("schedules.exams.update");
         });
+
+        // ExitPermissions طلبات الإذن :
+        Route::get('/exit-permissions/add', [ExitPermissionController::class, 'create'])->name("exit-permissions.create");
+        Route::post('/exit-permissions/add', [ExitPermissionController::class, 'store'])->name("exit-permissions.add");
+        Route::get('/exit-permissions', [ExitPermissionController::class, 'index'])->name("exit-permissions");
+        Route::get('/exit-permissions/{exit_permission_id}', [ExitPermissionController::class, 'show'])->name("exit-permissions.show");
+        Route::delete('/exit-permissions/delete/{exit_permission_id}', [ExitPermissionController::class, 'destroy'])->name("exit-permissions.delete");
+        Route::get('/exit-permissions/edit/{exit_permission_id}', [ExitPermissionController::class, 'edit'])->name("exit-permissions.edit");
+        Route::put('/exit-permissions/update/{exit_permission_id}', [ExitPermissionController::class, 'update'])->name("exit-permissions.update");
     });
     //Protests الشكاوى
 
@@ -110,27 +120,28 @@ Route::middleware(['web-login'])->group(function () {
         return view('protests.index');
     });
 
-    // Exit-Permissions طلبات الإذن
+    // // Exit-Permissions طلبات الإذن
 
-    // index
-    Route::get('/exit-permissions', function () {
-        return view('exit-permissions.index');
-    })->name('exit-permissions');
+    // // index
+    // Route::get('/exit-permissions', function () {
+    //     return view('exit-permissions.index');
+    // })->name('exit-permissions');
 
-    // add
-    Route::get('/exit-permissions/add', function () {
-        return view('exit-permissions.add');
-    })->name('exit-permissions-add');
+    // // add
+    // Route::get('/exit-permissions/add', function () {
+    //     return view('exit-permissions.add');
+    // })->name('exit-permissions-add');
 
-    // edit
-    Route::get('/exit-permissions/edit', function () {
-        return view('exit-permissions.edit');
-    })->name('exit-permissions-edit');
+    // // edit
+    // Route::get('/exit-permissions/edit', function () {
+    //     return view('exit-permissions.edit');
+    // })->name('exit-permissions-edit');
 
-    // delete
-    Route::get('/exit-permissions/delete', function () {
-        return view('exit-permissions.index');
-    })->name('exit-permissions-delete');
+    // // delete
+    // Route::get('/exit-permissions/delete', function () {
+    //     return view('exit-permissions.index');
+    // })->name('exit-permissions-delete');
+
 
     // Behavioral-Notes الملاحظات السلوكية
 
