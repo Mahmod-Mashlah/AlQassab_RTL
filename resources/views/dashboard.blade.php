@@ -342,7 +342,7 @@
                             </div>
                             <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
                                 class="small-box-footer">
-                                <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
+                                <h6 class="text-white">عرض <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
                     </div>

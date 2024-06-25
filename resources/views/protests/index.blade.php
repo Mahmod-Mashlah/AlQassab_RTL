@@ -2,7 +2,7 @@
 
 @section('title')
     {{-- Title here --}}
-    الإعلانات
+    الشكاوى
 @endsection {{-- or @stop --}}
 
 @section('css')
@@ -16,7 +16,7 @@
 
 @section('son1')
     {{-- son1 --}}
-    الإعلانات
+    الشكاوى
 @endsection
 
 @section('son2')
@@ -29,7 +29,7 @@
 
     <div class="card card-teal">
         <div class="card-header">
-            <h1 class="card-title col-md-6"><b>الإعلانات</b></h1>
+            <h1 class="card-title col-md-6"><b>الشكاوى</b></h1>
             <div class="card-tools">
 
                 <button type="button" class="btn btn-tool " data-card-widget="remove"><i class="fas fa-times"></i></button>
@@ -50,7 +50,7 @@
 
                     <a href="{{ route('protests.create', ['yearname' => $year->name]) }}" class="btn  btn-outline-success "
                         type="button">
-                        <b>إضافة إعلان جديد</b>
+                        <b>إضافة شكوى جديدة</b>
                     </a>
                     <br>
                     </span>
