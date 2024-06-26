@@ -50,11 +50,12 @@ class ReplyController extends Controller
             "تم إضافة الرد " . /* $request->name .*/ "بنجاح",
         );
     }
-    public function show(Reply $reply)
+    public function show($comment_id)
     {
 
+        $comment = Comment::findOrFail($comment_id);
+        $reply = Reply::where('comment_id', $comment->id)->first();
         $teacher = User::findOrFail($reply->teacher_id);
-        $comment = Comment::findOrFail($reply->comment_id);
 
         // without relations :
         //return new RepliesResource($reply);
@@ -63,8 +64,8 @@ class ReplyController extends Controller
         return $this->success(
             [
 
-                'reply' => $reply, //->load(['comment', 'teacher']),
                 'comment'  => $comment,
+                'reply' => $reply, //->load(['comment', 'teacher']),
                 'teacher_name'  => $teacher->first_name . " " . $teacher->middle_name . " " . $teacher->last_name,
                 'teacher'  => $teacher,
             ],
