@@ -104,7 +104,7 @@
 
                         <div class="form-group text-gray col-sm-4">
                             <label for="birth_date"> تاريخ الولادة</label>
-                            <input id="birth_date" class="form-control bg- light" type="text" name="birth_date"
+                            <input id="birth_date" class="form-control bg- light" type="date" name="birth_date"
                                 placeholder="أدخل السنة أولاً, مثال : 22-09-2024" required />
                         </div>
 
@@ -132,7 +132,7 @@
 
                         <div class="form-group text-gray col-sm-4">
                             <label for="in_date">تاريخ الانتساب للمدرسة</label>
-                            <input id="in_date" class="form-control bg- light" type="text" name="in_date" />
+                            <input id="in_date" class="form-control bg- light" type="date" name="in_date" />
                         </div>
 
 
