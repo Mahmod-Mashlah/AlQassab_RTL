@@ -34,4 +34,8 @@ class Note extends Model
     {
         return $this->hasMany(FileNote::class);
     }
+    public function note_type()
+    {
+        return $this->belongsTo(NoteType::class);
+    }
 }

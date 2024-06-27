@@ -11,6 +11,7 @@ use App\Http\Controllers\WebLoginController;
 use App\Http\Controllers\SchedulesController;
 use App\Http\Controllers\DayScheduleController;
 use App\Http\Controllers\ExitPermissionController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProtestController;
 use App\Http\Controllers\TestScheduleController;
 
@@ -116,6 +117,7 @@ Route::middleware(['web-login'])->group(function () {
         Route::put('/exit-permissions/update/{exit_permission_id}', [ExitPermissionController::class, 'update'])->name("exit-permissions.update");
 
         // Protests الشكاوى :
+
         // Route::get('/protests/add', [ProtestController::class, 'create'])->name("protests.create");
         // Route::post('/protests/add', [ProtestController::class, 'store'])->name("protests.add");
         Route::get('/protests', [ProtestController::class, 'index'])->name("protests");
@@ -123,49 +125,23 @@ Route::middleware(['web-login'])->group(function () {
         Route::delete('/protests/delete/{protest_id}', [ProtestController::class, 'destroy'])->name("protests.delete");
         // Route::get('/protests/edit/{protest_id}', [ProtestController::class, 'edit'])->name("protests.edit");
         // Route::put('/protests/update/{protest_id}', [ProtestController::class, 'update'])->name("protests.update");
+
+        // Behavioral-Notes الملاحظات السلوكية
+
+        Route::get('/behavioral-notes/add', [NoteController::class, 'create'])->name("behavioral-notes.create");
+        Route::post('/behavioral-notes/add', [NoteController::class, 'store'])->name("behavioral-notes.add");
+        Route::get('/behavioral-notes', [NoteController::class, 'index'])->name("behavioral-notes");
+        Route::get('/behavioral-notes/{behavioral_note_id}', [NoteController::class, 'show'])->name("behavioral-notes.show");
+        Route::delete('/behavioral-notes/delete/{behavioral_note_id}', [NoteController::class, 'destroy'])->name("behavioral-notes.delete");
+        Route::get('/behavioral-notes/edit/{behavioral_note_id}', [NoteController::class, 'edit'])->name("behavioral-notes.edit");
+        Route::put('/behavioral-notes/update/{behavioral_note_id}', [NoteController::class, 'update'])->name("behavioral-notes.update");
+        //note_types :
+        Route::post('/behavioral-notes-types/add', [NoteController::class, 'store_note_type'])->name("behavioral-notes-types.add");
+        Route::post('/behavioral-notes-types/delete/{note_type_id}', [NoteController::class, 'delete_note_type'])->name("behavioral-notes-types.delete");
+
+        Route::get('/behavioral-notes-files/download/{file_name}', [NoteController::class, 'downloadFile'])->name("behavioral-notes-files.download");
+        Route::delete('/behavioral-notes-files/delete/{file_name}/{note_id}', [NoteController::class, 'deleteNoteFile'])->name("behavioral-notes-files.delete");
     });
-    //Protests الشكاوى
-
-    Route::get('/protests0', function () {
-        return view('exit.add');
-    });
-
-    // Behavioral-Notes الملاحظات السلوكية
-
-    // index
-    Route::get('/behavioral-notes', function () {
-        return view('behavioral-notes.index');
-    })->name('behavioral-notes');
-
-    // add
-    Route::get('/behavioral-notes/add', function () {
-        return view('behavioral-notes.add');
-    })->name('behavioral-notes-add');
-
-    //edit
-    Route::get('/behavioral-notes/edit', function () {
-        return view('behavioral-notes.edit');
-    })->name('behavioral-notes-edit');
-
-    // delete
-    Route::get('/behavioral-notes/delete', function () {
-        return view('behavioral-notes.index');
-    })->name('behavioral-notes-delete');
-
-    // Behavioral-Notes Types أنواع الملاحظات السلوكية
-
-    // add
-
-    Route::get('/behavioral-notes/types/add', function () {
-        return view('behavioral-notes.index');
-    })->name('behavioral-notes-types-add');
-
-    // delete
-
-    Route::get('/behavioral-notes/types/delete', function () {
-        return view('behavioral-notes.index');
-    })->name('behavioral-notes-types-delete');
-
 
     // Employees_Records  الموظفين
     // يتضمن الشهادات والصلاحيات Permissions & Certifications

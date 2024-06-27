@@ -251,7 +251,7 @@
                             <div class="icon">
                                 <i class="fas fa fa-thumbs-up "></i>
                             </div>
-                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                            <a href="{{ route('behavioral-notes', ['yearname' => $year->name]) }}" target="_blank"
                                 class="small-box-footer">
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
@@ -484,7 +484,7 @@
                             <div class="icon">
                                 <i class="fas fa  fa-thumbs-up  "></i>
                             </div>
-                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                            <a href="{{ route('behavioral-notes', ['yearname' => $year->name]) }}" target="_blank"
                                 class="small-box-footer">
                                 <h6 class="text-white">عرض <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>

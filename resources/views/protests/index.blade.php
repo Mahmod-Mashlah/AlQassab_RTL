@@ -41,8 +41,8 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-
-            @if (Auth::user()->roles()->first()->name == 'mentor' || Auth::user()->roles()->first()->name == 'manager')
+            @if (Auth::user()->hasRole('student'))
+                {{-- @if (Auth::user()->roles()->first()->name == 'mentor' || Auth::user()->roles()->first()->name == 'manager') --}}
                 <form action="{{ route('protests.create', ['yearname' => $year->name]) }}" method="GET">
                     @csrf
                     @method('Get')
