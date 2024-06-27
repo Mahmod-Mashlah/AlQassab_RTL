@@ -166,7 +166,7 @@
 
                 <div class="row">
                     <!-- ./col -->
-                    <div class="col-md-4 col-3">
+                    <div class="col-md-6 col-3">
                         <!-- small card -->
                         {{-- <div class="small-box bg-yellow"> --}}
                         <div class="small-box bg-cyan">
@@ -189,7 +189,7 @@
                     <!-- ./col -->
 
                     <!-- ./col -->
-                    <div class="col-md-4 col-3">
+                    <div class="col-md-6 col-3">
                         <!-- small card -->
                         <div class="small-box bg-cyan">
                             <div class="inner">
@@ -202,7 +202,7 @@
                             </div>
                             <a href="{{ route('schedules', ['yearname' => $year->name]) }}" target="_blank"
                                 class="small-box-footer">
-                                <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
+                                <h6 class="text-white">عرض <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
                     </div>
@@ -307,11 +307,11 @@
                     <!-- ./col -->
                 </div>
                 {{-- ./row --}}
-                <div class="row">
+                <div class="row justify-content-center align-items-center">
 
 
                     <!-- ./col -->
-                    <div class="col-md-4 col-3">
+                    <div class="col-md-5 col-3">
                         <!-- small card -->
                         <div class="small-box bg-cyan">
                             <div class="inner">
@@ -325,14 +325,14 @@
                             </div>
                             <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
                                 class="small-box-footer">
-                                <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
+                                <h6 class="text-white">عرض <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
                     </div>
                     <!-- ./col -->
 
                     <!-- ./col -->
-                    <div class="col-md-4 col-3">
+                    <div class="col-md-5 col-3">
                         <!-- small card -->
                         <div class="small-box bg-cyan">
                             <div class="inner">
@@ -352,33 +352,35 @@
                         </div>
                     </div>
                     <!-- ./col -->
-                    <div class="col-md-4 col-3">
-                        <!-- small card -->
-                        <div class="small-box bg-cyan">
-                            <div class="inner">
-                                <h5 class="text-white">الحضور والدوام</h5>
+                    @if (Auth::user()->id == null)
+                        <div class="col-md-4 col-3">
+                            <!-- small card -->
+                            <div class="small-box bg-cyan">
+                                <div class="inner">
+                                    <h5 class="text-white">الحضور والدوام</h5>
 
-                                {{-- <p class="text-white">2</p> --}}
+                                    {{-- <p class="text-white">2</p> --}}
+                                </div>
+                                <br>
+                                <br>
+                                <div class="icon">
+                                    <i class="fas fa fa-podcast "></i>
+                                </div>
+                                <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                    class="small-box-footer">
+                                    <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
+                                </a>
                             </div>
-                            <br>
-                            <br>
-                            <div class="icon">
-                                <i class="fas fa fa-podcast "></i>
-                            </div>
-                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
-                                class="small-box-footer">
-                                <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
-                            </a>
                         </div>
-                    </div>
-                    <!-- ./col -->
+                        <!-- ./col -->
+                    @endif
+
                 </div>
                 {{-- ./row --}}
-                <div class="row ">
-
+                <div class="row  justify-content-center align-items-center">
 
                     <!-- ./col -->
-                    <div class="col-md-4 col-12">
+                    <div class="col-md-5 col-12">
                         <!-- small card -->
                         <div class="small-box bg-yellow">
                             <div class="inner">
@@ -400,7 +402,7 @@
                     <!-- ./col -->
 
                     <!-- ./col -->
-                    <div class="col-md-4 col-3">
+                    <div class="col-md-5 col-3">
                         <!-- small card -->
                         <div class="small-box bg-yellow">
                             <div class="inner">
@@ -413,12 +415,14 @@
                             </div>
                             <a href="{{ route('schedules', ['yearname' => $year->name]) }}" target="_blank"
                                 class="small-box-footer">
-                                <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
+                                <h6 class="text-white">عرض <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
                     </div>
 
                 </div>
+
+
                 {{-- ./row --}}
             @endif
 
