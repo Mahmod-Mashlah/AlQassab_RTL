@@ -37,6 +37,20 @@ class StudentController extends Controller
         //
     }
 
+    public function students_search(Student $student, $yearname, $user_id)
+    {
+        $year = Year::where('name', $yearname)->first();
+
+        $user = User::where('id', $user_id)->first();
+        $student = Student::where('user_id', $user_id)->first();
+
+        $student_class = ClassStudentSection::where('student_id', $student->id)
+            ->latest()
+            ->first();
+        $class = SchoolClass::find($student_class->class_id);
+        // dd($student);
+        return view("students.show", compact('year', 'student', 'user', 'class'));
+    }
     /**
      * Display the specified resource.
      */

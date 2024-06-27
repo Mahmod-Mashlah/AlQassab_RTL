@@ -60,6 +60,7 @@ Route::middleware(['web-login'])->group(function () {
         Route::delete('/students/delete/{user_id}', [StudentController::class, 'destroy'])->name("students.delete");
         Route::get('/students/edit/{user_id}', [StudentController::class, 'edit'])->name("students.edit");
         Route::put('/students/update/{user_id}', [StudentController::class, 'update'])->name("students.update");
+        Route::get('/students/search/{user_id}', [StudentController::class, 'students_search'])->name("students.search");
 
         // Adverts الإعلانات
         Route::get('/adverts/add', [AdvertController::class, 'create'])->name("adverts.create");

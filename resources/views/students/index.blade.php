@@ -66,6 +66,45 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+            <div class="row">
+                {{-- <div class="form-group text-gray col-md-6"> --}}
+                {{-- <label for="student_id">البحث عن طالب : </label> --}}
+                {{-- <input id="student_id" class="form-control bg- light" type="text" name="student_id"
+                                    required /> --}}
+
+                {{-- </div> --}}
+
+                <div class="col form-group text-gray col-md-12">
+
+                    <input list="mylist" id="student_id" name="student_id" class="form-control bg- light"
+                        placeholder="البحث عن طالب" required />
+                    <datalist id="mylist">
+                        @foreach ($students as $student)
+                            <option class="form-control bg-light" value="{{ $student->id }}">
+                                {{ $student->user->first_name }}
+                                {{ $student->user->middle_name }}
+                                {{ $student->user->last_name }}
+                            </option>
+                        @endforeach
+                    </datalist>
+
+
+                    <div class="col form-group text-gray col-md-4 ">
+                        <br>
+                        <div class="justify-content-center align-items-center">
+                            <a href="{{ route('students.search', ['yearname' => $year->name, 'user_id' => $student->user->id]) }}"
+                                class="btn btn-outline-success   col-md-12  justify-content-center align-items-center  "
+                                type="button">
+                                <b>بحث</b>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
             <table id="example2" class="table table-bordered table-striped bg-white">
                 <thead>
 
