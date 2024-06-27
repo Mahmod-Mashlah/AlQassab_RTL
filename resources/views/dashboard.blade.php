@@ -94,80 +94,82 @@
                     <!-- ./col -->
                 </div>
                 {{-- ./row --}}
+                @if (Auth::user()->id == null)
+                    <div class="row">
+
+
+                        <!-- ./col -->
+                        <div class="col-md-4 col-3">
+                            <!-- small card -->
+                            <div class="small-box bg-cyan">
+                                <div class="inner">
+                                    <h5 class="text-white">العلامات</h5>
+                                    {{-- <p class="text-white">2</p> --}}
+                                </div>
+                                <br>
+                                <br>
+                                <div class="icon">
+                                    <i class="fas fa fa-check-square "></i>
+                                </div>
+                                <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                    class="small-box-footer">
+                                    <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+
+                        <!-- ./col -->
+                        <div class="col-md-4 col-3">
+                            <!-- small card -->
+                            <div class="small-box bg-cyan">
+                                <div class="inner">
+                                    <h5 class="text-white">السجلات الصادرة</h5>
+
+                                    {{-- <p class="text-white">2</p> --}}
+                                </div>
+                                <br>
+                                <br>
+                                <div class="icon">
+                                    <i class="fas fa fa-arrow-circle-up "></i>
+                                </div>
+                                <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                    class="small-box-footer">
+                                    <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-md-4 col-3">
+                            <!-- small card -->
+                            <div class="small-box bg-cyan">
+                                <div class="inner">
+                                    <h5 class="text-white">السجلات الواردة</h5>
+
+                                    {{-- <p class="text-white">2</p> --}}
+                                </div>
+                                <br>
+                                <br>
+                                <div class="icon">
+                                    <i class="fas fa fa-arrow-circle-down"></i>
+                                </div>
+                                <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                    class="small-box-footer">
+                                    <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                    </div>
+                    {{-- ./row --}}
+                @endif
+
                 <div class="row">
-
-
                     <!-- ./col -->
                     <div class="col-md-4 col-3">
                         <!-- small card -->
+                        {{-- <div class="small-box bg-yellow"> --}}
                         <div class="small-box bg-cyan">
-                            <div class="inner">
-                                <h5 class="text-white">العلامات</h5>
-                                {{-- <p class="text-white">2</p> --}}
-                            </div>
-                            <br>
-                            <br>
-                            <div class="icon">
-                                <i class="fas fa fa-check-square "></i>
-                            </div>
-                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
-                                class="small-box-footer">
-                                <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-
-                    <!-- ./col -->
-                    <div class="col-md-4 col-3">
-                        <!-- small card -->
-                        <div class="small-box bg-cyan">
-                            <div class="inner">
-                                <h5 class="text-white">السجلات الصادرة</h5>
-
-                                {{-- <p class="text-white">2</p> --}}
-                            </div>
-                            <br>
-                            <br>
-                            <div class="icon">
-                                <i class="fas fa fa-arrow-circle-up "></i>
-                            </div>
-                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
-                                class="small-box-footer">
-                                <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-md-4 col-3">
-                        <!-- small card -->
-                        <div class="small-box bg-cyan">
-                            <div class="inner">
-                                <h5 class="text-white">السجلات الواردة</h5>
-
-                                {{-- <p class="text-white">2</p> --}}
-                            </div>
-                            <br>
-                            <br>
-                            <div class="icon">
-                                <i class="fas fa fa-arrow-circle-down"></i>
-                            </div>
-                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
-                                class="small-box-footer">
-                                <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                </div>
-                {{-- ./row --}}
-                <div class="row">
-
-
-                    <!-- ./col -->
-                    <div class="col-md-4 col-3">
-                        <!-- small card -->
-                        <div class="small-box bg-yellow">
                             <div class="inner">
                                 <h5 class="text-white">الإعلانات</h5>
 
@@ -189,7 +191,7 @@
                     <!-- ./col -->
                     <div class="col-md-4 col-3">
                         <!-- small card -->
-                        <div class="small-box bg-yellow">
+                        <div class="small-box bg-cyan">
                             <div class="inner">
                                 <h5 class="text-white">البرامج</h5>
                                 <pr class="text-black">الامتحانات والمذاكرات <br>والبرنامج اليومي <br></pr>
@@ -205,26 +207,29 @@
                         </div>
                     </div>
                     <!-- ./col -->
-                    <div class="col-md-4 col-3">
-                        <!-- small card -->
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <h5 class="text-white">الدفاتر ووثائق الطلاب</h5>
+                    @if (Auth::user()->id == null)
+                        <div class="col-md-4 col-3">
+                            <!-- small card -->
+                            <div class="small-box bg-cyan">
+                                <div class="inner">
+                                    <h5 class="text-white">الدفاتر ووثائق الطلاب</h5>
 
-                                {{-- <p class="text-white">2</p> --}}
+                                    {{-- <p class="text-white">2</p> --}}
+                                </div>
+                                <br>
+                                <br>
+                                <div class="icon">
+                                    <i class="fas fa fa-sticky-note "></i>
+                                </div>
+                                <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
+                                    class="small-box-footer">
+                                    <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
+                                </a>
                             </div>
-                            <br>
-                            <br>
-                            <div class="icon">
-                                <i class="fas fa fa-sticky-note "></i>
-                            </div>
-                            <a href="{{ route('students', ['yearname' => $year->name]) }}" target="_blank"
-                                class="small-box-footer">
-                                <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
-                            </a>
                         </div>
-                    </div>
-                    <!-- ./col -->
+                        <!-- ./col -->
+                    @endif
+
                 </div>
                 {{-- ./row --}}
             @endif
