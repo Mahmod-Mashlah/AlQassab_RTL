@@ -23,7 +23,7 @@ class StoreChatRequest extends FormRequest
     {
         return [
 
-            'summery' => ['required', 'string'],
+            'summery' => ['string'],
             // 'admin_role' => ['required', 'string', 'exists:table,column'],
             'target' => ['required', 'string'],
 

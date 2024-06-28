@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\YearController;
 use App\Http\Controllers\AdvertController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ExamScheduleController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\WebLoginController;
@@ -127,7 +128,7 @@ Route::middleware(['web-login'])->group(function () {
         // Route::get('/protests/edit/{protest_id}', [ProtestController::class, 'edit'])->name("protests.edit");
         // Route::put('/protests/update/{protest_id}', [ProtestController::class, 'update'])->name("protests.update");
 
-        // Behavioral-Notes الملاحظات السلوكية
+        // Behavioral-Notes الملاحظات السلوكية 🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂
 
         Route::get('/behavioral-notes/add', [NoteController::class, 'create'])->name("behavioral-notes.create");
         Route::post('/behavioral-notes/add', [NoteController::class, 'store'])->name("behavioral-notes.add");
@@ -142,6 +143,16 @@ Route::middleware(['web-login'])->group(function () {
 
         Route::get('/behavioral-notes-files/download/{file_name}', [NoteController::class, 'downloadFile'])->name("behavioral-notes-files.download");
         Route::delete('/behavioral-notes-files/delete/{file_name}/{note_id}', [NoteController::class, 'deleteNoteFile'])->name("behavioral-notes-files.delete");
+
+
+        //  Chat غرف المناقشة الإدارية
+        Route::get('/chats/add', [ChatController::class, 'create'])->name("chats.create");
+        Route::post('/chats/add', [ChatController::class, 'store'])->name("chats.add");
+        Route::get('/chats', [ChatController::class, 'index'])->name("chats");
+        Route::get('/chats/{chat_id}', [ChatController::class, 'show'])->name("chats.show");
+        Route::delete('/chats/delete/{chat_id}', [ChatController::class, 'destroy'])->name("chats.delete");
+        Route::get('/chats/edit/{chat_id}', [ChatController::class, 'edit'])->name("chats.edit");
+        Route::put('/chats/update/{chat_id}', [ChatController::class, 'update'])->name("chats.update");
     });
 
     // Employees_Records  الموظفين
