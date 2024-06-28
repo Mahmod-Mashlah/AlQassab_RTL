@@ -93,7 +93,7 @@
                         <br>
                         <div class="justify-content-center align-items-center">
                             <a href="{{ route('students.search', ['yearname' => $year->name, 'user_id' => $student->user->id]) }}"
-                                class="btn btn-outline-success   col-md-12  justify-content-center align-items-center  "
+                                class="btn btn-outline-success   col-md-6  justify-content-center align-items-center  "
                                 type="button">
                                 <b>بحث</b>
                             </a>
