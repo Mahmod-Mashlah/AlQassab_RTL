@@ -32,7 +32,7 @@ class EmployeeFactory extends Factory
             DB::table('employees')->insert([
 
                 'user_id' => $employee->id,
-                'image_id' => $faker->randomElement($images_ids),
+                'image_id' => $faker->numberBetween(1, 18),
                 'password' => "password",
                 'birth_place' => "دمشق",
                 'phone' => '0998765213',

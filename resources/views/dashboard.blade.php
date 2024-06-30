@@ -30,13 +30,13 @@
 
 
                     <!-- ./col -->
-                    <div class="col-md-4 col-3">
+                    {{-- <div class="col-md-4 col-3">
                         <!-- small card -->
                         <div class="small-box bg-teal">
                             <div class="inner">
                                 <h5 class="text-white">الصفوف والشعب والمواد</h5>
 
-                                {{-- <p class="text-white">2</p> --}}
+                                 <p class="text-white">2</p>
                             </div>
                             <br>
                             <br>
@@ -48,11 +48,11 @@
                                 <h6 class="text-white">إدارة <i class="fas fa-arrow-circle-right"></i></h6>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- ./col -->
 
                     <!-- ./col -->
-                    <div class="col-md-4 col-3">
+                    <div class="col-md-6 col-3">
                         <!-- small card -->
                         <div class="small-box bg-teal">
                             <div class="inner">
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <!-- ./col -->
-                    <div class="col-md-4 col-3">
+                    <div class="col-md-6 col-3">
                         <!-- small card -->
                         <div class="small-box bg-teal">
                             <div class="inner">
