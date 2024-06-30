@@ -40,7 +40,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <form action="{{ route('behavioral-notes-types.add', ['yearname'=> $yearname]) }}" method="POST">
+            <form action="{{ route('behavioral-notes-types.add', ['yearname'=> $yearname]) }}" method="Post">
                 @csrf
                 @method('Post')
                 <!-- /.card-body -->
@@ -146,9 +146,9 @@
             @if (Auth::user()->hasRole('mentor')
             // || Auth::user()->roles()->first()->name == 'manager'
             )
-                <form action="{{ route('behavioral-notes.create', ['yearname' => $year->name]) }}" method="Post">
+                <form action="{{ route('behavioral-notes.create', ['yearname' => $year->name]) }}" method="Get">
                     @csrf
-                    @method('Post')
+                    @method('Get')
                     <!-- /.card-body -->
 
                     <a href="{{ route('behavioral-notes.create', ['yearname' => $year->name]) }}" class="btn  btn-outline-success "

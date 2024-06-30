@@ -74,7 +74,7 @@
 
                 {{-- </div> --}}
 
-                <div class="col form-group text-gray col-md-12">
+                {{-- <div class="col form-group text-gray col-md-12">
 
                     <input list="mylist" id="student_id" name="student_id" class="form-control bg- light"
                         placeholder="البحث عن طالب" required />
@@ -100,7 +100,7 @@
                         </div>
 
                     </div>
-                </div>
+                </div> --}}
 
             </div>
 
@@ -110,11 +110,11 @@
 
                     <tr>
                         <th style="width: 10%">#</th>
-                        <th style="width: 20%">اسم الطالب</th>
-                        <th style="width: 20%">اسم الأب</th>
-                        <th style="width: 20%">اللقب</th>
+                        <th style="width: 18%">اسم الطالب</th>
+                        <th style="width: 16%">اسم الأب</th>
+                        <th style="width: 16%">اللقب</th>
                         {{-- <th>الصف الحالي </th> --}}
-                        <th style="width: 30%" class="align-items-center justify-content-center">خيارات إضافية</th>
+                        <th style="width: 40%" class="align-items-center justify-content-center">خيارات إضافية</th>
 
                     </tr>
                 </thead>
@@ -131,6 +131,18 @@
 
                                 {{-- show form --}}
                                 <div class="d-flex justify-content-center">
+                                    <form action="{{ url('/groups/add', []) }}" method="POST">
+                                        @csrf
+
+                                        <!-- /.card-body -->
+
+                                        <a href="{{ route('marks.show', ['yearname' => $year->name, 'user_id' => $student->user_id]) }}"
+                                            class="btn btn-outline-secondary     " type="button">
+                                            <b>عرض العلامات</b>
+                                        </a>
+                                        <br>
+                                        </span>
+                                    </form>
                                     <form action="{{ url('/groups/add', []) }}" method="POST">
                                         @csrf
 

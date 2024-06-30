@@ -34,16 +34,27 @@ class TestController extends Controller
 
     public function store(StoreTestRequest $request)
     {
+
         $request->validated($request->all());
-        $test = Test::create([
-            // 'user_id' => Auth::class()->id,
+
+        $test = Test::where('subject_id', $request->subject_id)
+            ->where('season_id', $request->season_id)
+            ->where('student_id', $request->student_id)->first();
+
+        $test->update([
             'mark' => $request->mark,
-
-            'subject_id' => $request->subject_id,
-            'season_id' => $request->season_id,
-            'student_id' => $request->student_id,
-
         ]);
+        $test->save();
+
+        // $test = Test::create([
+        //     // 'user_id' => Auth::class()->id,
+        //     'mark' => $request->mark,
+
+        //     'subject_id' => $request->subject_id,
+        //     'season_id' => $request->season_id,
+        //     'student_id' => $request->student_id,
+
+        // ]);
         return $this->success(
             new TestsResource($test),
             "تمت إضافة علامات المذاكرات" . /* $request->name .*/ " بنجاح",

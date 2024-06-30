@@ -35,15 +35,25 @@ class ExamController extends Controller
     public function store(StoreExamRequest $request)
     {
         $request->validated($request->all());
-        $exam = Exam::create([
-            // 'user_id' => Auth::class()->id,
+
+        $exam = Exam::where('subject_id', $request->subject_id)
+            ->where('season_id', $request->season_id)
+            ->where('student_id', $request->student_id)->first();
+
+        $exam->update([
             'mark' => $request->mark,
-
-            'subject_id' => $request->subject_id,
-            'season_id' => $request->season_id,
-            'student_id' => $request->student_id,
-
         ]);
+        $exam->save();
+
+        // $exam = Exam::create([
+        //     // 'user_id' => Auth::class()->id,
+        //     'mark' => $request->mark,
+
+        //     'subject_id' => $request->subject_id,
+        //     'season_id' => $request->season_id,
+        //     'student_id' => $request->student_id,
+
+        // ]);
         return $this->success(
             new ExamsResource($exam),
             "تمت إضافة علامات الامتحان" . /* $request->name .*/ " بنجاح",

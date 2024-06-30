@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    عرض بيانات {موظف}
+    عرض بيانات الموظف {{ $user->first_name }} {{ $user->last_name }}
 @endsection
 
 @section('css')
@@ -9,7 +9,7 @@
 @endsection
 
 @section('root')
-    لوحة التحكم
+    لوحة التحكم {{ $year->name }}
 @endsection
 
 @section('son1')
@@ -17,7 +17,7 @@
 @endsection
 
 @section('son2')
-    عرض بيانات موظف
+    عرض بيانات الموظف {{ $user->first_name }} {{ $user->last_name }}
 @endsection
 
 @section('content')
@@ -25,12 +25,273 @@
     <br>
     <div class="justify-content-center">
 
+
+        <br>
+        <div class="card card-teal ">
+            <div class="card-header">
+                <h1 class="card-title col-md-7">
+                    <b>
+                        البيانات الشخصية
+                    </b>
+                </h1>
+                <div class="card-tools">
+
+                    <button type="button" class="btn btn-tool " data-card-widget="remove"><i class="fas fa-times"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
+                            class="fas fa-expand"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                            class="fas fa-minus"></i></button>
+                </div>
+                <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="first_name">اسم الموظف</label>
+                        <br>
+                        {{ $user->first_name }}
+                    </div>
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="last_name">اللقب </label>
+                        <br>
+                        {{ $user->last_name }}
+                    </div>
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="middle_name">اسم الأب </label>
+                        <br>
+                        {{ $user->middle_name }}
+                    </div>
+
+                    <hr class="bg-green">
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="mother_name">اسم الأم</label>
+                        <br>
+                        {{ $employee->mother_name }}
+                    </div>
+
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="birth_place">محل الولادة</label>
+                        <br>
+                        {{ $employee->birth_place }}
+                    </div>
+
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="birth_date">تاريخ الولادة</label>
+                        <br>
+                        {{ Carbon\Carbon::parse($employee->user->birth_date)->format(' j/n/Y') }}
+
+                    </div>
+                    <hr class="bg-green">
+
+                </div>
+
+                <div class="row">
+
+                    <div class="form-group text-green col-lg-4">
+                        <label for="phone">رقم الهاتف </label>
+                        <br>
+                        {{ $employee->phone }}
+                    </div>
+
+                    <div class="form-group text-green col-lg-8">
+                        <label for="address"> العنوان</label>
+                        <br>
+                        {{ $employee->address }}
+                    </div>
+                    <hr class="bg-green">
+
+                </div>
+                <div class="row">
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="restrict_place">محل قيد النفوس </label>
+                        <br>
+                        {{ $employee->restrict_place }}
+                    </div>
+
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="nationality">الجنسية </label>
+                        <br>
+                        {{ $employee->nationality }}
+                    </div>
+
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="family_mode">الوضع العائلي</label>
+                        <br>
+                        {{ $employee->family_mode }}
+                    </div>
+
+                    <hr class="bg-green">
+
+                </div>
+
+                <div class="row">
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="children_number">عدد الأولاد</label>
+                        <br>
+                        {{ $employee->children_number }}
+                    </div>
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="family_compensation_number">عدد من يتقاضى تعويضاً عائلياً </label>
+                        <br>
+                        {{ $employee->family_compensation_number }}
+                    </div>
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="work_date"> قدمه في الوظيفة</label>
+                        <br>
+                        {{ $employee->work_date }}
+                    </div>
+
+                </div>
+
+                <hr class="bg-green">
+
+                <div class="row">
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="school_from">المدرسة المنقول منها</label>
+                        <br>
+                        {{ $employee->school_from }}
+                    </div>
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="book_number">رقم كتاب التعيين</label>
+                        <br>
+                        {{ $employee->book_number }}
+                    </div>
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="book_date">تاريخ كتاب التعيين</label>
+                        <br>
+                        {{ $employee->book_date }}
+                    </div>
+
+                </div>
+
+                <hr class="bg-green">
+
+                <div class="row">
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="work_start_date">تاريخ المباشرة</label>
+                        <br>
+                        {{ $employee->work_start_date }}
+                    </div>
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="leave_date">تاريخ الانفكاك</label>
+                        <br>
+                        {{ $employee->leave_date }}
+                    </div>
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="school_to">المدرسة التي نقل إليها</label>
+                        <br>
+                        {{ $employee->school_to }}
+                    </div>
+
+                </div>
+
+                <hr class="bg-green">
+
+                <div class="row">
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="military_is">هل أدى خدمة العلم</label>
+                        <br>
+                        {{ $employee->military_is }}
+                    </div>
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="military_rank">رتبته العسكرية</label>
+                        <br>
+                        {{ $employee->military_rank }}
+                    </div>
+
+                    <div class="form-group text-gray col-sm-4">
+                        <label for="salary_place">اسم المدرسة التي يتم نصابه فيها إذل كان سياراً</label>
+                        <br>
+                        {{ $employee->salary_place }}
+                    </div>
+
+                </div>
+
+                <hr class="bg-green">
+
+                <div class="row">
+
+                    <div class="form-group text-gray col-sm-12">
+                        <label for="certifications">الشهادات الحاصل عليها</label>
+                        <br>
+                        {{ $employee->certifications }}
+                    </div>
+
+                </div>
+
+                <hr class="bg-green">
+
+                <div class="row">
+
+                    <div class="form-group text-gray col-sm-12">
+                        <label for="year">الصورة الشخصية</label>
+                        <br>
+                        <div class="col-md-12  justify-content-center align-items-center">
+                            <a href="{{ asset('/project-files' . '/' . $imageAsFile->name) }}" target="_blank">
+                                <button class="btn btn-outline-info col  justify-content-center align-items-center">
+                                    عرض الصورة في نافذة جديدة</button>
+                            </a>
+                            {{-- <img src="{{ asset('/project-files' . '/' . $imageAsFile->name) }}"
+                                alt="{{ $imageAsFile->name }}" style="transform: scale(0.3);position: relative;"> --}}
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr class="bg-green">
+
+                @if (Auth::user()->hasRole('secretary'))
+                    <div class="row">
+
+                        <div class="form-group text-gray col-sm-12">
+                            <label for="parent_password">كلمة السر</label>
+                            <br>
+                            {{ $employee->password }}
+                        </div>
+
+
+                    </div>
+                @endif
+            </div>
+
+            <!-- /.card-body -->
+            <br>
+
+
+        </div>
+        <!-- /.card -->
         <div class="card card-teal">
             <div class="card-header">
                 <h1 class="card-title col-md-7"><b> الصلاحيات</b></h1>
                 <div class="card-tools">
 
-                    <button type="button" class="btn btn-tool " data-card-widget="remove"><i class="fas fa-times"></i></button>
+                    <button type="button" class="btn btn-tool " data-card-widget="remove"><i
+                            class="fas fa-times"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
                             class="fas fa-expand"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -46,361 +307,59 @@
                         <label for="plays">نوع الموظف : </label>
 
                         <br>
-                        <h6>{نوع الموظف}</h6>
+                        <h6>
+                            {{-- {{ implode(', ', $user->roles->pluck('display_name')->all()) }} --}}
+                            @foreach ($user->roles as $role)
+                                {{ $role->display_name }} ,
+                            @endforeach
+                        </h6>
                         <br>
                         {{-- @endforeach --}}
                     </div>
 
-                    <div class="form-group text-gray col-md-4">
-                        {{-- ____________________________________________________________________ --}}
-                        <label for="plays">الصفوف التي يستلمها : </label>
+                    @if ($user->hasRole('teacher'))
+                        <div class="form-group text-gray col-md-4">
+                            {{-- ____________________________________________________________________ --}}
 
-                        <br>
-                        {{-- @foreach ($plays->sortBy('type') as $play) --}}
-                        {{-- {{ $play->type }} --}}
-                        <ul>
-                            <li>
-                                8 { put them in foreach}
-                            </li>
-                        </ul>
-                        <br>
-                        {{-- @endforeach --}}
-                    </div>
+                            <label for="classes">الصفوف التي يدرس فيها : </label>
 
-                    <div class="form-group text-gray col-md-4">
-                        {{-- ____________________________________________________________________ --}}
-                        <label for="plays">المواد الدراسية التي يعطيها : </label>
+                            <br>
+                            @foreach ($subjectsIfTeacher as $subject)
+                                <ul>
+                                    <li>
+                                        {{ $subject->name }} في الصف {{ $subject->class->name }}
+                                    </li>
+                                </ul>
+                                <br>
+                            @endforeach
+                        </div>
+                    @endif
 
-                        <br>
-                        {{-- @foreach ($plays->sortBy('type') as $play) --}}
-                        <ul>
-                            <li>
-                                الرياضيات { put them in foreach}
-                            </li>
-                        </ul>
-                        <br>
-                        {{-- @endforeach --}}
-                    </div>
+                    @if ($user->hasRole('mentor'))
+                        <div class="form-group text-gray col-md-4">
+                            {{-- ____________________________________________________________________ --}}
+
+                            <label for="classes">الصفوف التي يشرف عليها: </label>
+
+                            <br>
+                            @foreach ($classesIfMentor as $class)
+                                <ul>
+                                    <li>
+                                        {{ $class->name }}
+                                    </li>
+                                </ul>
+                                <br>
+                            @endforeach
+                        </div>
+                    @endif
+
+
                 </div>
 
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->
         </div>
-        <!-- /.card -->
-
-        <br>
-        <div class="card card-teal ">
-            <div class="card-header">
-                <h1 class="card-title col-md-7">
-                    <b>
-                        البيانات الشخصية
-                    </b>
-                </h1>
-                <div class="card-tools">
-
-                    <button type="button" class="btn btn-tool " data-card-widget="remove"><i
-                            class="fas fa-times"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
-                            class="fas fa-expand"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                            class="fas fa-minus"></i></button>
-                </div>
-                <!-- /.card-tools -->
-            </div>
-            <!-- /.card-header -->
-            <!-- form start -->
-
-            <form method="Get" action="{{ route('adverts') }}">
-                @csrf
-                @method('Get')
-
-                <div class="card-body">
-
-                    <div class="row">
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">اسم الموظف</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">لقب الموظف</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">اسم الوالد</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-
-                        <hr class="bg-green">
-
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">اسم الوالدة</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">محل الولادة</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">تاريخ الولادة</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-                        <hr class="bg-green">
-
-                    </div>
-
-                    <div class="row">
-
-                        <div class="form-group text-green col-lg-4">
-                            <label for="name">رقم الهاتف </label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-
-                        <div class="form-group text-green col-lg-8">
-                            <label for="name">العنوان </label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-                        <hr class="bg-green">
-
-                    </div>
-                    <div class="row">
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">محل قيد النفوس </label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">الجنسية </label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">الوضع العائلي</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-
-                        <hr class="bg-green">
-
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">عدد الأولاد</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">عدد من يتقاضى تعويضاً عائلياً </label>
-                            <br>
-                            { اسم الموظف}
-                        </div>
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">قدمه في الوظيفة</label>
-                            <br>
-                            { اسم الموظف}
-                        </div>
-                        <hr class="bg-green">
-
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">المدرسة المنقول منها</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">رقم كتاب التعيين</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">تاريخ كتاب التعيين</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-                        <hr class="bg-green">
-
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">تاريخ المباشرة</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">تاريخ الانفكاك</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">المدرسة التي نقل إليها</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-                        <hr class="bg-green">
-
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">هل أدى خدمة العلم</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">رتبته العسكرية</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">اسم المدرسة التي يتم نصابه فيها إذل كان سياراً</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-                        <hr class="bg-green">
-
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group text-gray col-sm-12">
-                            <label for="name">الصورة الشخصية</label>
-                            <br>
-                            { اسم الموظف}
-
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- /.card-body -->
-                <br>
-
-            </form>
-        </div>
-        <!-- /.card -->
-
-        <div class="card card-teal">
-            <div class="card-header">
-                <h1 class="card-title col-md-7"><b>الشهادات</b></h1>
-                <div class="card-tools">
-
-                    <button type="button" class="btn btn-tool " data-card-widget="remove"><i
-                            class="fas fa-times"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
-                            class="fas fa-expand"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                            class="fas fa-minus"></i></button>
-                </div>
-                <!-- /.card-tools -->
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-
-                <table id="example2" class="table table-bordered table-striped bg-white">
-                    <thead>
-
-                        <tr>
-                            <th>#</th>
-                            <th>المرتبة</th>
-                            <th>الدرجة</th>
-                            <th>تاريخ الترفيع</th>
-                            <th>اسم الشهادة</th>
-                            <th>تاريخ الحصول عليها</th>
-                            <th>الكلية المنتسب إلبها</th>
-                            <th>العقوبات</th>
-                            <th>الملاحظات</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <tr>
-                            <td>1</td>
-                            <td>محمد كامل</td>
-                            <td>وليد</td>
-                            <td>-</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>كامل وليد</td>
-                            <td>خالد</td>
-                            <td>-</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-
-                        </tr>
-
-                        <br>
-
-                    </tbody>
-
-                </table>
-            </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
     </div>
 
     <br>

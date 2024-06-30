@@ -20,7 +20,7 @@
                       alt="User Image">
               </div>
               <div class="info">
-                  <a href="#" class="d-block">
+                  <a href="{{ route('login') }}" class="d-block">
 
                       @if (Auth::user()->roles()->first()->name == 'mentor' || Auth::user()->roles()->first()->name == 'manager')
                           </b>ال{{ Auth::user()->roles()->first()->display_name }}</b>
@@ -41,7 +41,7 @@
                   data-accordion="false">
                   <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                  <li class="nav-item has-treeview menu-open">
+                  {{-- <li class="nav-item has-treeview menu-open">
                       <a href="#" class="nav-link active">
                           <i class="nav-icon fas fa-tachometer-alt"></i>
                           <p>
@@ -58,7 +58,7 @@
                           </li>
 
                       </ul>
-                  </li>
+                  </li> --}}
 
               </ul>
           </nav>

@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Year;
+use App\Models\Season;
+use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\YearsResource;
 use App\Http\Requests\StoreYearRequest;
 use App\Http\Requests\UpdateYearRequest;
-use App\Models\User;
-use App\Traits\HttpResponses;
-use Carbon\Carbon;
+use App\Http\Requests\StoreSeasonRequest;
 
 
 
@@ -23,9 +25,10 @@ class YearController extends Controller
     public function index($format = 'view')
     {
         $years = Year::all();
+        $seasons = Season::all();
         $studentCount = User::whereHasRole('student')->count();
         $employeesCount = User::whereHasRole(['manager', 'secretary', 'mentor', 'teacher'])->count();
-        return view('years.index', compact('years', 'studentCount', 'employeesCount'));
+        return view('years.index', compact('years', 'studentCount', 'employeesCount', 'seasons'));
     }
     public function dashboard($yearname)
     {
@@ -58,6 +61,26 @@ class YearController extends Controller
             'year_start' => $request->year_start,
             'year_end' => $request->year_end,
             'name' => $year_start->format('Y') . '-' . $year_end->format('Y'),
+        ]);
+        return redirect()->intended(route('years'));
+    }
+    public function add_season(StoreSeasonRequest $request)
+    {
+
+        $request->validated($request->all());
+
+        $season_start = new Carbon($request->season_start);
+        $season_end = new Carbon($request->season_end);
+        $days_number = $season_start->diffInDays($season_end);
+
+        $season = Season::create([
+            // 'user_id' => Auth::user()->id,
+            'number' => $request->number,
+            'season_start' => $request->season_start,
+            'season_end' => $request->season_end,
+            'days_number' => $days_number,
+
+            'year_id' => $request->year_id,
         ]);
         return redirect()->intended(route('years'));
     }

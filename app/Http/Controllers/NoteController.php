@@ -31,12 +31,19 @@ class NoteController extends Controller
     public function index($yearname)
     {
         $year = Year::where('name', $yearname)->first();
+        $user = Auth::user();
 
         $notes = Note::where('admin_id', Auth::user()->id)
             ->whereDate('created_at', '>=', $year->year_start)
             ->whereDate('created_at', '<=', $year->year_end)
             // ->whereNotNull('admin_id')
             ->get();
+        if ($user->hasRole('manager')) {
+            $notes = Note::whereDate('created_at', '>=', $year->year_start)
+                ->whereDate('created_at', '<=', $year->year_end)
+                // ->whereNotNull('admin_id')
+                ->get();
+        }
         $notes_types = NoteType::all();
         // $exitPermission = $notes->first();
         // dd($exitPermission->user->first_name);
@@ -60,6 +67,7 @@ class NoteController extends Controller
     {
         $year = Year::where('name', $yearname)->first();
         $notes_types = NoteType::all();
+        // dd($notes_types);
         $student_ids = ClassStudentSection::where('year_id', $year->id) // or line below 👇
             // ->whereDate('created_at', '>=', $year->year_start)
             // ->whereDate('created_at', '<=', $year->year_end)
@@ -111,7 +119,7 @@ class NoteController extends Controller
             // ->whereNotNull('admin_id')
             ->get();
         // return view('Notes.index', compact('yearname', 'year'));
-        return redirect()->route('behavioral-notes', ['yearname' => $yearname, 'notes' => $notes]);
+        return route('behavioral-notes', ['yearname' => $yearname, 'notes' => $notes]);
     }
 
     /**
@@ -157,12 +165,14 @@ class NoteController extends Controller
         $year = Year::where('name', $yearname)->first();
 
         $note = Note::where('id', $behavioral_note_id)->first();
-        $notes_files_ids = FileNote::where('note_id', $behavioral_note_id)->pluck('id');
+        $notes_files_ids = FileNote::where('note_id', $behavioral_note_id)->pluck('file_id');
 
         // ->pluck('file_id');
         $notes_files = File::findMany($notes_files_ids);
+        // $notes_files = File::whereIn('id', $notes_files_ids)->get();
 
-        dd($notes_files_ids);
+        // dd($notes_files);
+
         return view("behavioral-notes.show", compact('yearname', 'year', 'note', 'notes_files'));
     }
     public function downloadFile($yearname, $file_name)
@@ -183,10 +193,10 @@ class NoteController extends Controller
     {
         $year = Year::where('name', $yearname)->first();
         $note = Note::where('id', $note_id)->first();
-        $file = File::where('id', $note->file_id)->latest()->first();
+        $file = File::where('name', $file_name)->latest()->first();
         $fileNote = FileNote::where('note_id', $note_id)
             ->where("file_id", $file->id)->first();
-        dd($fileNote);
+        // dd($fileNote);
         if ($file->user_id == Auth::user()->id /*|| Auth::user()->roles()->first()->name == 'manager'*/) {
 
             $file_path = public_path('project-files/' . $file->name);
@@ -203,7 +213,14 @@ class NoteController extends Controller
             $notes_files = File::findMany($notes_files_ids);
 
             // dd($notes_files);
-            return view("behavioral-notes.show", compact('yearname', 'year', 'note', 'notes_files'));
+            // return view("behavioral-notes.show", compact('yearname', 'year', 'note', 'notes_files'));
+            return redirect()->route('behavioral-notes.show', [
+                'yearname' => $yearname,
+                // 'note' => $note,
+                // 'year' => $year,
+                'notes_files' => $notes_files,
+                'behavioral_note_id' => $note->id
+            ]);
         } else {
             $notes = DaySchedule::whereDate('created_at', '>=', $year->year_start)
                 ->whereDate('created_at', '<=', $year->year_end)
@@ -221,10 +238,10 @@ class NoteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Note $exitPermission, $yearname, $exit_permission_id)
+    public function edit(Note $note, $yearname, $behavioral_note_id)
     {
         $year = Year::where('name', $yearname)->first();
-        $exitPermission = Note::where('id', $exit_permission_id)->first();
+        $note = Note::where('id', $behavioral_note_id)->first();
         $student_ids = ClassStudentSection::where('year_id', $year->id) // or line below 👇
             // ->whereDate('created_at', '>=', $year->year_start)
             // ->whereDate('created_at', '<=', $year->year_end)
@@ -236,10 +253,10 @@ class NoteController extends Controller
             // ->whereDate('created_at', '<=', $year->year_end)
             ->get();
 
-        $student = Student::where("id", $exitPermission->student_id)->first();
+        $student = Student::where("id", $note->student_id)->first();
         return view(
             'behavioral-notes.edit',
-            compact(['year', 'yearname', 'exitPermission', 'student', 'students', 'classes'])
+            compact(['year', 'yearname', 'note', 'student', 'students', 'classes'])
         );
     }
 
@@ -279,6 +296,42 @@ class NoteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    public function store_note_file(Request $request, $yearname, $note_id)
+    {
+        $year = Year::where('name', $yearname)->first();
+        $behavioral_note_id = $note_id;
+        $note = Note::where('id', $note_id)->first();
+        $file_request = $request->file;
+
+        $file_name = $request->file->getClientOriginalName();
+
+        $request->file->move(public_path('project-files/'), $file_name);
+
+        $file = File::create([
+            'name' => $file_name,
+            'user_id' => auth()->user()->id,
+        ]);
+        $noteFile = FileNote::create([
+            // 'user_id' => Auth::user()->id,
+
+            'file_id' => $file->id,
+            'note_id' => $note_id,
+        ]);
+
+        $note = Note::where('id', $note_id)->first();
+        $notes_files_ids = FileNote::where('note_id', $note_id)->pluck('file_id');
+        $notes_files = File::findMany($notes_files_ids);
+
+        // dd($notes_files);
+        // return view("behavioral-notes.show", compact('yearname', 'year', 'note', 'notes_files', 'behavioral_note_id'));
+        return redirect()->route('behavioral-notes.show', [
+            'yearname' => $yearname,
+            // 'note' => $note,
+            // 'year' => $year,
+            'notes_files' => $notes_files,
+            'behavioral_note_id' => $note->id
+        ]);
+    }
     public function delete_note_type($yearname, $note_type_id)
     {
         $year = Year::where('name', $yearname)->first();
@@ -291,21 +344,34 @@ class NoteController extends Controller
             ->get();
         return redirect()->route('behavioral-notes', ['yearname' => $yearname, 'notes' => $notes]);
     }
-    public function destroy(Note $exitPermission, $yearname, $exitPermission_id)
+
+
+    public function destroy(Note $note, $yearname, $note_id)
     {
         $year = Year::where('name', $yearname)->first();
-        $exitPermission = Note::where('id', $exitPermission_id)->first();
+        $note = Note::where('id', $note_id)->first();
 
-        // dd($exitPermission);
+        // dd($note);
 
 
         if (
-            $exitPermission->mentor_id == Auth::user()->id /*|| Auth::user()->roles()->first()->name == 'manager'*/
+            $note->admin_id == Auth::user()->id /*|| Auth::user()->roles()->first()->name == 'manager'*/
         ) {
+            $notes_files_ids = FileNote::where('note_id', $note_id)->pluck('file_id');
 
-            $exitPermission->delete();
+            // ->pluck('file_id');
+            $notes_files = File::findMany($notes_files_ids);
+            foreach ($notes_files as $file) {
+                $file_path = public_path('project-files/' . $file->name);
 
-            $notes = Note::where('mentor_id', Auth::user()->id)
+                if (FacadeFile::exists($file_path)) {
+                    FacadeFile::delete($file_path);
+                    $file->delete();
+                }
+            }
+            $note->delete();
+
+            $notes = Note::where('admin_id', Auth::user()->id)
                 ->whereDate('created_at', '>=', $year->year_start)
                 ->whereDate('created_at', '<=', $year->year_end)
                 // ->whereNotNull('admin_id')
@@ -318,23 +384,23 @@ class NoteController extends Controller
             > 😅 مع الأسف 😅</h1>
             <br>
             <h1 style='font-size: 35px;text-align: center;'>
-             أنت غير قادر على حذف هذا الإعلان لأنك لست  مدير المدرسة ولست ناشر هذا الإعلان أيضاً</h1>";
+             أنت غير قادر على حذف هذه الملاحظة السلوكية </h1>";
             echo "<br>";
         }
 
         // way 1 :
-        // $exitPermission->delete();
+        // $note->delete();
         // return $this->success('Note was Deleted Successfuly ',null,204);
 
         // way 2 : (it is best to do it in Show & Update functions [Implement Private function below] )
 
-        // return $this->isNotAuthorized($exitPermission) ? $this->isNotAuthorized($exitPermission) : $exitPermission->delete();
+        // return $this->isNotAuthorized($note) ? $this->isNotAuthorized($note) : $note->delete();
         // return true (1) if the delete successfuly occoured
     }
 
-    private function isNotAuthorized($exitPermission)
+    private function isNotAuthorized($note)
     {
-        if (Auth::user()->id !== $exitPermission->exitPermission_id) {
+        if (Auth::user()->id !== $note->note_id) {
             return $this->error('', 'You are not Authorized to make this request', 403);
         }
     }

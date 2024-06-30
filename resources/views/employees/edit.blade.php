@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    تعديل بيانات {موظف}
+    تعديل بيانات الطالب {{ $user->first_name }} {{ $user->last_name }}
 @endsection
 
 @section('css')
@@ -9,25 +9,29 @@
 @endsection
 
 @section('root')
-    لوحة التحكم
+    لوحة التحكم {{ $year->name }}
 @endsection
 
 @section('son1')
-    الموظفين
+    الطلاب
 @endsection
 
 @section('son2')
-    تعديل بيانات موظف
+    تعديل بيانات الطالب {{ $user->first_name }} {{ $user->last_name }}
 @endsection
 
 @section('content')
     {{-- content --}}
-    <br>
-    <div class="justify-content-center">
 
-        <div class="card card-teal">
+    <div class="justify-content-center">
+        <br>
+        <div class="card card-teal ">
             <div class="card-header">
-                <h1 class="card-title col-md-7"><b>تعديل الصلاحيات</b></h1>
+                <h1 class="card-title col-md-7">
+                    <b>
+                        البيانات الشخصية
+                    </b>
+                </h1>
                 <div class="card-tools">
 
                     <button type="button" class="btn btn-tool " data-card-widget="remove"><i class="fas fa-times"></i></button>
@@ -39,407 +43,165 @@
                 <!-- /.card-tools -->
             </div>
             <!-- /.card-header -->
-            <div class="card-body">
-                <div class="row">
-                    <div class="form-group text-gray col-md-4">
-                        {{-- ____________________________________________________________________ --}}
-                        <label for="plays">نوع الموظف : <sub> (اختر نوع واحد فأكثر ) </sub> </label>
-
-                        <br>
-                        {{-- @foreach ($plays->sortBy('type') as $play) --}}
-                        <input type="checkbox" name="plays[]" value="{ $play->id }">
-                        {{-- {{ $play->type }} --}}put them in foreach
-                        <br>
-                        {{-- @endforeach --}}
-                    </div>
-
-                    <div class="form-group text-gray col-md-4">
-                        {{-- ____________________________________________________________________ --}}
-                        <label for="plays">الصفوف التي يستلمها : <sub> (اختر نوع واحد فأكثر ) </sub> </label>
-
-                        <br>
-                        {{-- @foreach ($plays->sortBy('type') as $play) --}}
-                        <input type="checkbox" name="plays[]" value="{ $play->id }">
-                        {{-- {{ $play->type }} --}}put them in foreach
-                        <br>
-                        {{-- @endforeach --}}
-                    </div>
-
-                    <div class="form-group text-gray col-md-4">
-                        {{-- ____________________________________________________________________ --}}
-                        <label for="plays">المواد الدراسية التي يعطيها : <sub> (اختر نوع واحد فأكثر ) </sub> </label>
-
-                        <br>
-                        {{-- @foreach ($plays->sortBy('type') as $play) --}}
-                        <input type="checkbox" name="plays[]" value="{ $play->id }">
-                        {{-- {{ $play->type }} --}}put them in foreach
-                        <br>
-                        {{-- @endforeach --}}
-                    </div>
-                </div>
-                <div class="row">
-
-                    <div class="col-md-12  justify-content-center align-items-center">
-                        <button type="submit"
-                            class="btn btn-outline-info col col-lg-12  justify-content-center align-items-center">
-                            <h6 class="col-md-11">
-                                تعديل الصلاحيات
-                            </h6>
-                        </button>
-                    </div>
-                </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-        </div>
-        <!-- /.card -->
-        <br>
-        <div class="card card-teal">
-            <div class="card-header">
-                <h1 class="card-title col-md-7"><b>الشهادات</b></h1>
-                <div class="card-tools">
-
-                    <button type="button" class="btn btn-tool " data-card-widget="remove"><i
-                            class="fas fa-times"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
-                            class="fas fa-expand"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                            class="fas fa-minus"></i></button>
-                </div>
-                <!-- /.card-tools -->
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-                <form action="{{ url('/groups/add', []) }}" method="POST">
-                    @csrf
-
-                    <!-- /.card-body -->
-
-                    <a href="{{ route('certifications-add', [
-                        'name' => 'Ahmed',
-                        // $val->id
-                    ]) }}"
-                        target="_blank" class="btn  btn-outline-success " type="button">
-                        <b>إضافة شهادة جديدة</b>
-                    </a>
-                    <br>
-                    </span>
-
-                </form>
-                <table id="example2" class="table table-bordered table-striped bg-white">
-                    <thead>
-
-                        <tr>
-                            <th>#</th>
-                            <th>المرتبة</th>
-                            <th>الدرجة</th>
-                            <th>تاريخ الترفيع</th>
-                            <th>اسم الشهادة</th>
-                            <th>تاريخ الحصول عليها</th>
-                            <th>الكلية المنتسب إلبها</th>
-                            <th>العقوبات</th>
-                            <th>الملاحظات</th>
-                            <th>العمليات</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <tr>
-                            <td>1</td>
-                            <td>محمد كامل</td>
-                            <td>وليد</td>
-                            <td>-</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>
-
-                                {{-- show form --}}
-                                <div class="d-flex justify-content-center">
-
-
-                                    <form action="{{ url('/groups/add', []) }}" method="POST">
-                                        @csrf
-
-                                        <!-- /.card-body -->
-
-                                        <a href="{{ route('certifications-delete', [
-                                            'name' => 'Ahmed',
-                                            'id' => 3,
-                                            // $val->id
-                                        ]) }}"
-                                            class="btn btn-outline-danger     " type="button">
-                                            <b>حذف</b>
-                                        </a>
-                                        <br>
-                                        </span>
-
-                                    </form>
-
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>كامل وليد</td>
-                            <td>خالد</td>
-                            <td>-</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>إضافة</td>
-                            <td>
-
-                                {{-- edit form --}}
-                                <div class="d-flex justify-content-center">
-
-                                    <form action="{{ url('/groups/add', []) }}" method="POST">
-                                        @csrf
-
-                                        <!-- /.card-body -->
-
-                                        <a href="{{ route('certifications-delete', [
-                                            'name' => 'Ahmed',
-                                            'id' => 3,
-                                            // $val->id
-                                        ]) }}"
-                                            class="btn btn-outline-danger     " type="button">
-                                            <b>حذف</b>
-                                        </a>
-                                        <br>
-                                        </span>
-                                    </form>
-
-
-                            </td>
-                        </tr>
-
-                        <br>
-
-                    </tbody>
-
-                </table>
-            </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-        <br>
-        <div class="card card-teal ">
-            <div class="card-header">
-                <h1 class="card-title col-md-7">
-                    <b>
-                        البيانات الشخصية
-                    </b>
-                </h1>
-                <div class="card-tools">
-
-                    <button type="button" class="btn btn-tool " data-card-widget="remove"><i
-                            class="fas fa-times"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
-                            class="fas fa-expand"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                            class="fas fa-minus"></i></button>
-                </div>
-                <!-- /.card-tools -->
-            </div>
-            <!-- /.card-header -->
             <!-- form start -->
-            <form method="Get" action="{{ route('employees') }}">
+            <form method="POST"
+                action="{{ route('students.update', ['yearname' => $year->name, 'user_id' => $student->user->id]) }}">
                 @csrf
-                @method('Get')
+                @method('PUT')
 
                 <div class="card-body">
 
                     <div class="row">
 
                         <div class="form-group text-gray col-sm-4">
-                            <label for="name">اسم الموظف</label>
-                            <input id="name" required class="form-control bg- light" type="text" name="name"
-                                required />
+                            <label for="first_name">اسم الطالب</label>
+                            <input id="first_name" class="form-control bg- light" type="text" name="first_name"
+                                value="{{ old('first_name', $user->first_name) }}" required />
                         </div>
 
                         <div class="form-group text-gray col-sm-4">
-                            <label for="name">لقب الموظف</label>
-                            <input id="name" required class="form-control bg- light" type="text" name="name"
-                                required />
+                            <label for="last_name">اللقب </label>
+                            <input id="last_name" class="form-control bg- light" type="text" name="last_name"
+                                value="{{ old('last_name', $user->last_name) }}" required />
                         </div>
 
                         <div class="form-group text-gray col-sm-4">
-                            <label for="name">اسم الوالد</label>
-                            <input id="name" required class="form-control bg- light" type="text" name="name"
-                                required />
+                            <label for="middle_name">اسم الأب</label>
+                            <input id="middle_name" class="form-control bg- light" type="text" name="middle_name"
+                                value="{{ old('middle_name', $user->middle_name) }}" required />
                         </div>
 
 
                     </div>
 
                     <div class="row">
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">اسم الوالدة</label>
-                            <input id="name" required class="form-control bg- light" type="text" name="name"
-                                required />
-                        </div>
-
 
                         <div class="form-group text-gray col-sm-4">
-                            <label for="name">محل الولادة</label>
-                            <input id="name" required class="form-control bg- light" type="text" name="name"
-                                required />
+                            <label for="father_work">مهنة الأب </label>
+                            <input id="father_work" class="form-control bg- light" type="text" name="father_work"
+                                value="{{ old('father_work', $student->father_work) }}" />
                         </div>
-
 
                         <div class="form-group text-gray col-sm-4">
-                            <label for="name">تاريخ الولادة</label>
-                            <input id="name" required class="form-control bg- light" type="text" name="name"
+                            <label for="grandfather_name">اسم الجد</label>
+                            <input id="grandfather_name" class="form-control bg- light" type="text"
+                                name="grandfather_name" value="{{ old('grandfather_name', $student->grandfather_name) }}"
                                 required />
                         </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="form-group text-green col-lg-4">
-                            <label for="name">رقم الهاتف </label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
-                        </div>
-
-                        <div class="form-group text-green col-lg-8">
-                            <label for="name">العنوان </label>
-                            <input id="name" required class="form-control bg- light" type="text" name="name"
-                                required />
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">محل قيد النفوس </label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
-                        </div>
-
 
                         <div class="form-group text-gray col-sm-4">
-                            <label for="name">الجنسية </label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
-                        </div>
-
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">الوضع العائلي</label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
+                            <label for="mother_name">اسم الأم</label>
+                            <input id="mother_name" class="form-control bg- light" type="text" name="mother_name"
+                                value="{{ old('mother_name', $student->mother_name) }}" required />
                         </div>
 
 
                     </div>
 
                     <div class="row">
+
                         <div class="form-group text-gray col-sm-4">
-                            <label for="name">عدد الأولاد</label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
+                            <label for="birth_place">مكان الولادة </label>
+                            <input id="birth_place" class="form-control bg- light" type="text" name="birth_place"
+                                value="{{ old('birth_place', $student->birth_place) }}" />
                         </div>
 
                         <div class="form-group text-gray col-sm-4">
-                            <label for="name">عدد من يتقاضى تعويضاً عائلياً </label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
+                            <label for="birth_date"> تاريخ الولادة</label>
+                            <input id="birth_date" class="form-control bg- light" type="date" name="birth_date"
+                                placeholder="أدخل السنة أولاً, مثال : 22-09-2024"
+                                value="{{ old('birth_date', $user->birth_date) }}"required />
                         </div>
 
                         <div class="form-group text-gray col-sm-4">
-                            <label for="name">قدمه في الوظيفة</label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">المدرسة المنقول منها</label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
+                            <label for="restrict_place">محل القيد</label>
+                            <input id="restrict_place" class="form-control bg- light" type="text" name="restrict_place"
+                                value="{{ old('restrict_place', $student->restrict_place) }}" />
                         </div>
 
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">رقم كتاب التعيين</label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
-                        </div>
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">تاريخ كتاب التعيين</label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">تاريخ المباشرة</label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
-                        </div>
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">تاريخ الانفكاك</label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
-                        </div>
-
-                        <div class="form-group text-gray col-sm-4">
-                            <label for="name">المدرسة التي نقل إليها</label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
-                        </div>
 
                     </div>
 
                     <div class="row">
+
                         <div class="form-group text-gray col-sm-4">
-                            <label for="name">هل أدى خدمة العلم</label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
+                            <label for="restrict_number">رقم القيد </label>
+                            <input id="restrict_number" class="form-control bg- light" type="text" name="restrict_number"
+                                value="{{ old('restrict_number', $student->restrict_number) }}" />
                         </div>
 
                         <div class="form-group text-gray col-sm-4">
-                            <label for="name">رتبته العسكرية</label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
+                            <label for="nationality"> الجنسية</label>
+                            <input id="nationality" class="form-control bg- light" type="text" name="nationality"
+                                value="{{ old('nationality', $student->nationality) }}" />
                         </div>
 
                         <div class="form-group text-gray col-sm-4">
-                            <label for="name">اسم المدرسة التي يتم نصابه فيها إذل كان سياراً</label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
+                            <label for="in_date">تاريخ الانتساب للمدرسة</label>
+                            <input id="in_date" class="form-control bg- light" type="date" name="in_date"
+                                value="{{ old('in_date', $student->in_date) }}" />
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group text-gray col-sm-4">
+                            <label for="from_school">الثانوية التي انتقل منها
+                            </label>
+                            <input id="from_school" class="form-control bg- light" type="text" name="from_school"
+                                value="{{ old('from_school', $student->from_school) }}" />
+                        </div>
+
+                        <div class="form-group text-danger col-sm-4">
+                            <label for="class_id"> الصف ({{ $class->name }}) الرجاء الإدخال مجدداً
+                            </label>
+                            {{-- <input id="class_id" class="form-control bg- light" type="text" name="class_id"
+                                required /> --}}
+                            <br>
+                            <select class="form-control bg-light" id="class_id" name="class_id" required>
+                                @foreach ($classes as $theclass)
+                                    <option class="form-control bg-light" value=" {{ old('class_id', $theclass->id) }}">
+                                        {{ $theclass->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group text-gray col-sm-4">
+                            <label for="phone_number">رقم الهاتف </label>
+                            <input id="phone_number" class="form-control bg- light" type="text" name="phone_number"
+                                value="{{ old('phone_number', $student->phone_number) }}" required />
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="form-group text-gray col-sm-12">
-                            <label for="name">الصورة الشخصية</label>
-                            <input id="name" class="form-control bg- light" type="text" name="name"
-                                required />
+
+                        <div class="form-group text-gray col-sm-4">
+                            <label for="failed_class">الصفوف التي رسب فيها قبل الانتقال </label>
+                            <input id="failed_class" class="form-control bg- light" type="text" name="failed_class"
+                                value="{{ old('failed_class', $student->failed_class) }}" />
                         </div>
+
+                        <div class="form-group text-gray col-sm-4">
+                            <label for="last_serial_number">رقم القيد السابق </label>
+                            <input id="last_serial_number" class="form-control bg- light" type="text"
+                                name="last_serial_number"
+                                value="{{ old('last_serial_number', $student->last_serial_number) }}" />
+                        </div>
+
                     </div>
+
 
                 </div>
-
                 <!-- /.card-body -->
                 <br>
                 <div class="row justify-content-center">
 
-                    <a href="{{ route('employees-show', [
-                        'name' => 'Ahmed',
-                        // $val->id
-                    ]) }}"
-                        class="btn btn-outline-info col-sm-6 col d-flex justify-content-center" type="button">
+                    <button class="btn btn-outline-info col-sm-6 col d-flex justify-content-center" type="submit">
                         <b>تعديل</b>
-                    </a>
+                    </button>
                 </div>
                 <br>
 

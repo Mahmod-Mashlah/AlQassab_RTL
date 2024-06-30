@@ -35,15 +35,25 @@ class HomeworkController extends Controller
     public function store(StoreHomeworkRequest $request)
     {
         $request->validated($request->all());
-        $homework = Homework::create([
-            // 'user_id' => Auth::class()->id,
+
+        $homework = Homework::where('subject_id', $request->subject_id)
+            ->where('season_id', $request->season_id)
+            ->where('student_id', $request->student_id)->first();
+
+        // $homework = Homework::create([
+        //     // 'user_id' => Auth::class()->id,
+        //     'mark' => $request->mark,
+
+        //     'subject_id' => $request->subject_id,
+        //     'season_id' => $request->season_id,
+        //     'student_id' => $request->student_id,
+
+        // ]);
+        $homework->update([
             'mark' => $request->mark,
-
-            'subject_id' => $request->subject_id,
-            'season_id' => $request->season_id,
-            'student_id' => $request->student_id,
-
         ]);
+        $homework->save();
+
         return $this->success(
             new HomeworksResource($homework),
             "تمت إضافة علامات الوظائف  " . /* $request->name .*/ " بنجاح",

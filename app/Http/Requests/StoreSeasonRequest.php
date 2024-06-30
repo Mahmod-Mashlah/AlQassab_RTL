@@ -26,8 +26,8 @@ class StoreSeasonRequest extends FormRequest
             'number' => ['required', 'integer', 'in:1,2,3'],
             'season_start' => ['required', 'date'],
             'season_end' => ['required', 'date'],
-            'days_number' => ['required', 'integer'],
-            'year_id' => ['required', 'unique:years,id'],
+            'days_number' => ['integer'],
+            'year_id' => ['required'],
             // 'priority' => ['required', 'in:low,medium,high'],
 
         ];

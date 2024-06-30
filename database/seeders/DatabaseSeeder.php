@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             YearSeeder::class,
             SchoolClassSeeder::class,
             StudentSeeder::class,
+            EmployeeSeeder::class,
             SeasonSeeder::class,
             ProtestSeeder::class,
             AdvertSeeder::class,

@@ -11,7 +11,9 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\WebLoginController;
 use App\Http\Controllers\SchedulesController;
 use App\Http\Controllers\DayScheduleController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ExitPermissionController;
+use App\Http\Controllers\MarkRecordController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProtestController;
 use App\Http\Controllers\TestScheduleController;
@@ -47,6 +49,8 @@ Route::middleware(['web-login'])->group(function () {
     Route::get('/years', [YearController::class, 'index'])->name('years');
     // add
     Route::post('/years', [YearController::class, 'store'])->name('years.add');
+    // Seasons الفصول الدراسية
+    Route::post('/seasons', [YearController::class, 'add_season'])->name('seasons.add');
 
     // Dashboard لوحة التحكم
 
@@ -131,7 +135,8 @@ Route::middleware(['web-login'])->group(function () {
         // Behavioral-Notes الملاحظات السلوكية 🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂
 
         Route::get('/behavioral-notes/add', [NoteController::class, 'create'])->name("behavioral-notes.create");
-        Route::post('/behavioral-notes/add', [NoteController::class, 'store'])->name("behavioral-notes.add");
+        // Route::post('/behavioral-notes/add', [NoteController::class, 'store'])->name("behavioral-notes.add");
+        Route::post('/add_note', [NoteController::class, 'store'])->name("behavioral-notes.add");
         Route::get('/behavioral-notes', [NoteController::class, 'index'])->name("behavioral-notes");
         Route::get('/behavioral-notes/{behavioral_note_id}', [NoteController::class, 'show'])->name("behavioral-notes.show");
         Route::delete('/behavioral-notes/delete/{behavioral_note_id}', [NoteController::class, 'destroy'])->name("behavioral-notes.delete");
@@ -141,6 +146,7 @@ Route::middleware(['web-login'])->group(function () {
         Route::post('/behavioral-notes-types/add', [NoteController::class, 'store_note_type'])->name("behavioral-notes-types.add");
         Route::post('/behavioral-notes-types/delete/{note_type_id}', [NoteController::class, 'delete_note_type'])->name("behavioral-notes-types.delete");
 
+        Route::post('/behavioral-notes-files/add/{note_id}', [NoteController::class, 'store_note_file'])->name("behavioral-notes-file.add");
         Route::get('/behavioral-notes-files/download/{file_name}', [NoteController::class, 'downloadFile'])->name("behavioral-notes-files.download");
         Route::delete('/behavioral-notes-files/delete/{file_name}/{note_id}', [NoteController::class, 'deleteNoteFile'])->name("behavioral-notes-files.delete");
 
@@ -153,51 +159,64 @@ Route::middleware(['web-login'])->group(function () {
         Route::delete('/chats/delete/{chat_id}', [ChatController::class, 'destroy'])->name("chats.delete");
         Route::get('/chats/edit/{chat_id}', [ChatController::class, 'edit'])->name("chats.edit");
         Route::put('/chats/update/{chat_id}', [ChatController::class, 'update'])->name("chats.update");
+
+        // Employees الموظفين
+        Route::get('/employees', [EmployeeController::class, 'index'])->name("employees");
+        Route::get('/employees/add', [EmployeeController::class, 'create'])->name("employees.create");
+        Route::post('/employees/add', [EmployeeController::class, 'store'])->name("employees.add");
+        Route::get('/employees/{user_id}', [EmployeeController::class, 'show'])->name("employees.show");
+        Route::delete('/employees/delete/{user_id}', [EmployeeController::class, 'destroy'])->name("employees.delete");
+        Route::get('/employees/edit/{user_id}', [EmployeeController::class, 'edit'])->name("employees.edit");
+        Route::put('/employees/update/{user_id}', [EmployeeController::class, 'update'])->name("employees.update");
+        Route::post('/employees/search/', [EmployeeController::class, 'employees_search'])->name("employees.search");
+
+        //  Marks العلامات
+        Route::get('/marks/{user_id}', [MarkRecordController::class, 'show'])->name("marks.show");
     });
 
-    // Employees_Records  الموظفين
-    // يتضمن الشهادات والصلاحيات Permissions & Certifications
+    // // Employees_Records  الموظفين
+    // // يتضمن الشهادات والصلاحيات Permissions & Certifications
 
-    // index
-    Route::get('/employees', function () {
-        return view('employees.index');
-    })->name('employees');
+    // // index
+    // Route::get('/employees123', function () {
+    //     return view('employees123.index');
+    // })->name('employees123');
 
-    // add
-    Route::get('/employees/add', function () {
-        return view('employees.add');
-    })->name('employees-add');
-    // add-post
-    Route::post('/employees/add', function () {
-        return view('employees');
-    })->name('employees-add-post');
+    // // add
+    // Route::get('/employees123/add', function () {
+    //     return view('employees123.add');
+    // })->name('employees123-add');
+    // // add-post
+    // Route::post('/employees123/add', function () {
+    //     return view('employees123');
+    // })->name('employees123-add-post');
 
-    // show
-    Route::get('/employees/{name}/show', function () {
-        return view('employees.show');
-    })->name('employees-show');
+    // // show
+    // Route::get('/employees123/{name}/show', function () {
+    //     return view('employees123.show');
+    // })->name('employees123-show');
 
-    // edit
-    Route::get('/employees/{name}/edit', function () {
-        return view('employees.edit');
-    })->name('employees-edit');
+    // // edit
+    // Route::get('/employees123/{name}/edit', function () {
+    //     return view('employees123.edit');
+    // })->name('employees123-edit');
 
-    // delete
-    Route::get('/employees/delete/{id}', function () {
-        return view('employees.index');
-    })->name('employees-delete');
+    // // delete
+    // Route::get('/employees123/delete/{id}', function () {
+    //     return view('employees123.index');
+    // })->name('employees123-delete');
 
-    // Certifications الشهادات :
+    // // Certifications الشهادات :
 
-    // index
-    Route::get('/employees/{name}/certifications', function () {
-        return view('certifications.index');
-    })->name('certifications');
+    // // index
+    // Route::get('/employees/{name}/certifications', function () {
+    //     return view('certifications.index');
+    // })->name('certifications');
 
-    // add
-    Route::get('/employees/{name}/certifications/add', function () {
-        return view('certifications.add');
-    })->name('certifications-add');
+    // // add
+    // Route::get('/employees/{name}/certifications/add', function () {
+    //     return view('certifications.add');
+    // })->name('certifications-add');
 
     // // show
     // Route::get('/employees/{name}/certifications/{name}/show', function () {
@@ -209,9 +228,9 @@ Route::middleware(['web-login'])->group(function () {
     //     return view('certifications.edit');
     // })->name('certifications-edit');
 
-    // delete
-    Route::get('/employees/{name}/certifications/delete/{id}', function () {
-        return view('employees.edit');
-    })->name('certifications-delete');
-    // }); //end of weblogin middleware
+    // // delete
+    // Route::get('/employees/{name}/certifications/delete/{id}', function () {
+    //     return view('employees.edit');
+    // })->name('certifications-delete');
+    // // }); //end of weblogin middleware
 });
