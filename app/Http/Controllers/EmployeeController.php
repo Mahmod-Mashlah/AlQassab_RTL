@@ -10,12 +10,14 @@ use App\Models\Employee;
 use Laratrust\Models\Role;
 use App\Models\SchoolClass;
 use Illuminate\Http\Request;
+use Laratrust\Traits\HasRolesAndPermissions;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 
 class EmployeeController extends Controller
 {
+    use HasRolesAndPermissions;
     /**
      * Display a listing of the resource.
      */
@@ -53,6 +55,10 @@ class EmployeeController extends Controller
 
         $year = Year::where('name', $yearname)->first();
         $roles = Role::whereIn('name', ['manager', 'secretary', 'mentor', 'teacher'])->get();
+        $role_from_request_id = Role::find($request->role_id);
+        // dd($role_from_request_id);
+        $rolename = $role_from_request_id->name;
+
 
         $faker = \Faker\Factory::create();
 
@@ -110,11 +116,11 @@ class EmployeeController extends Controller
             'certifications' => $request->certifications,
 
         ]);
-        $role_from_request_id = Role::find($request->role_id);
-        $rolename = $role_from_request_id->name;
 
-        $employeeAsUser->addRole($rolename);
-
+        // $employeeAsUser->assignRole($rolename);
+        // $employeeAsUser->attachRole($role_from_request_id);
+        // $employeeAsUser->syncRoles([$role_from_request_id]);
+        $employeeAsUser->syncRoles([$role_from_request_id->id]);
         // $student_class = ClassStudentSection::create([
         //     // 'user_id' => Auth::user()->id,
 
