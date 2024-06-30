@@ -62,9 +62,9 @@
                 <thead>
                     <tr>
                         <th style="width: 5%">#</th>
-                        <th style="width: 55%">ملخص المحادثة</th>
+                        <th style="width: 50%">ملخص المحادثة</th>
                         <th style="width: 16%">تاريخ الإضافة</th>
-                        <th style="width: 24%">العمليات المتاحة</th>
+                        <th style="width: 29%">العمليات المتاحة</th>
                     </tr>
                 </thead>
                 <tbody>
