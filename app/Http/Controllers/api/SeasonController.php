@@ -18,9 +18,9 @@ class SeasonController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($year_id)
     {
-        $seasons = Season::all();
+        $seasons = Season::where('year_id', $year_id)->get();
 
         // Season::where('season_id', Auth::user()->id)->get()
         // get seasons thats seasons are authenticated

@@ -50,7 +50,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::resource('/years', ApiYearController::class)/*->only(['index', 'show'])*/;
-    Route::resource('/seasons', ApiSeasonController::class)->only(['index', 'show']);
+    Route::resource('/seasons', ApiSeasonController::class)->only(['show']);
+    Route::get('/seasons/seasons_by_year_id/{year_id}', [ApiSeasonController::class, 'index']);
+
     Route::resource('/protests', ApiProtestController::class);
     Route::resource('/adverts', ApiAdvertController::class);
     Route::get('/admin-adverts', [ApiAdvertController::class, 'adminIndex']);
