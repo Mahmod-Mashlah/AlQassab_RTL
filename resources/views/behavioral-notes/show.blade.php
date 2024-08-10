@@ -146,124 +146,122 @@
             </div>
 
             <!-- /.card-body -->
-            <br>
-
-        </div>
-        <!-- /.card -->
-        <div class="card card-teal" id="12345">
-            <div class="card-header">
-                <h1 class="card-title col-md-7">
-                    <b>
-                        الملفات المرفقة الملاحظة </b>
-                </h1>
-                <div class="card-tools">
-
-                    <button type="button" class="btn btn-tool " data-card-widget="remove"><i
-                            class="fas fa-times"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
-                            class="fas fa-expand"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                            class="fas fa-minus"></i></button>
-                </div>
-                <!-- /.card-tools -->
-            </div>->
-            <div class="card-body">
-
-                @if (Auth::user()->roles()->first()->name == 'mentor' || Auth::user()->roles()->first()->name == 'secretary')
-                    <form
-                        action="{{ route('behavioral-notes-file.add', ['yearname' => $year->name, 'note_id' => $note->id]) }}"
-                        method="Post" enctype="multipart/form-data">
-                        @csrf
-                        @method('Post')
-                        <!-- /.card-body -->
-                        <h6 class="text-gray">
-                            <b>إضافة ملف جديد للملاحظة : </b>
-                        </h6>
-                        <br>
-                        <input id="file" class="form-control bg-light" type="file" name="file" required />
-                        <br>
-                        <button class="btn  btn-outline-success " type="submit">
-                            <b>إضافة</b>
-                        </button>
-                        <br>
-                        </span>
-
-                    </form>
-                @endif
-
-                <table id="example2" class="table table-bordered table-striped bg-white">
-                    <thead>
-                        <tr>
-                            <th style="width: 5%">#</th>
-                            <th style="width: 30%">اسم الملف</th>
-                            <th style="width: 15%">تاريخ إضافة الملف</th>
-                            <th style="width: 30%">العمليات المتاحة</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($notes_files as $notes_file)
-                            <tr>
-                                <td>{{ $notes_file->id }}</td>
-                                <td>{{ $notes_file->name }}
-                                    {{-- {{ $notes_file->id }} --}}
-                                </td>
-                                <td>{{ Carbon\Carbon::parse($notes_file->created_at)->format('l, j/n/Y') }}</td>
-
-                                {{-- {{ $notes_file->user->first_name }}
-                                        {{ $notes_file->user->last_name }} --}}
-                                </td>
-
-                                <td>
-                                    {{-- show/download form --}}
-                                    <div class="d-flex justify-content-center">
-                                        <form action="{{ route('adverts', ['yearname' => $year->name]) }}" method="GET">
-                                            @csrf
-
-                                            <!-- /.card-body -->
-
-                                            <a href=
-                                                 "{{ route('behavioral-notes-files.download', ['yearname' => $year->name, 'file_name' => $notes_file->name]) }}"
-                                                class="btn btn-outline-info     " type="button">
-                                                <b>تنزيل الملف</b>
-                                            </a>
-                                            <br>
-                                            </span>
-                                        </form>
-                                        @if (Auth::user()->hasRole('mentor'))
-                                            {{-- delete form --}}
-                                            <div class="d-flex justify-content-center">
-                                                <form
-                                                    action="{{ route('behavioral-notes-files.delete', ['yearname' => $year->name, 'file_name' => $notes_file->name, 'note_id' => $note->id]) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <!-- /.card-body -->
-
-                                                    <button class="btn btn-outline-danger" type="submit">
-                                                        <b>حذف الملف</b>
-                                                    </button>
-                                                    <br>
-                                                    </span>
-                                                </form>
-
-                                            </div>
-                                        @endif
-                                </td>
-                            </tr>
-                        @endforeach
-
-
-                        <br>
-
-                    </tbody>
-
-                </table>
-            </div>
-            <!-- /.card-body -->
         </div>
         <!-- /.card -->
 
     </div>
+    <div class="card card-teal" id="12345">
+        <div class="card-header">
+            <h1 class="card-title col-md-7">
+                <b>
+                    الملفات المرفقة الملاحظة </b>
+            </h1>
+            <div class="card-tools">
+
+                <button type="button" class="btn btn-tool " data-card-widget="remove"><i class="fas fa-times"></i></button>
+                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
+                        class="fas fa-expand"></i></button>
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                        class="fas fa-minus"></i></button>
+            </div>
+            <!-- /.card-tools -->
+        </div>->
+        <div class="card-body">
+
+            @if (Auth::user()->roles()->first()->name == 'mentor' || Auth::user()->roles()->first()->name == 'secretary')
+                <form
+                    action="{{ route('behavioral-notes-file.add', ['yearname' => $year->name, 'note_id' => $note->id]) }}"
+                    method="Post" enctype="multipart/form-data">
+                    @csrf
+                    @method('Post')
+                    <!-- /.card-body -->
+                    <h6 class="text-gray">
+                        <b>إضافة ملف جديد للملاحظة : </b>
+                    </h6>
+                    <br>
+                    <input id="file" class="form-control bg-light" type="file" name="file" required />
+                    <br>
+                    <button class="btn  btn-outline-success " type="submit">
+                        <b>إضافة</b>
+                    </button>
+                    <br>
+                    </span>
+
+                </form>
+            @endif
+
+            <table id="example2" class="table table-bordered table-striped bg-white">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">#</th>
+                        <th style="width: 30%">اسم الملف</th>
+                        <th style="width: 15%">تاريخ إضافة الملف</th>
+                        <th style="width: 30%">العمليات المتاحة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($notes_files as $notes_file)
+                        <tr>
+                            <td>{{ $notes_file->id }}</td>
+                            <td>{{ $notes_file->name }}
+                                {{-- {{ $notes_file->id }} --}}
+                            </td>
+                            <td>{{ Carbon\Carbon::parse($notes_file->created_at)->format('l, j/n/Y') }}</td>
+
+                            {{-- {{ $notes_file->user->first_name }}
+                                    {{ $notes_file->user->last_name }} --}}
+                            </td>
+
+                            <td>
+                                {{-- show/download form --}}
+                                <div class="d-flex justify-content-center">
+                                    <form action="{{ route('adverts', ['yearname' => $year->name]) }}" method="GET">
+                                        @csrf
+
+                                        <!-- /.card-body -->
+
+                                        <a href=
+                                             "{{ route('behavioral-notes-files.download', ['yearname' => $year->name, 'file_name' => $notes_file->name]) }}"
+                                            class="btn btn-outline-info     " type="button">
+                                            <b>تنزيل الملف</b>
+                                        </a>
+                                        <br>
+                                        </span>
+                                    </form>
+                                    @if (Auth::user()->hasRole('mentor'))
+                                        {{-- delete form --}}
+                                        <div class="d-flex justify-content-center">
+                                            <form
+                                                action="{{ route('behavioral-notes-files.delete', ['yearname' => $year->name, 'file_name' => $notes_file->name, 'note_id' => $note->id]) }}"
+                                                method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <!-- /.card-body -->
+
+                                                <button class="btn btn-outline-danger" type="submit">
+                                                    <b>حذف الملف</b>
+                                                </button>
+                                                <br>
+                                                </span>
+                                            </form>
+
+                                        </div>
+                                    @endif
+                            </td>
+                        </tr>
+                    @endforeach
+
+                    <br>
+
+                </tbody>
+
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <br>
+
+    <!-- /.card -->
     </div>
 @endsection
 
