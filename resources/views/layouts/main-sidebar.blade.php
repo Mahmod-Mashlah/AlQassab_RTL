@@ -41,24 +41,38 @@
                   data-accordion="false">
                   <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                  {{-- <li class="nav-item has-treeview menu-open">
+
+
+                  <li class="nav-item has-treeview menu-open">
                       <a href="#" class="nav-link active">
-                          <i class="nav-icon fas fa-tachometer-alt"></i>
+                          <i class="nav-icon fas fa-minus-square "></i>
                           <p>
-                              لوحة التحكم
+                              السنوات الدراسية
                               <i class="right fas fa-angle-left"></i>
                           </p>
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="./index.html" class="nav-link active">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Dashboard v1</p>
+
+                              <a href="{{ route('years') }}" class="nav-link active">
+                                  <i class="fas fa-square  nav-icon"></i>
+                                  &nbsp;
+                                  جميع السنوات الدراسية</a>
                               </a>
                           </li>
+                          @foreach ($years as $year)
+                              <li class="nav-item">
+
+                                  <a href="{{ url('dashboard', $year->name) }}" class="nav-link active">
+                                      <i class="fas fa-square  nav-icon"></i>
+                                      &nbsp;
+                                      {{ $year->name }}</a>
+                                  </a>
+                              </li>
+                          @endforeach
 
                       </ul>
-                  </li> --}}
+                  </li>
 
               </ul>
           </nav>
